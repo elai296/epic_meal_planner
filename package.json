@@ -1,0 +1,35 @@
+{
+  "name": "619_mealplanner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Learning-Fuze/619_mealplanner.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Learning-Fuze/619_mealplanner/issues"
+  },
+  "homepage": "https://github.com/Learning-Fuze/619_mealplanner#readme",
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/plugin-transform-arrow-functions": "^7.2.0",
+    "@babel/plugin-transform-block-scoping": "^7.6.0",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.8"
+  },
+  "dependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "webpack-dev-server": "^3.8.0"
+  }
+}
