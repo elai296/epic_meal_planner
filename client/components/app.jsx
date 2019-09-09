@@ -1,4 +1,5 @@
 import React from "react";
+import Calendar from "./calendar";
 
 class App extends React.Component{
   constructor(props) {
@@ -10,6 +11,8 @@ class App extends React.Component{
       },
       modal: "none"
     };
+    this.setView = this.setView.bind(this);
+    this.setModal = this.setModal.bind(this);
   }
 
   setView(name, recipe) {
@@ -28,7 +31,7 @@ class App extends React.Component{
   render() {
     return(
       <div>
-        <span className="h1">TEST</span>
+        <Calendar />
       </div>
     )
   }
