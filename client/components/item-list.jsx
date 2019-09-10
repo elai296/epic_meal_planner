@@ -3,7 +3,11 @@ import React from 'react';
 function ItemList(props) {
   return (
     <ul>
-      list item
+      { props.items.map(item => {
+        return (
+          <Item/>
+        );
+      })}
     </ul>
   );
 }
