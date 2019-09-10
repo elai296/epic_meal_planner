@@ -5,7 +5,10 @@ function ItemList(props) {
     <ul>
       { props.items.map(item => {
         return (
-          <Item/>
+          <Item
+            key={item.id}
+            item={item}
+            toggleChecked={props.toggleChecked}/>
         );
       })}
     </ul>
