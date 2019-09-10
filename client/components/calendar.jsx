@@ -18,6 +18,7 @@ class Calendar extends React.Component {
     console.log("date", event.path[1].textContent);
     console.log("mealType", event.srcElement.className);
     this.getMeal(event);
+    //className="table-active" use to highlight box on click
   }
   getMeal(event){
     fetch(`/API/dummy-meal-items.json`)
@@ -59,46 +60,46 @@ class Calendar extends React.Component {
           </thead>
           <tbody>
             <tr>
-              <th scope="row">2019-09-08</th>
+              <th scope="row" className="2019-09-08" >2019-09-08</th>
               <td className="breakfast" onClick={this.handleClick}>{this.state.meal}</td>
-              <td></td>
-              <td></td>
+              <td className="lunch" onClick={this.handleClick}></td>
+              <td className="dinner" onClick={this.handleClick}></td>
             </tr>
             <tr>
-              <th scope="row">2019-09-09</th>
-              <td></td>
-              <td></td>
-              <td></td>
+              <th scope="row" className="2019-09-09">2019-09-09</th>
+              <td className="breakfast" onClick={this.handleClick}></td>
+              <td className="lunch" onClick={this.handleClick}></td>
+              <td className="dinner" onClick={this.handleClick}></td>
             </tr>
             <tr>
-              <th scope="row">2019-09-10</th>
-              <td></td>
-              <td></td>
-              <td></td>
+              <th scope="row" className="2019-09-10">2019-09-10</th>
+              <td className="breakfast" onClick={this.handleClick}></td>
+              <td className="lunch" onClick={this.handleClick}></td>
+              <td className="dinner" onClick={this.handleClick}></td>
             </tr>
             <tr>
-              <th scope="row">2019-09-11</th>
-              <td></td>
-              <td></td>
-              <td></td>
+              <th scope="row" className="2019-09-11">2019-09-11</th>
+              <td className="breakfast" onClick={this.handleClick}></td>
+              <td className="lunch" onClick={this.handleClick}></td>
+              <td className="dinner" onClick={this.handleClick}></td>
             </tr>
             <tr>
-              <th scope="row">2019-09-12</th>
-              <td></td>
-              <td></td>
-              <td></td>
+              <th scope="row" className="2019-09-12">2019-09-12</th>
+              <td className="breakfast" onClick={this.handleClick}></td>
+              <td className="lunch" onClick={this.handleClick}></td>
+              <td className="dinner" onClick={this.handleClick}></td>
             </tr>
             <tr>
-              <th scope="row">2019-09-13</th>
-              <td></td>
-              <td></td>
-              <td></td>
+              <th scope="row" className="2019-09-13">2019-09-13</th>
+              <td className="breakfast" onClick={this.handleClick}></td>
+              <td className="lunch" onClick={this.handleClick}></td>
+              <td className="dinner" onClick={this.handleClick}></td>
             </tr>
             <tr>
-              <th scope="row">2019-09-14</th>
-              <td></td>
-              <td></td>
-              <td></td>
+              <th scope="row" className="2019-09-14">2019-09-14</th>
+              <td className="breakfast" onClick={this.handleClick}></td>
+              <td className="lunch" onClick={this.handleClick}></td>
+              <td className="dinner" onClick={this.handleClick}></td>
             </tr>
           </tbody>
         </table>
