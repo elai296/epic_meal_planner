@@ -1,0 +1,22 @@
+.contentRecipeBar{
+    height: 100px;
+    width: 300px;
+}
+.calendarIcon{
+    height: 50px;
+    width: 50px;
+}
+.heartIcon{
+    height: 50px;
+    width: 50px;
+}
+.shoppingListIcon{
+    height: 50px;
+    width: 50px;
+}
+
+.iconImages{
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+}
