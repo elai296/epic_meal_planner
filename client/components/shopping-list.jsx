@@ -1,8 +1,7 @@
 import React from 'react';
 import Header from './header';
 import ItemForm from './item-form';
-
-//dummy data: shopping list item id, description, completed
+import ItemList from './item-list';
 
 class ShoppingList extends React.Component {
   constructor(props) {
