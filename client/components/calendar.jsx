@@ -81,12 +81,10 @@ class Calendar extends React.Component {
             required
             type="text"
             value={this.state.mealInput}
-            className="form-group"
+            className="form-control"
             placeholder="Add Meal"
             onChange={this.handleChange} />
-          <div>
-            <button type="submit" className="btn btn-primary">Add</button>
-          </div>
+            <button type="submit" className="btn btn-primary mb-2">Add</button>
         </form>
       </div>
     );
