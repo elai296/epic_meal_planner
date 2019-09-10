@@ -14,6 +14,6 @@
     print(json_encode([
       'error' => 'NOT FOUND',
       'message' => 'Cannot {$method} /api/dummyData'
-    ]))
+    ]));
   }
 ?>

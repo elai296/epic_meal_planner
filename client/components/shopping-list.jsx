@@ -17,7 +17,7 @@ class ShoppingList extends React.Component {
   }
 
   getAllItems() {
-    fetch('/api/shoppingList.php')
+    fetch('http://localhost:3000/619_mealplanner/server/public/api/shopping-list.php')
       .then(response => {
         return response.json();
       })
@@ -29,7 +29,7 @@ class ShoppingList extends React.Component {
   }
 
   addItem(newItem) {
-    fetch('', {
+    fetch('/api/shopping-list.json', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -55,7 +55,7 @@ class ShoppingList extends React.Component {
       return item.id === itemId;
     });
 
-    fetch('', {
+    fetch('/api/shopping-list.json', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
