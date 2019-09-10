@@ -10,6 +10,10 @@ class ShoppingList extends React.Component {
       list: [],
       isChecked: false
     };
+    this.getAllItems = this.getAllItems.bind(this);
+    this.addItem = this.addItem.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
+    this.toggleChecked = this.toggleChecked.bind(this);
   }
 
   componentDidMount() {
@@ -17,11 +21,12 @@ class ShoppingList extends React.Component {
   }
 
   getAllItems() {
-    fetch('http://localhost:3000/619_mealplanner/server/public/api/shopping-list.php')
+    fetch('/API/shopping-list.json')
       .then(response => {
         return response.json();
       })
       .then(data => {
+        console.log(data);
         this.setState({
           list: data
         });
@@ -29,7 +34,7 @@ class ShoppingList extends React.Component {
   }
 
   addItem(newItem) {
-    fetch('/api/shopping-list.json', {
+    fetch('/API/shopping-list.json', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -55,7 +60,7 @@ class ShoppingList extends React.Component {
       return item.id === itemId;
     });
 
-    fetch('/api/shopping-list.json', {
+    fetch('/API/shopping-list.json', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
