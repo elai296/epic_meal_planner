@@ -14,14 +14,23 @@ class Calendar extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleClick(){
-    console.log("this was clicked", event.target);
-    this.getMeal();
-    //className="table-active"
+    console.log("this was clicked", event);
+    console.log("date", event.path[1].textContent);
+    console.log("mealType", event.srcElement.className);
+    this.getMeal(event);
   }
-  getMeal(){
+  getMeal(event){
     fetch(`/API/dummy-meal-items.json`)
     .then(response => response.json())
-    .then(data => this.setState({meal: data.meals[0].label}))
+    .then(data => {
+      let counter = 0;
+      while(counter < data.meals.length){
+        if (event.path[1].textContent === data.meals[counter].date){
+          this.setState({ meal: data.meals[counter].label });
+        }
+        counter++;
+      }
+    })
   }
   handleChange(){
     this.setState({
@@ -51,7 +60,7 @@ class Calendar extends React.Component {
           <tbody>
             <tr>
               <th scope="row">2019-09-08</th>
-              <td onClick={this.handleClick}>{this.state.meal}</td>
+              <td className="breakfast" onClick={this.handleClick}>{this.state.meal}</td>
               <td></td>
               <td></td>
             </tr>
