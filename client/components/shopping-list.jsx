@@ -17,7 +17,7 @@ class ShoppingList extends React.Component {
   }
 
   getAllItems() {
-    fetch('')
+    fetch('/api/shoppingList.php')
       .then(response => {
         return response.json();
       })
