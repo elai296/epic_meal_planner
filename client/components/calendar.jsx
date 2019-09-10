@@ -15,10 +15,10 @@ class Calendar extends React.Component {
   }
   handleClick(){
     console.log("this was clicked", event);
-    console.log("date", event.path[1].textContent);
+    console.log("date", event.path[1].firstChild.className);
     console.log("mealType", event.srcElement.className);
     this.getMeal(event);
-    //className="table-active" use to highlight box on click
+    //className="table-active" use to highlight box onclick
   }
   getMeal(event){
     fetch(`/API/dummy-meal-items.json`)
@@ -26,7 +26,7 @@ class Calendar extends React.Component {
     .then(data => {
       let counter = 0;
       while(counter < data.meals.length){
-        if (event.path[1].textContent === data.meals[counter].date){
+        if (event.path[1].firstChild.className === data.meals[counter].date){
           this.setState({ meal: data.meals[counter].label });
         }
         counter++;
@@ -62,7 +62,7 @@ class Calendar extends React.Component {
             <tr>
               <th scope="row" className="2019-09-08" >2019-09-08</th>
               <td className="breakfast" onClick={this.handleClick}>{this.state.meal}</td>
-              <td className="lunch" onClick={this.handleClick}></td>
+              <td className="lunch" onClick={this.handleClick}>{this.state.meal}</td>
               <td className="dinner" onClick={this.handleClick}></td>
             </tr>
             <tr>
