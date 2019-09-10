@@ -76,16 +76,14 @@ class Calendar extends React.Component {
             </tr>
           </tbody>
         </table>
-        <form className="form-inline" onSubmit={this.handleSubmit}>
-          <input
-            required
-            type="text"
-            value={this.state.mealInput}
-            className="form-control"
-            placeholder="Add Meal"
-            onChange={this.handleChange} />
-            <button type="submit" className="btn btn-primary mb-2">Add</button>
+        <form className="form-inline text-align-center" onSubmit={this.handleSubmit}>
+          <div class="form-group mx-sm-3 mb-2 mr-2 ml-5">
+              <input required onChange={this.handleChange} type="text" className="form-control" placeholder="Add Meal" />
+          </div>
+              <button type="submit" className="btn btn-primary mb-2">Add</button>
         </form>
+        <button type="submit" className="btn btn-primary mb-2 mr-2 ml-5">Previous Week</button>
+        <button type="submit" className="btn btn-primary mb-2 ml-4">Next Week</button>
       </div>
     );
   }
