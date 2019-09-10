@@ -5,10 +5,23 @@ class Calendar extends React.Component {
     super(props);
     this.state = {
       mealInput: "",
-      pushToCalendar: []
+      pushToCalendar: [],
+      meal: ""
     }
+    this.handleClick = this.handleClick.bind(this);
+    this.getMeal = this.getMeal.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleClick(){
+    console.log("this was clicked", event.target);
+    this.getMeal();
+    //className="table-active"
+  }
+  getMeal(){
+    fetch(`/API/dummy-meal-items.json`)
+    .then(response => response.json())
+    .then(data => this.setState({meal: data.meals[0].label}))
   }
   handleChange(){
     this.setState({
@@ -16,7 +29,11 @@ class Calendar extends React.Component {
     });
   }
   handleSubmit() {
-
+    event.preventDefault();
+  }
+  componentDidMount(){
+    // GET fetch call to retrieve the calendar data (mealName, date, mealType);
+    // this.getMeal();
   }
   render(){
     return (
@@ -33,43 +50,43 @@ class Calendar extends React.Component {
           </thead>
           <tbody>
             <tr>
-              <th scope="row">Sun<br/>8</th>
+              <th scope="row">2019-09-08</th>
+              <td onClick={this.handleClick}>{this.state.meal}</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th scope="row">2019-09-09</th>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
-              <th scope="row">Mon<br />9</th>
+              <th scope="row">2019-09-10</th>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
-              <th scope="row">Tues<br />10</th>
+              <th scope="row">2019-09-11</th>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
-              <th scope="row">Wed<br />11</th>
+              <th scope="row">2019-09-12</th>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
-              <th scope="row">Thurs<br />12</th>
+              <th scope="row">2019-09-13</th>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
-              <th scope="row">Fri<br />13</th>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th scope="row">Sat<br />14</th>
+              <th scope="row">2019-09-14</th>
               <td></td>
               <td></td>
               <td></td>
@@ -77,7 +94,7 @@ class Calendar extends React.Component {
           </tbody>
         </table>
         <form className="form-inline text-align-center" onSubmit={this.handleSubmit}>
-          <div class="form-group mx-sm-3 mb-2 mr-2 ml-5">
+          <div className="form-group mx-sm-3 mb-2 mr-2 ml-5">
               <input required onChange={this.handleChange} type="text" className="form-control" placeholder="Add Meal" />
           </div>
               <button type="submit" className="btn btn-primary mb-2">Add</button>
