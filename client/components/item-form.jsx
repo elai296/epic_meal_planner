@@ -9,6 +9,24 @@ class ItemForm extends React.Component {
     };
   }
 
+  handleChange(event) {
+    this.setState({
+      list: event.target.value
+    });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const newItem = {
+      item: this.state.item,
+      isChecked: false
+    };
+    this.props.onSubmit(newItem);
+    this.setState({
+      item: ''
+    });
+  }
+
   render() {
     return (
       <form className="input-group mb-4 shadow-sm" onSubmit={this.handleSubmit}>

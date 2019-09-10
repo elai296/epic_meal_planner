@@ -1,4 +1,6 @@
 import React from 'react';
+import Header from './header';
+import ItemForm from './item-form';
 
 class ShoppingList extends React.Component {
   constructor(props) {

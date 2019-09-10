@@ -1,4 +1,5 @@
 import React from "react";
+import ShoppingList from './shopping-list';
 
 class App extends React.Component{
   constructor(props) {
@@ -28,7 +29,7 @@ class App extends React.Component{
   render() {
     return(
       <div>
-        <span className="h1">TEST</span>
+        <ShoppingList/>
       </div>
     )
   }
