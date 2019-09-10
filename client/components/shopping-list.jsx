@@ -2,6 +2,8 @@ import React from 'react';
 import Header from './header';
 import ItemForm from './item-form';
 
+//dummy data: shopping list item id, description, completed
+
 class ShoppingList extends React.Component {
   constructor(props) {
     super(props);
