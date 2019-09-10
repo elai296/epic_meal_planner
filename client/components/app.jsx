@@ -1,4 +1,5 @@
 import React from "react";
+import ShoppingList from './shopping-list';
 import SearchBar from "./searchBar";
 import SearchResults from "./searchResults";
 import RecipeDetails from "./recipeDetails";
@@ -49,8 +50,8 @@ class App extends React.Component {
     }
     return (
       <div>
+        <ShoppingList/>
         {display}
-        <span className="h1">TEST</span>
       </div>
     );
   }
