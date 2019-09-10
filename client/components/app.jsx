@@ -10,7 +10,13 @@ class App extends React.Component{
       },
       modal: "none"
     };
+    this.getFavorites = this.getFavorites.bind(this);
   }
+
+  componentDidMount() {
+    this.getFavorites();
+  }
+
 
   setView(name, recipe) {
     this.setState({
@@ -19,6 +25,14 @@ class App extends React.Component{
         recpie: recipe
       }
     })
+  }
+
+  getFavorites(){
+    fetch(`/api/getFavorites.php`)
+      .then(res => res.json())
+      .then(response => {console.log(response);
+      this.setState({ modal: response  })});
+
   }
 
   setModal(modal) {
