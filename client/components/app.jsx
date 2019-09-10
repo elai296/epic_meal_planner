@@ -16,7 +16,7 @@ class App extends React.Component{
     this.setState({
       view: {
         name: name,
-        recpie: recipe
+        recipe: recipe
       }
     })
   }
