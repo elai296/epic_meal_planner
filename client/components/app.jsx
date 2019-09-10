@@ -25,6 +25,14 @@ class App extends React.Component {
     });
   }
 
+  getFavorites(){
+    fetch(`/api/getFavorites.php`)
+      .then(res => res.json())
+      .then(response => {console.log(response);
+      this.setState({ modal: response  })});
+
+  }
+
   setModal(modal) {
     this.setState({ modal });
   }
