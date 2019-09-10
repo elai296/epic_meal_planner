@@ -1,4 +1,5 @@
 import React from "react";
+import Calendar from "./calendar";
 import ShoppingList from './shopping-list';
 import SearchBar from "./searchBar";
 import SearchResults from "./searchResults";
@@ -15,8 +16,8 @@ class App extends React.Component {
       results: [],
       modal: "none"
     };
-
     this.setView = this.setView.bind(this);
+    this.setModal = this.setModal.bind(this);
   }
 
   setView(name, recipe, results) {
@@ -50,6 +51,7 @@ class App extends React.Component {
     }
     return (
       <div>
+        <Calendar />
         <ShoppingList/>
         {display}
       </div>
