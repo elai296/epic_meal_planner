@@ -1,0 +1,19 @@
+{
+  "shopping_list": [
+    {
+      "shopping_list_item_id": 1,
+      "description": "Sugar",
+      "completed": 0
+    },
+    {
+      "shopping_list_item_id": 2,
+      "description": "Water",
+      "completed": 0
+    },
+    {
+      "shopping_list_item_id": 3,
+      "description": "Lemons",
+      "completed": 0
+    }
+  ]
+}

@@ -39,7 +39,7 @@ module.exports = {
       '/api': {
         target: 'http://localhost',
         headers: {
-          Host: 'personalHomeboy-meal-planner.localhost'
+          Host: 'mealplanner.localhost'
         }
       }
     }
