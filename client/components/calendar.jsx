@@ -34,6 +34,25 @@ class Calendar extends React.Component {
   }
   handleSubmit() {
     event.preventDefault();
+    const mealsToPost = this.state.pushToCalendar;
+    let counter = 0;
+    while(counter < mealsToPost.length){
+      mealsToPost[counter].label = this.state.mealInput;
+      console.log( "mealsToPost with label updated: ", mealsToPost[counter]);
+      const req = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(mealsToPost[counter])
+      };
+      fetch('/API/(need endpoint from back end)', req)
+        .then(res => res.json())
+        .then(meal => {this.setState({ meal })});
+      counter++;
+    }
+    this.setState({
+      mealInput: "",
+      pushToCalendar: []
+    })
   }
   componentDidMount(){
     this.getStoredMeals();
@@ -83,6 +102,19 @@ class Calendar extends React.Component {
       datePosition++;
     }
      this.setState({ meal: weekMeals})
+  }
+  setDate(){
+    var MyDate = new Date();
+    var MyDateString;
+
+    MyDate.setDate(MyDate.getDate());
+    MyDate.setDate(MyDate.getDate() - 3);// gives us Sunday
+
+    MyDateString = MyDate.getFullYear() + '-'
+      + ('0' + MyDate.getDate()).slice(-2) + '-'
+      + ('0' + (MyDate.getMonth() + 1)).slice(-2);
+
+    console.log(MyDateString)
   }
   render(){
     if(!this.state.meal){
