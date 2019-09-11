@@ -16,7 +16,7 @@ function Item(props) {
           className="form-check-input"
           onChange={() => props.toggleChecked(item.id)}/>
         <label className={listClass} htmlFor={idString}>
-          { props.item.description }
+          { props.item.ingredients_desc }
         </label>
       </div>
     </li>

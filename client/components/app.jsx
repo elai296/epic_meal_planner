@@ -33,10 +33,10 @@ class App extends React.Component {
   }
 
   getFavorites(){
-    fetch(`api/getFavorites.php`)
+    fetch(`/api/getFavorites.php`)
       .then(res => res.json())
-      .then(response => {console.log(response);
-      this.setState({ modal: response  })});
+      .then(response => {
+      this.setState({ modal: response })});
 
   }
 

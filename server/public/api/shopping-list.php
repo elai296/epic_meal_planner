@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
   header('Content-Type: application/json');
 
   $method = $_SERVER['REQUEST_METHOD'];
@@ -16,4 +16,4 @@
       'message' => 'Cannot {$method} /api/dummyData'
     ]));
   }
-?> -->
+?>

@@ -1,5 +1,4 @@
 <?php
-
 require_once('functions.php');
 require_once('db_connection.php');
 set_exception_handler('error_handler');
@@ -25,5 +24,4 @@ while ($row = mysqli_fetch_assoc($result)) {
 };
 
 print(json_encode($output));
-
 ?>

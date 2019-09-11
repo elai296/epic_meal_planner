@@ -19,7 +19,7 @@ class ItemForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const newItem = {
-      item: this.state.item,
+      ingredients_desc: this.state.item,
       isChecked: false
     };
     this.props.onSubmit(newItem);

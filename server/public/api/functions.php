@@ -1,5 +1,4 @@
 <?php
-
 function error_handler($error){
   $output = array(
     "success" => false,
@@ -13,5 +12,4 @@ function error_handler($error){
 function startUp(){
   header('Content-Type: application/json');
 }
-
 ?>

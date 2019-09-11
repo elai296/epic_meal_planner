@@ -21,20 +21,19 @@ class ShoppingList extends React.Component {
   }
 
   getAllItems() {
-    fetch(`/API/shopping-list.json`)
+    fetch(`/api/getShoppingList.php`)
       .then(response => {
         return response.json();
       })
       .then(data => {
-        console.log(data);
         this.setState({
-          shoppingList: data.shoppingList
+          shoppingList: data
         });
       });
   }
 
   addItem(newItem) {
-    fetch(`/API/shopping-list.json`, {
+    fetch(``, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -46,7 +45,7 @@ class ShoppingList extends React.Component {
       })
       .then(data => {
         this.setState({
-          shoppingList: this.state.shoppingList.concat(data.shoppingList)
+          shoppingList: this.state.shoppingList.concat(data)
         });
       });
   }
@@ -60,7 +59,7 @@ class ShoppingList extends React.Component {
       return item.shoppingListItemId === itemId;
     });
 
-    fetch(`/API/shopping-list.json`, {
+    fetch(``, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'

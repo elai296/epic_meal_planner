@@ -7,7 +7,7 @@ startUp();
 
 //work on query
 
-$query= "SELECT * FROM `shopping_list` JOIN `recipe_ingredients` ON `shopping_list`.`ingredientsId` = `recipe_ingredients`.`id`";
+$query= "SELECT * FROM shopping_list JOIN recipe_ingredients ON shopping_list.ingredients_Id = recipe_ingredients.id";
 
 $result = mysqli_query($conn, $query);
 
@@ -24,6 +24,4 @@ while ($row = mysqli_fetch_assoc($result)) {
 };
 
 print(json_encode($output));
-
-
 ?>
