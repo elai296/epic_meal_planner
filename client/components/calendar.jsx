@@ -1,5 +1,5 @@
 import React from "react";
-import TableBody from "./calendar-table-body";
+import CalendarTable from "./calendar-table";
 
 class Calendar extends React.Component {
   constructor(props){
@@ -75,17 +75,7 @@ class Calendar extends React.Component {
       return (
         <div>
           <h3 className="text-center">September, 2019</h3>
-          <table className="table table-bordered text-center">
-            <thead>
-              <tr>
-                <th scope="col"><i className="fas fa-utensils fa-2x"></i></th>
-                <th scope="col">Breakfast</th>
-                <th scope="col">Lunch</th>
-                <th scope="col">Dinner</th>
-              </tr>
-            </thead>
-            <TableBody handleClick={this.handleClick} meal={this.state.meal}/>
-          </table>
+          <CalendarTable handleClick={this.handleClick} meal={this.state.meal}/>
           <form className="form-inline text-align-center" onSubmit={this.handleSubmit}>
             <div className="form-group mx-sm-3 mb-2 mr-2 ml-5">
               <input required onChange={this.handleChange} type="text" className="form-control" placeholder="Add Meal" />
