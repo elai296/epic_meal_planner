@@ -15,9 +15,9 @@ class Calendar extends React.Component {
     this.sortDays = this.sortDays.bind(this);
   }
   handleClick(){
-    console.log("this was clicked", event);
-    console.log("date", event.path[1].firstChild.className);
-    console.log("mealType", event.srcElement.className);
+    // console.log("this was clicked", event);
+    // console.log("date", event.path[1].firstChild.className);
+    // console.log("mealType", event.srcElement.className);
     //className="table-active" use to highlight box onclick
   }
   handleChange(){
@@ -30,7 +30,6 @@ class Calendar extends React.Component {
   }
   componentDidMount(){
     this.getStoredMeals();
-    // console.log({this.state.meal[0].label ? this.state.meal[0].label : ""});
   }
   getStoredMeals(){
     fetch(`/API/dummy-meal-items.json`)
@@ -42,36 +41,34 @@ class Calendar extends React.Component {
       })
   }
    sortDays(){
-    let copyOfMeal = this.state.meal; //copy state
-    let mealPosition = 0; // set mealPosition counter
-    let datePosition = 0; // set datePosition counter
-    let weekMeals = []; // define weekMeals
-    let weekMealsLength = weekMeals.length; //sets letiable to weekMeals length
-    let week = ["2019-09-08", "2019-09-09", "2019-09-10", "2019-09-11", "2019-09-12", "2019-09-13", "2019-09-14"]; // define array for this week's dates
-    while(datePosition < week.length){ //while loop to go through 21 meals for the week
-      let noDates = datePosition;
-        debugger; // debugger to check loop actions
-        if (copyOfMeal[mealPosition].date === week[noDates] && copyOfMeal[mealPosition].mealTime === "Breakfast") { // checks if date of state is equal to current date, and if mealtime is breakfast
-          weekMeals.push(copyOfMeal[mealPosition]); //if true, adds meal to weekMeals array
+    let copyOfMeal = this.state.meal;
+    let mealPosition = 0;
+    let datePosition = 0;
+    let weekMeals = [];
+    let week = ["2019-09-08", "2019-09-09", "2019-09-10", "2019-09-11", "2019-09-12", "2019-09-13", "2019-09-14"];
+    while(datePosition < week.length){
+        if (copyOfMeal[mealPosition].date === week[datePosition] && copyOfMeal[mealPosition].mealTime === "Breakfast") {
+          weekMeals.push(copyOfMeal[mealPosition]);
           mealPosition++;
         } else {
-          weekMeals.push("");
+          weekMeals.push({ label: ""});
         }
-        if (copyOfMeal[mealPosition].date === week[noDates] && copyOfMeal[mealPosition].mealTime === "Lunch") { // checks if date of state is equal to current date, and if mealtime is lunch
-          weekMeals.push(copyOfMeal[mealPosition]); //if true, adds meal to weekMeals array
+        if (copyOfMeal[mealPosition].date === week[datePosition] && copyOfMeal[mealPosition].mealTime === "Lunch") {
+          weekMeals.push(copyOfMeal[mealPosition]);
           mealPosition++;
         } else {
-          weekMeals.push("");
+          weekMeals.push({ label: "" });
         }
-        if (copyOfMeal[mealPosition].date === week[noDates] && copyOfMeal[mealPosition].mealTime === "Dinner") { // checks if date of state is equal to current date, and if mealtime is dinner
-          weekMeals.push(copyOfMeal[mealPosition]); // if true, adds meal to weekMeals array
+        if (copyOfMeal[mealPosition].date === week[datePosition] && copyOfMeal[mealPosition].mealTime === "Dinner") {
+          weekMeals.push(copyOfMeal[mealPosition]);
           mealPosition++;
         } else {
-          weekMeals.push("");
+          weekMeals.push({ label: "" });
         }
       datePosition++;
     }
      console.log("copy", weekMeals); //logs out array of meals for week
+     this.setState({ meal: weekMeals})
   }
   render(){
     if(!this.state.meal){
