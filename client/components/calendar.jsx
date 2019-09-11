@@ -35,18 +35,14 @@ class Calendar extends React.Component {
   getStoredMeals(){
     fetch(`/API/dummy-meal-items.json`)
       .then(response => response.json())
-      .then(data => {
-        // this.setState({ meal: data.meals });
-        // console.log(this.state.meal);
-        this.sortDays(data);
-      })
+      .then(data => this.sortDays(data))
   }
    sortDays(data){
-    let copyOfMeal = data.meals;
+    const copyOfMeal = data.meals;
+    const weekMeals = [];
+    const week = ["2019-09-08", "2019-09-09", "2019-09-10", "2019-09-11", "2019-09-12", "2019-09-13", "2019-09-14"];
     let mealPosition = 0;
     let datePosition = 0;
-    let weekMeals = [];
-    let week = ["2019-09-08", "2019-09-09", "2019-09-10", "2019-09-11", "2019-09-12", "2019-09-13", "2019-09-14"];
     while(datePosition < week.length){
         if (copyOfMeal[mealPosition].date === week[datePosition] && copyOfMeal[mealPosition].mealTime === "Breakfast") {
           weekMeals.push(copyOfMeal[mealPosition]);
