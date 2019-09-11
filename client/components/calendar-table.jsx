@@ -2,7 +2,6 @@ import React from 'react';
 import Calendar from './calendar';
 
 function CalendarTable(props){
-  console.log(props.meal[1]);
   return (
     <table className="table table-bordered text-center">
       <thead>

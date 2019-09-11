@@ -12,19 +12,9 @@ class Calendar extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.getStoredMeals = this.getStoredMeals.bind(this);
-    this.sortDays = this.sortDays.bind(this);
   }
   handleClick(){
-    // console.log("this was clicked", event);
-    // console.log("date", event.path[1].firstChild.className);
-    // console.log("mealTime", event.srcElement.className);
-    // console.log("text-content ", event.path[0].textContent);
-    //className="table-active" use to highlight box onclick
-    //{ props.meal[0].highlight ? "Breakfast table-active" : "Breakfast"}
-    if (event.path[0].textContent) {
-      console.log("meal already added");
-    } else {
+    if (!event.path[0].textContent) {
       let counter = 0;
       while(counter < this.state.meal.length){
         if (this.state.meal[counter].date === event.path[1].firstChild.className && this.state.meal[counter].mealTime === event.srcElement.className){
@@ -37,9 +27,7 @@ class Calendar extends React.Component {
     }
   }
   handleChange(){
-    this.setState({
-      mealInput: event.target.value
-    });
+    this.setState({ mealInput: event.target.value });
   }
   handleSubmit() {
     event.preventDefault();
