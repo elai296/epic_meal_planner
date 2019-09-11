@@ -21,6 +21,9 @@ class Calendar extends React.Component {
           const mealStateCopy = this.state.meal;
           mealStateCopy[counter].highlight = "true";
           this.setState({ meal: mealStateCopy});
+          const pushToCalendarCopy = this.state.pushToCalendar;
+          pushToCalendarCopy.push(mealStateCopy[counter]);
+          this.setState({ pushToCalendar: pushToCalendarCopy});
         }
         counter++;
       }
