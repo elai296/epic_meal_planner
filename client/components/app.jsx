@@ -18,6 +18,7 @@ class App extends React.Component {
     };
     this.setView = this.setView.bind(this);
     this.setModal = this.setModal.bind(this);
+    this.getFavorites = this.getFavorites.bind(this);
   }
 
   setView(name, recipe, results) {
@@ -27,8 +28,12 @@ class App extends React.Component {
     });
   }
 
+  componentDidMount() {
+    this.getFavorites()
+  }
+
   getFavorites(){
-    fetch(`/api/getFavorites.php`)
+    fetch(`api/getFavorites.php`)
       .then(res => res.json())
       .then(response => {console.log(response);
       this.setState({ modal: response  })});
