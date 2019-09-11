@@ -16,10 +16,16 @@ class Calendar extends React.Component {
     this.sortDays = this.sortDays.bind(this);
   }
   handleClick(){
-    // console.log("this was clicked", event);
-    // console.log("date", event.path[1].firstChild.className);
-    // console.log("mealType", event.srcElement.className);
+    console.log("this was clicked", event);
+    console.log("date", event.path[1].firstChild.className);
+    console.log("mealType", event.srcElement.className);
+    console.log("text-content ", event.path[0].textContent);
     //className="table-active" use to highlight box onclick
+    if (event.path[0].textContent) {
+      console.log("meal already added");
+    } else {
+
+    }
   }
   handleChange(){
     this.setState({
@@ -48,19 +54,31 @@ class Calendar extends React.Component {
           weekMeals.push(copyOfMeal[mealPosition]);
           mealPosition++;
         } else {
-          weekMeals.push({ label: ""});
+          weekMeals.push({
+            date: week[[datePosition]],
+            mealTime: "Breakfast",
+            label: ""
+          });
         }
         if (copyOfMeal[mealPosition].date === week[datePosition] && copyOfMeal[mealPosition].mealTime === "Lunch") {
           weekMeals.push(copyOfMeal[mealPosition]);
           mealPosition++;
         } else {
-          weekMeals.push({ label: "" });
+          weekMeals.push({
+            date: week[[datePosition]],
+            mealTime: "Lunch",
+            label: ""
+          });
         }
         if (copyOfMeal[mealPosition].date === week[datePosition] && copyOfMeal[mealPosition].mealTime === "Dinner") {
           weekMeals.push(copyOfMeal[mealPosition]);
           mealPosition++;
         } else {
-          weekMeals.push({ label: "" });
+          weekMeals.push({
+            date: week[[datePosition]],
+            mealTime: "Dinner",
+            label: ""
+          });
         }
       datePosition++;
     }
