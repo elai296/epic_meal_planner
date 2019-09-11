@@ -91,7 +91,7 @@ class ShoppingList extends React.Component {
           <div className="col pt-5">
             <Header text="Shopping List"/>
             <ItemForm onSubmit={this.addItem}/>
-            <ItemList items={this.state.list} toggleChecked={this.toggleChecked}/>
+            {/* <ItemList items={this.state.list} toggleChecked={this.toggleChecked}/> */}
           </div>
         </div>
       </div>

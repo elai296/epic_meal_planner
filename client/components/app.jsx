@@ -48,11 +48,13 @@ class App extends React.Component {
       );
     } else if (this.state.view.name==="recipe details"){
       display=(<RecipeDetails setView={this.setView} recipe={this.state.view.recipe}/>)
+    } else if(this.state.view.name==="calendar"){
+      display=(<Calendar setView={this.setView} setModal={this.setModal}/>)
+    }else if(this.state.view.name==="shoppinglist"){
+      display=(<ShoppingList setView={this.setView} setModal={this.setModal}/>)
     }
     return (
       <div>
-        <Calendar />
-        <ShoppingList/>
         {display}
       </div>
     );
