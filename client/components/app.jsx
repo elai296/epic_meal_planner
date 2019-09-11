@@ -10,7 +10,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: "home",
+        name: "shoppinglist",
         recipe: {}
       },
       results: [],

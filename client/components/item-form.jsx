@@ -5,7 +5,6 @@ class ItemForm extends React.Component {
     super(props);
     this.state = {
       item: '',
-      status: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);

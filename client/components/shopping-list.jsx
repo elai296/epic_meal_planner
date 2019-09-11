@@ -7,7 +7,7 @@ class ShoppingList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: [],
+      shoppingList: [],
       isChecked: false
     };
     this.getAllItems = this.getAllItems.bind(this);
@@ -21,20 +21,20 @@ class ShoppingList extends React.Component {
   }
 
   getAllItems() {
-    fetch('/API/shopping-list.json')
+    fetch(`/API/shopping-list.json`)
       .then(response => {
         return response.json();
       })
       .then(data => {
         console.log(data);
         this.setState({
-          list: data
+          shoppingList: data.shoppingList
         });
       });
   }
 
   addItem(newItem) {
-    fetch('/API/shopping-list.json', {
+    fetch(`/API/shopping-list.json`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -46,7 +46,7 @@ class ShoppingList extends React.Component {
       })
       .then(data => {
         this.setState({
-          list: this.state.list.concat(data)
+          shoppingList: this.state.shoppingList.concat(data.shoppingList)
         });
       });
   }
@@ -56,11 +56,11 @@ class ShoppingList extends React.Component {
   }
 
   toggleChecked(itemId) {
-    const itemObject = this.state.list.find(item => {
-      return item.id === itemId;
+    const itemObject = this.state.shoppingList.find(item => {
+      return item.shoppingListItemId === itemId;
     });
 
-    fetch('/API/shopping-list.json', {
+    fetch(`/API/shopping-list.json`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
@@ -71,15 +71,15 @@ class ShoppingList extends React.Component {
         return response.json();
       })
       .then(data => {
-        const allEntries = this.state.list.map(oldEntry => {
-          if (oldEntry.id === data.id) {
-            return data;
+        const allEntries = this.state.shoppingList.map(oldEntry => {
+          if (oldEntry.shoppingListItemId === data.shoppingListItemId) {
+            return data.shoppingListItemId;
           } else {
             return oldEntry;
           }
         });
         this.setState({
-          list: allEntries
+          shoppingList: allEntries
         });
       });
   }
@@ -91,7 +91,7 @@ class ShoppingList extends React.Component {
           <div className="col pt-5">
             <Header text="Shopping List"/>
             <ItemForm onSubmit={this.addItem}/>
-            {/* <ItemList items={this.state.list} toggleChecked={this.toggleChecked}/> */}
+            <ItemList items={this.state.shoppingList} toggleChecked={this.toggleChecked}/>
           </div>
         </div>
       </div>
