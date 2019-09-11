@@ -16,15 +16,22 @@ class Calendar extends React.Component {
     this.sortDays = this.sortDays.bind(this);
   }
   handleClick(){
-    console.log("this was clicked", event);
-    console.log("date", event.path[1].firstChild.className);
-    console.log("mealType", event.srcElement.className);
-    console.log("text-content ", event.path[0].textContent);
+    // console.log("this was clicked", event);
+    // console.log("date", event.path[1].firstChild.className);
+    // console.log("mealTime", event.srcElement.className);
+    // console.log("text-content ", event.path[0].textContent);
     //className="table-active" use to highlight box onclick
+    //{ props.meal[0]."Breakfast table-active" : "Breakfast"}
     if (event.path[0].textContent) {
       console.log("meal already added");
     } else {
-
+      let counter = 0;
+      while(counter < this.state.meal.length){
+        if (this.state.meal[counter].date === event.path[1].firstChild.className && this.state.meal[counter].mealTime === event.srcElement.className){
+          console.log("We found it!!! ", this.state.meal[counter].date, " ", this.state.meal[counter].mealTime);
+        }
+        counter++;
+      }
     }
   }
   handleChange(){
