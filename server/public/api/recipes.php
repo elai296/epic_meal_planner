@@ -1,5 +1,4 @@
 <?php
-
 require_once('./functions.php');
 set_exception_handler("error_handler");
 startup();
@@ -20,6 +19,4 @@ while($row = mysqli_fetch_array($result)) {
 
 $json_output = json_encode($output);
 print($json_output);
-
-
 ?>

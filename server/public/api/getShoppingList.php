@@ -5,12 +5,21 @@ set_exception_handler('error_handler');
 
 startUp();
 
-//work on query
-
-$query= "SELECT * FROM `shopping_list` JOIN `recipe_ingredients` ON `shopping_list`.`ingredientsId` = `recipe_ingredients`.`id`";
+$query = "
+(
+  SELECT shopping_list.id, shopping_list.is_completed, recipe_ingredients.ingredients_desc
+  FROM shopping_list
+  JOIN recipe_ingredients ON shopping_list.ingredients_id = recipe_ingredients.id
+)
+  UNION
+(
+  SELECT id, is_completed, ingredient_text AS ingredients_desc
+  FROM shopping_list
+  WHERE ingredients_id IS NULL
+)
+  ORDER BY id ASC";
 
 $result = mysqli_query($conn, $query);
-
 
 if (!$result) {
   throw new Exception(mysqli_connect_error());
@@ -24,6 +33,4 @@ while ($row = mysqli_fetch_assoc($result)) {
 };
 
 print(json_encode($output));
-
-
 ?>
