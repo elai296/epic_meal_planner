@@ -33,7 +33,7 @@ class ShoppingList extends React.Component {
   }
 
   addItem(newItem) {
-    fetch(``, {
+    fetch(`/api/addToShoppingList.php`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -48,15 +48,18 @@ class ShoppingList extends React.Component {
           shoppingList: this.state.shoppingList.concat(data)
         });
       });
+    this.getAllItems();
   }
 
-  deleteItem() {
-
+  deleteItem(id) {
+    this.setState({
+      shoppingList: this.state.shoppingList.filter(itemId => itemId !== id)
+    });
   }
 
   toggleChecked(itemId) {
     const itemObject = this.state.shoppingList.find(item => {
-      return item.shoppingListItemId === itemId;
+      return item.id === itemId;
     });
 
     fetch(``, {
@@ -71,8 +74,8 @@ class ShoppingList extends React.Component {
       })
       .then(data => {
         const allEntries = this.state.shoppingList.map(oldEntry => {
-          if (oldEntry.shoppingListItemId === data.shoppingListItemId) {
-            return data.shoppingListItemId;
+          if (oldEntry.id === data.id) {
+            return data.id;
           } else {
             return oldEntry;
           }
@@ -90,7 +93,7 @@ class ShoppingList extends React.Component {
           <div className="col pt-5">
             <Header text="Shopping List"/>
             <ItemForm onSubmit={this.addItem}/>
-            <ItemList items={this.state.shoppingList} toggleChecked={this.toggleChecked}/>
+            <ItemList allItems={this.state.shoppingList} deleteItem={this.deleteItem} toggleChecked={this.toggleChecked}/>
           </div>
         </div>
       </div>

@@ -5,19 +5,11 @@ set_exception_handler('error_handler');
 
 startUp();
 
-$query = "
-(
-  SELECT shopping_list.id, shopping_list.is_completed, recipe_ingredients.ingredients_desc
-  FROM shopping_list
-  JOIN recipe_ingredients ON shopping_list.ingredients_id = recipe_ingredients.id
-)
-  UNION
-(
-  SELECT id, is_completed, ingredient_text AS ingredients_desc
-  FROM shopping_list
-  WHERE ingredients_id IS NULL
-)
-  ORDER BY id ASC";
+$json_input = file_get_contents('php://input');
+$obj = json_decode($json_input, true);
+$ingredient = $obj['ingredients_desc'];
+
+$query = "INSERT INTO `shopping_list`(ingredient_text,is_completed) VALUES ('$ingredient', 0)";
 
 $result = mysqli_query($conn, $query);
 
@@ -32,5 +24,5 @@ while ($row = mysqli_fetch_assoc($result)) {
   $output[] = $row;
 };
 
-print(json_encode($output));
+print(json_encode($output))
 ?>
