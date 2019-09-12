@@ -12,6 +12,7 @@ class RecipeDetails extends React.Component {
   handleFavorites() {}
 
   handleShoppingList() {}
+  
 
   render() {
     let recipe = this.props.recipe;
@@ -35,15 +36,15 @@ class RecipeDetails extends React.Component {
                 />
               }
               {
-                <img
-                  className="heartIcon"
+                <img 
+                  className="heartIcon" 
                   src="./image/heartIcon.png"
                   alt="Second Icond"
                 />
               }
               {
                 <img
-                  className="shoppingListIcon"
+                  className="shoppingListIcon" onClick= {() => this.props.setView('shoppinglist', {})} //need to change to the modal view for onClick. this is just for testing; it goes to shoppingList view
                   src="./image/shoppingList.png"
                   alt="Third Icon"
                 />
