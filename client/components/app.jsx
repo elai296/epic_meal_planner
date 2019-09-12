@@ -12,8 +12,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      addItemToShoppingList : [],   //----- new code ----
-      oneRecipeDetail :[],          //----- new code ----
+      addItemToShoppingList : [],
+      oneRecipeDetail :[],
       view: {
         name: "home",
         recipe: {}
@@ -23,9 +23,9 @@ class App extends React.Component {
     };
     this.setView = this.setView.bind(this);
     this.setModal = this.setModal.bind(this);
-    this.getFavorites= this.getFavorites.bind(this);  // ---new ---
-    this.recipeDetails = this.recipeDetails.bind(this);  // ---- new -----
-    this.addToShoppingList = this.addToShoppingList.bind(this); // ---- new -----
+    this.getFavorites= this.getFavorites.bind(this);
+    this.recipeDetails = this.recipeDetails.bind(this);
+    this.addToShoppingList = this.addToShoppingList.bind(this);
   }
 
   setView(name, recipe, searchTerm) {
