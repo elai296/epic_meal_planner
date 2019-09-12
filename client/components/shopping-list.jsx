@@ -7,7 +7,7 @@ class ShoppingList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: [],
+      shoppingList: [],
       isChecked: false
     };
     this.getAllItems = this.getAllItems.bind(this);
@@ -20,22 +20,21 @@ class ShoppingList extends React.Component {
     this.getAllItems();
   }
 
-  
+
   getAllItems() {
-    fetch('/api/getShoppingList.php')    // ---- new code -> (changing the endpoint) ---------
+    fetch(`/api/getShoppingList.php`)
       .then(response => {
         return response.json();
       })
       .then(data => {
-        console.log(data);
         this.setState({
-          list: data
+          shoppingList: data
         });
       });
   }
 
   addItem(newItem) {
-    fetch('/api/getShoppingList.php', {  // ---- new code -> (changing the endpoint) ---------
+    fetch(`/api/addToShoppingList.php`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -47,21 +46,24 @@ class ShoppingList extends React.Component {
       })
       .then(data => {
         this.setState({
-          list: this.state.list.concat(data)
+          shoppingList: this.state.shoppingList.concat(data)
         });
       });
+    this.getAllItems();
   }
 
-  deleteItem() {
-
+  deleteItem(id) {
+    this.setState({
+      shoppingList: this.state.shoppingList.filter(itemId => itemId !== id)
+    });
   }
 
   toggleChecked(itemId) {
-    const itemObject = this.state.list.find(item => {
+    const itemObject = this.state.shoppingList.find(item => {
       return item.id === itemId;
     });
 
-    fetch('/api/getShoppingList.php', {        //----- new code (changing the endpoint) --------
+    fetch(``, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
@@ -72,15 +74,15 @@ class ShoppingList extends React.Component {
         return response.json();
       })
       .then(data => {
-        const allEntries = this.state.list.map(oldEntry => {
+        const allEntries = this.state.shoppingList.map(oldEntry => {
           if (oldEntry.id === data.id) {
-            return data;
+            return data.id;
           } else {
             return oldEntry;
           }
         });
         this.setState({
-          list: allEntries
+          shoppingList: allEntries
         });
       });
   }
@@ -92,8 +94,7 @@ class ShoppingList extends React.Component {
           <div className="col pt-5">
             <Header text="Shopping List"/>
             <ItemForm onSubmit={this.addItem}/>
-
-            <ItemList items={this.state.list} toggleChecked={this.toggleChecked}/>
+            <ItemList allItems={this.state.shoppingList} deleteItem={this.deleteItem} toggleChecked={this.toggleChecked}/>
           </div>
         </div>
       </div>

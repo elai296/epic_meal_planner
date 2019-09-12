@@ -4,8 +4,7 @@ class ItemForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      item: '',
-      status: false
+      listItem: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -13,19 +12,19 @@ class ItemForm extends React.Component {
 
   handleChange(event) {
     this.setState({
-      list: event.target.value
+      listItem: event.target.value
     });
   }
 
   handleSubmit(event) {
     event.preventDefault();
     const newItem = {
-      item: this.state.item,
+      ingredients_desc: this.state.listItem,
       isChecked: false
     };
     this.props.onSubmit(newItem);
     this.setState({
-      item: ''
+      listItem: ''
     });
   }
 
@@ -33,13 +32,13 @@ class ItemForm extends React.Component {
     return (
       <form className="input-group mb-4 shadow-sm" onSubmit={this.handleSubmit}>
         <input
-          required
-          autoFocus
-          type="text"
-          item={this.state.item}
           className="form-control"
+          onChange={this.handleChange}
+          item={this.state.listItem}
           placeholder="Add a new item."
-          onChange={this.handleChange}/>
+          type="text"
+          required
+          autoFocus/>
         <div className="input-group-append">
           <button type="submit" className="btn btn-primary">Add</button>
         </div>

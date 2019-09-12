@@ -1,5 +1,4 @@
 <?php
-
 function error_handler($error){
   $output = array(
     "success" => false,
@@ -14,11 +13,9 @@ function startUp(){
   header('Content-Type: application/json');
 }
 
-
 function getBodyData(){
   $json = file_get_contents('php://input');
   $data = json_decode($json, true);
   return $data;
 }
-
 ?>

@@ -13,7 +13,7 @@ class App extends React.Component {
       addItemToShoppingList : [],   //----- new code ----
       oneRecipeDetail :[],          //----- new code ----
       view: {
-        name: "home",
+        name: "shoppinglist",
         recipe: {}
       },
       results: [],
@@ -92,21 +92,21 @@ class App extends React.Component {
   setModal(modal) {
     this.setState({ modal });
   }
+
   render() {
     let display;
     let menu = <Menu setView={this.setView}/>
+
     if (this.state.view.name === "home") {
-      display = <SearchBar setView={this.setView} />;
+      display = <SearchBar setView={this.setView}/>;
     } else if (this.state.view.name === "search bar result") {
-      display = (
-        <SearchResults setView={this.setView} results={this.state.results} />
-      );
-    } else if (this.state.view.name==="recipe details"){
-      display=(<RecipeDetails setView={this.setView} recipe={this.state.view.recipe} />)
-    } else if(this.state.view.name==="calendar"){
-      display=(<Calendar setView={this.setView} setModal={this.setModal}/>)
-    }else if(this.state.view.name ==="shoppinglist"){
-      display=(<ShoppingList setView={this.setView} setModal={this.setModal} />)
+      display = (<SearchResults setView={this.setView} results={this.state.results}/>);
+    } else if (this.state.view.name==="recipe details") {
+      display = (<RecipeDetails setView={this.setView} recipe={this.state.view.recipe}/>);
+    } else if (this.state.view.name==="calendar") {
+      display = (<Calendar setView={this.setView} setModal={this.setModal}/>);
+    } else if (this.state.view.name==="shoppinglist") {
+      display = (<ShoppingList setView={this.setView} setModal={this.setModal}/>);
     }
     return (
       <div>

@@ -5,9 +5,19 @@ set_exception_handler('error_handler');
 
 startUp();
 
-$query= "SELECT shopping_list.id, shopping_list.is_completed, recipe_ingredients.ingredients_desc 
-            FROM `shopping_list` JOIN `recipe_ingredients` 
-            ON `shopping_list`.`ingredients_Id` = `recipe_ingredients`.`id`";
+$query = "
+(
+  SELECT shopping_list.id, shopping_list.is_completed, recipe_ingredients.ingredients_desc
+  FROM shopping_list
+  JOIN recipe_ingredients ON shopping_list.ingredients_id = recipe_ingredients.id
+)
+  UNION
+(
+  SELECT id, is_completed, ingredient_text AS ingredients_desc
+  FROM shopping_list
+  WHERE ingredients_id IS NULL
+)
+  ORDER BY id ASC";
 
 $result = mysqli_query($conn, $query);
 
@@ -23,6 +33,4 @@ while ($row = mysqli_fetch_assoc($result)) {
 };
 
 print(json_encode($output));
-
-
 ?>
