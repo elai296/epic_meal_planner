@@ -34,6 +34,7 @@ class RecipeDetails extends React.Component {
     .then(response=>response.json());
   }
 
+
   render() {
     let recipe = this.props.recipe;
     const heartColor={
@@ -75,7 +76,7 @@ class RecipeDetails extends React.Component {
               }
               {
                 <img
-                  className="shoppingListIcon"
+                  className="shoppingListIcon" onClick= {() => this.props.setView('shoppinglist', {})} //need to change to the modal view for onClick. this is just for testing; it goes to shoppingList view
                   src="./image/shoppingList.png"
                   alt="Third Icon"
                 />

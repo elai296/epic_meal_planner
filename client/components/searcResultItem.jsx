@@ -1,5 +1,6 @@
 import React from "react";
 
+
 function handleClick(props, recipe) {
   console.log(props);
   props.setView("recipe details", recipe, []);

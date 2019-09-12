@@ -1,19 +1,19 @@
 {
-  "shopping_list": [
+  "shoppingList": [
     {
-      "shopping_list_item_id": 1,
+      "shoppingListItemId": 1,
       "description": "Sugar",
-      "completed": 0
+      "isChecked": false
     },
     {
-      "shopping_list_item_id": 2,
+      "shoppingListItemId": 2,
       "description": "Water",
-      "completed": 0
+      "isChecked": false
     },
     {
-      "shopping_list_item_id": 3,
+      "shoppingListItemId": 3,
       "description": "Lemons",
-      "completed": 0
+      "isChecked": false
     }
   ]
 }
