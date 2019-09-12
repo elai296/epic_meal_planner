@@ -13,8 +13,6 @@ ON  calendar.recipe_id = recipe.id
 
 $result = mysqli_query($conn, $query);
 
-
-
 if (!$result) {
   throw new Exception(mysqli_connect_error());
 } else if (!mysqli_num_rows($result) && !empty($_GET['id'])) {

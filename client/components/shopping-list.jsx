@@ -20,6 +20,7 @@ class ShoppingList extends React.Component {
     this.getAllItems();
   }
 
+
   getAllItems() {
     fetch(`/api/getShoppingList.php`)
       .then(response => {
