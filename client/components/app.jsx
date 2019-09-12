@@ -4,6 +4,7 @@ import ShoppingList from './shopping-list';
 import SearchBar from "./searchBar";
 import SearchResults from "./searchResults";
 import RecipeDetails from "./recipeDetails";
+import Menu from "./menu";
 
 class App extends React.Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class App extends React.Component {
       .then(res => res.json())
       .then(response => {
         console.log(response);
-        this.setState({ modal: response });
+        this.setState({ modal: response }); // to be deleted
       });
 
   }
@@ -47,6 +48,7 @@ class App extends React.Component {
   }
   render() {
     let display;
+    let menu = <Menu setView={this.setView}/>
     if (this.state.view.name === "home") {
       display = <SearchBar setView={this.setView} />;
     } else if (this.state.view.name === "search bar result") {
@@ -63,9 +65,11 @@ class App extends React.Component {
     return (
       <div>
         {display}
+        {menu}
       </div>
     );
   }
+
 }
 
 export default App;
