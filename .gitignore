@@ -4,3 +4,4 @@
 node_modules/
 /server/public/api/db_connection.php
 package-lock.json
+db_connection.php

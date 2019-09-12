@@ -2,15 +2,14 @@ import React from 'react';
 import Item from './item';
 
 function ItemList(props) {
-  console.log(props);
-  console.log(props.items);
   return (
     <ul>
-      { props.items.map(item => {
+      {props.allItems.map(item => {
         return (
           <Item
             key={item.id}
-            item={item}
+            oneItem={item}
+            deleteItem={props.deleteItem}
             toggleChecked={props.toggleChecked}/>
         );
       })}
