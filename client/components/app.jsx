@@ -13,7 +13,7 @@ class App extends React.Component {
       addItemToShoppingList : [],   //----- new code ----
       oneRecipeDetail :[],          //----- new code ----
       view: {
-        name: "shoppinglist",
+        name: "home",
         recipe: {}
       },
       results: [],
@@ -85,9 +85,9 @@ class App extends React.Component {
       });
 
   }
-
-  //------- end new code ---------
-
+  componentDidMount(){
+    this.getFavorites();
+  }
 
   setModal(modal) {
     this.setState({ modal });
