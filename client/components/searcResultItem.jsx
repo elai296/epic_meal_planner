@@ -2,6 +2,7 @@ import React from 'react'
 
 function handleClick(props, recipe){
     console.log(props);
+    console.log(recipe);
     props.setView("recipe details",recipe, []);
 }
 function SearchBarResult(props) {
