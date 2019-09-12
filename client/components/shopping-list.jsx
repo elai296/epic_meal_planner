@@ -20,8 +20,9 @@ class ShoppingList extends React.Component {
     this.getAllItems();
   }
 
+  
   getAllItems() {
-    fetch('/API/shopping-list.json')
+    fetch('/api/getShoppingList.php')    // ---- new code -> (changing the endpoint) ---------
       .then(response => {
         return response.json();
       })
@@ -34,7 +35,7 @@ class ShoppingList extends React.Component {
   }
 
   addItem(newItem) {
-    fetch('/API/shopping-list.json', {
+    fetch('/api/getShoppingList.php', {  // ---- new code -> (changing the endpoint) ---------
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -60,7 +61,7 @@ class ShoppingList extends React.Component {
       return item.id === itemId;
     });
 
-    fetch('/API/shopping-list.json', {
+    fetch('/api/getShoppingList.php', {        //----- new code (changing the endpoint) --------
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
@@ -91,7 +92,8 @@ class ShoppingList extends React.Component {
           <div className="col pt-5">
             <Header text="Shopping List"/>
             <ItemForm onSubmit={this.addItem}/>
-            {/* <ItemList items={this.state.list} toggleChecked={this.toggleChecked}/> */}
+
+            <ItemList items={this.state.list} toggleChecked={this.toggleChecked}/>
           </div>
         </div>
       </div>
