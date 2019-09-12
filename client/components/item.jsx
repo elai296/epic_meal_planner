@@ -14,7 +14,7 @@ function Item(props) {
         <label>
           {props.oneItem.ingredients_desc}
         </label>
-        <button className="btn"}>x</button>
+        <button className="btn">x</button>
       </div>
     </li>
   );
