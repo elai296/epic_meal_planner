@@ -1,23 +1,53 @@
 import React from "react";
+import SearchBarRecipe from "./searchBar";
 
 class RecipeDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: "recipe details"
+      favStatus: false
     };
   }
-  handleCalendar() {}
+  handleCalendar() {
+      this.props.setView("calendar");
+  }
 
-  handleFavorites() {}
+  handleFavorites() {
+    this.setState(state=>({favStatus: !state.favStatus}));
+    // this.props.setModal("favorites");
+    this.putRecipeInFavorites(this.props.recipe
+      );
+  }
 
-  handleShoppingList() {}
-  
+  handleShoppingList() {
+      
+  }
+
+  putRecipeInFavorites(data){
+    fetch("/api/getFavorites.php",{ //ask kim for endpoint
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    .then(response=>response.json());
+  }
+
 
   render() {
     let recipe = this.props.recipe;
+    const heartColor={
+      whiteHeart:"./image/whiteHeartIcon.png",
+      redHeart:"./image/redHeart.png"
+    } 
+    let image = !this.state.favStatus ? 'whiteHeart' : 'redHeart';
+
     return (
       <div className="container">
+        <div>
+        <SearchBarRecipe setView={this.props.setView}/>
+        </div>
         <div>
           <h1>{recipe.label}</h1>
           <div className="row">
@@ -33,13 +63,15 @@ class RecipeDetails extends React.Component {
                   className="calendarIcon"
                   src="./image/calendarIcon.png"
                   alt="First Icon"
+                  onClick={()=>this.handleCalendar()}
                 />
               }
               {
-                <img 
-                  className="heartIcon" 
-                  src="./image/heartIcon.png"
-                  alt="Second Icond"
+                <img
+                  className="heartIcon"
+                  src={heartColor[image]}
+                  alt="Second Icon"
+                  onClick={()=>this.handleFavorites()}
                 />
               }
               {
@@ -57,8 +89,7 @@ class RecipeDetails extends React.Component {
             return <div key={i}>{ingredient}</div>;
           })}
         </div>
-        <div>Click for Instructions</div>
-        <a>  {recipe.url} </a>
+        <a href={recipe.url}>Click for Instructions</a>
       </div>
     );
   }
