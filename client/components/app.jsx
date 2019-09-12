@@ -10,7 +10,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: "shoppinglist",
+        name: "home",
         recipe: {}
       },
       results: [],
@@ -39,7 +39,9 @@ class App extends React.Component {
         this.setState({ modal: response })
       });
   }
-
+  componentDidMount(){
+    this.getFavorites();
+  }
   setModal(modal) {
     this.setState({ modal });
   }
