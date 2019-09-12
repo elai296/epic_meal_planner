@@ -32,7 +32,7 @@ class App extends React.Component {
     });
   }
 
-  // ----new code -----
+  // ---- new code -----
    componentDidMount() {
     this.getFavorites();
     this.recipeDetails();
