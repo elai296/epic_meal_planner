@@ -57,7 +57,8 @@ class RecipeDetails extends React.Component {
             return <div key={i}>{ingredient}</div>;
           })}
         </div>
-        <div>Click for Instructions{recipe.url}</div>
+        <div>Click for Instructions</div>
+        <a>  {recipe.url} </a>
       </div>
     );
   }
