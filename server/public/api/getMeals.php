@@ -7,7 +7,10 @@ set_exception_handler('error_handler');
 startUp();
 
 //calendar need the date, name/label, mealtime
-$query = "SELECT `recipe`.`label` from `recipe` JOIN `meals` ON `meals`.`recipeId` = `recipe`.`id`";
+$query = "SELECT * FROM calendar
+JOIN recipe
+ON  calendar.recipe_id = recipe.id
+";
 
 $result = mysqli_query($conn, $query);
 

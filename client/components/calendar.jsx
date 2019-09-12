@@ -17,7 +17,7 @@ class Calendar extends React.Component {
     if (!event.path[0].textContent) {
       let counter = 0;
       while(counter < this.state.meal.length){
-        if (this.state.meal[counter].date === event.path[1].firstChild.className && this.state.meal[counter].mealTime === event.srcElement.className){
+        if (this.state.meal[counter].date === event.path[1].firstChild.className && this.state.meal[counter].meal_time === event.srcElement.className){
           const mealStateCopy = this.state.meal;
           mealStateCopy[counter].highlight = "true";
           this.setState({ meal: mealStateCopy});
@@ -58,47 +58,68 @@ class Calendar extends React.Component {
     this.getStoredMeals();
   }
   getStoredMeals(){
-    fetch(`/API/dummy-meal-items.json`)
+    fetch(`/api/getMeals.php`)
       .then(response => response.json())
-      .then(data => this.sortDays(data))
+      .then(data => {
+        this.sortDays(data);
+        console.log(data)})
+    // console.log(data))
   }
    sortDays(data){
-    const copyOfMeal = data.meals;
+    const copyOfMeal = data;
     const weekMeals = [];
     const week = ["2019-09-08", "2019-09-09", "2019-09-10", "2019-09-11", "2019-09-12", "2019-09-13", "2019-09-14"];
     let mealPosition = 0;
     let datePosition = 0;
     while(datePosition < week.length){
-        if (copyOfMeal[mealPosition].date === week[datePosition] && copyOfMeal[mealPosition].mealTime === "Breakfast") {
+      if(copyOfMeal[mealPosition]){
+        if (copyOfMeal[mealPosition].date === week[datePosition] && copyOfMeal[mealPosition].meal_time === "breakfast") {
           weekMeals.push(copyOfMeal[mealPosition]);
           mealPosition++;
         } else {
           weekMeals.push({
             date: week[[datePosition]],
-            mealTime: "Breakfast",
+            meal_time: "breakfast",
             label: ""
           });
         }
-        if (copyOfMeal[mealPosition].date === week[datePosition] && copyOfMeal[mealPosition].mealTime === "Lunch") {
+        if (copyOfMeal[mealPosition].date === week[datePosition] && copyOfMeal[mealPosition].meal_time === "lunch") {
           weekMeals.push(copyOfMeal[mealPosition]);
           mealPosition++;
         } else {
           weekMeals.push({
             date: week[[datePosition]],
-            mealTime: "Lunch",
+            meal_time: "lunch",
             label: ""
           });
         }
-        if (copyOfMeal[mealPosition].date === week[datePosition] && copyOfMeal[mealPosition].mealTime === "Dinner") {
+        if (copyOfMeal[mealPosition].date === week[datePosition] && copyOfMeal[mealPosition].meal_time === "dinner") {
           weekMeals.push(copyOfMeal[mealPosition]);
           mealPosition++;
         } else {
           weekMeals.push({
             date: week[[datePosition]],
-            mealTime: "Dinner",
+            meal_time: "dinner",
             label: ""
           });
         }
+      } else {
+        weekMeals.push({
+          date: week[[datePosition]],
+          meal_time: "breakfast",
+          label: ""
+        });
+        weekMeals.push({
+          date: week[[datePosition]],
+          meal_time: "lunch",
+          label: ""
+        });
+        weekMeals.push({
+          date: week[[datePosition]],
+          meal_time: "dinner",
+          label: ""
+        });
+      }
       datePosition++;
     }
      this.setState({ meal: weekMeals})
