@@ -22,7 +22,7 @@ class App extends React.Component {
       modal: "none"
     };
     this.setView = this.setView.bind(this);
-    this.setModal = this.setModal.bind(this);
+    // this.setModal = this.setModal.bind(this);
     this.getFavorites= this.getFavorites.bind(this);
     this.recipeDetails = this.recipeDetails.bind(this);
     this.addToShoppingList = this.addToShoppingList.bind(this);
@@ -50,7 +50,6 @@ class App extends React.Component {
       this.setState({ modal: response })});
   }
 
-
   recipeDetails(oneRecipe) {
     const req = {
       method: 'POST',
@@ -67,7 +66,6 @@ class App extends React.Component {
       });
 
   }
-
 
     addToShoppingList(addingredients) {
     const req = {
@@ -87,15 +85,6 @@ class App extends React.Component {
   }
   componentDidMount(){
     this.getFavorites();
-  }
-
-  setModal(modal) {
-    if(this.state.modal) {
-      return <div>Modal</div>;
-    } else {
-      return null;
-    }
-    this.setState({ modal });
   }
 
   render() {

@@ -1,13 +1,22 @@
 import React from "react";
 import SearchBarRecipe from "./searchBar";
+import Modal from './modal';
 
 class RecipeDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      favStatus: false
+      favStatus: false,
+      show: false
     };
   }
+
+  showModal() {
+    this.setState({
+      show: true
+    });
+  }
+
   handleCalendar() {
       this.props.setView("calendar");
   }
@@ -19,7 +28,7 @@ class RecipeDetails extends React.Component {
   }
 
   handleShoppingList() {
-    // this.props.setModal();
+    this.showModal();
   }
 
   putRecipeInFavorites(data){
@@ -75,7 +84,8 @@ class RecipeDetails extends React.Component {
               }
               {
                 <img
-                  className="shoppingListIcon" onClick= {() => this.props.setView('shoppinglist', {})} //need to change to the modal view for onClick. this is just for testing; it goes to shoppingList view
+                  className="shoppingListIcon"
+                  // onClick= {() => this.handleShoppingList()} //need to change to the modal view for onClick. this is just for testing; it goes to shoppingList view
                   src="./image/shoppingList.png"
                   alt="Third Icon"
                 />
@@ -89,8 +99,14 @@ class RecipeDetails extends React.Component {
           })}
         </div>
         <a href={recipe.url}>Click for Instructions</a>
+
+        <button
+          onClick={() => {
+            this.showModal();
+          }}>show</button>
+        <Modal show={this.state.show} text="MODAL"/>
+
       </div>
-      {this.props.setModal}
     );
   }
 }
