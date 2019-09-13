@@ -177,6 +177,7 @@ class Calendar extends React.Component {
       return (
         <div>
           <h3 className="text-center">{this.monthLiteral}, {this.year}</h3>
+          <button className="btn btn-link" onClick={() => { this.props.setView('dayCalendar', {}); }}>Day View</button>
           <CalendarTable handleClick={this.handleClick} meal={this.state.meal} setDate={this.setDate} date={this.state.date}/>
           <form className="form-inline text-align-center" onSubmit={this.handleSubmit}>
             <div className="form-group mx-sm-3 mb-2 mr-2 ml-5">
