@@ -18,6 +18,9 @@ class Calendar extends React.Component {
     this.changeWeek = this.changeWeek.bind(this);
   }
   handleClick(){
+    debugger;
+    console.log("event.path[1].firstChild.className: " + event.path[1].firstChild.className);
+    console.log("event.srcElement.className: " + event.srcElement.className);
     if (!event.path[0].textContent) {
       let counter = 0;
       while(counter < this.state.meal.length){
@@ -59,11 +62,6 @@ class Calendar extends React.Component {
   }
   componentDidMount(){
     this.getStoredMeals();
-  }
-  componentDidUpdate(prevState){
-    if(this.state.date !== prevState.date){
-      this.getStoredMeals();
-    }
   }
   getStoredMeals(){
     fetch(`/api/getMeals.php`)
