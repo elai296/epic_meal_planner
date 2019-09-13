@@ -14,6 +14,7 @@ class Calendar extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.setDate = this.setDate.bind(this);
+    this.sortDays = this.sortDays.bind(this);
     this.changeWeek = this.changeWeek.bind(this);
   }
   handleClick(){
@@ -67,56 +68,66 @@ class Calendar extends React.Component {
     })
   }
    sortDays(data){
+    // debugger;
     const copyOfMeal = data;
     const weekMeals = [];
-    const week = ["2019-09-08", "2019-09-09", "2019-09-10", "2019-09-11", "2019-09-12", "2019-09-13", "2019-09-14"];
+    let counter = 0;
+    const dynamicWeek = [];
+    while(counter < 7){
+      if(counter === 0){
+        dynamicWeek.push(this.state.date)
+      } else {
+        dynamicWeek.push(this.setDate(counter));
+      }
+      counter++;
+    }
     let mealPosition = 0;
     let datePosition = 0;
-    while(datePosition < week.length){
+    while (datePosition < dynamicWeek.length){
       if(copyOfMeal[mealPosition]){
-        if (copyOfMeal[mealPosition].date === week[datePosition] && copyOfMeal[mealPosition].meal_time === "breakfast") {
+        if (copyOfMeal[mealPosition].date === dynamicWeek[datePosition] && copyOfMeal[mealPosition].meal_time === "breakfast") {
           weekMeals.push(copyOfMeal[mealPosition]);
           mealPosition++;
         } else {
           weekMeals.push({
-            date: week[[datePosition]],
+            date: dynamicWeek[[datePosition]],
             meal_time: "breakfast",
             label: ""
           });
         }
-        if (copyOfMeal[mealPosition].date === week[datePosition] && copyOfMeal[mealPosition].meal_time === "lunch") {
+        if (copyOfMeal[mealPosition].date === dynamicWeek[datePosition] && copyOfMeal[mealPosition].meal_time === "lunch") {
           weekMeals.push(copyOfMeal[mealPosition]);
           mealPosition++;
         } else {
           weekMeals.push({
-            date: week[[datePosition]],
+            date: dynamicWeek[[datePosition]],
             meal_time: "lunch",
             label: ""
           });
         }
-        if (copyOfMeal[mealPosition].date === week[datePosition] && copyOfMeal[mealPosition].meal_time === "dinner") {
+        if (copyOfMeal[mealPosition].date === dynamicWeek[datePosition] && copyOfMeal[mealPosition].meal_time === "dinner") {
           weekMeals.push(copyOfMeal[mealPosition]);
           mealPosition++;
         } else {
           weekMeals.push({
-            date: week[[datePosition]],
+            date: dynamicWeek[[datePosition]],
             meal_time: "dinner",
             label: ""
           });
         }
       } else {
         weekMeals.push({
-          date: week[[datePosition]],
+          date: dynamicWeek[[datePosition]],
           meal_time: "breakfast",
           label: ""
         });
         weekMeals.push({
-          date: week[[datePosition]],
+          date: dynamicWeek[[datePosition]],
           meal_time: "lunch",
           label: ""
         });
         weekMeals.push({
-          date: week[[datePosition]],
+          date: dynamicWeek[[datePosition]],
           meal_time: "dinner",
           label: ""
         });
@@ -124,7 +135,7 @@ class Calendar extends React.Component {
       datePosition++;
     }
     this.setState({ date: this.setDate()})
-     this.setState({ meal: weekMeals})
+    this.setState({ meal: weekMeals})
   }
   setDate(offset){
     const today = new Date(2019, 8, this.testDate);
@@ -134,7 +145,6 @@ class Calendar extends React.Component {
     this.year = today.getFullYear();
     let monthNumeric = today.getMonth();
     this.monthLiteral = months[monthNumeric];
-    console.log(this.monthLiteral);
     if(offset === 7 || offset === -7){
       finalDate.setDate(currentDate + offset);
       this.testDate += offset;
