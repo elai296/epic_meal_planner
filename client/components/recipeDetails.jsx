@@ -1,20 +1,37 @@
 import React from "react";
 import SearchBarRecipe from "./searchBar";
-import Modal from './modal';
 
 class RecipeDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       favStatus: false,
-      show: false
+      modal: false
     };
+    this.handleShoppingList = this.handleShoppingList.bind(this);
+    this.showModal = this.showModal.bind(this);
+  }
+
+  closeModal() {
+    this.setState({
+      modal: false
+    });
   }
 
   showModal() {
-    this.setState({
-      show: true
-    });
+    if(this.state.modal === false){
+      return null;
+    } else {
+      return (
+        <div>
+          <div>I AM HERE!!!</div>
+          <button
+            onClick={() => {
+              this.closeModal();
+            }}>close</button>
+        </div>
+      );
+    }
   }
 
   handleCalendar() {
@@ -28,6 +45,11 @@ class RecipeDetails extends React.Component {
   }
 
   handleShoppingList() {
+    console.log("clicked");
+    this.setState({
+      modal: true
+    });
+    console.log(this.state.modal);
     this.showModal();
   }
 
@@ -41,7 +63,6 @@ class RecipeDetails extends React.Component {
     })
     .then(response=>response.json());
   }
-
 
   render() {
     let recipe = this.props.recipe;
@@ -85,7 +106,7 @@ class RecipeDetails extends React.Component {
               {
                 <img
                   className="shoppingListIcon"
-                  // onClick= {() => this.handleShoppingList()} //need to change to the modal view for onClick. this is just for testing; it goes to shoppingList view
+                  onClick= {() => this.handleShoppingList()} //need to change to the modal view for onClick. this is just for testing; it goes to shoppingList view
                   src="./image/shoppingList.png"
                   alt="Third Icon"
                 />
@@ -100,14 +121,11 @@ class RecipeDetails extends React.Component {
         </div>
         <a href={recipe.url}>Click for Instructions</a>
 
-        <button
-          onClick={() => {
-            this.showModal();
-          }}>show</button>
-        <Modal show={this.state.show} text="MODAL"/>
+        {this.showModal()}
 
       </div>
     );
   }
 }
+
 export default RecipeDetails;
