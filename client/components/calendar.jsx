@@ -13,14 +13,12 @@ class Calendar extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.getStoredMeals = this.getStoredMeals.bind(this);
     this.setDate = this.setDate.bind(this);
     this.sortDays = this.sortDays.bind(this);
     this.changeWeek = this.changeWeek.bind(this);
   }
   handleClick(){
-    debugger;
-    console.log("event.path[1].firstChild.className: " + event.path[1].firstChild.className);
-    console.log("event.srcElement.className: " + event.srcElement.className);
     if (!event.path[0].textContent) {
       let counter = 0;
       while(counter < this.state.meal.length){
@@ -166,6 +164,7 @@ class Calendar extends React.Component {
     } else if (event.srcElement.textContent === "Next Week"){
       this.setState({ date: this.setDate(7) })
     }
+    this.getStoredMeals();
   }
   render(){
     this.setDate();
