@@ -60,6 +60,11 @@ class Calendar extends React.Component {
   componentDidMount(){
     this.getStoredMeals();
   }
+  componentDidUpdate(prevState){
+    if(this.state.date !== prevState.date){
+      this.getStoredMeals();
+    }
+  }
   getStoredMeals(){
     fetch(`/api/getMeals.php`)
       .then(response => response.json())
@@ -68,7 +73,6 @@ class Calendar extends React.Component {
     })
   }
    sortDays(data){
-    // debugger;
     const copyOfMeal = data;
     const weekMeals = [];
     let counter = 0;
