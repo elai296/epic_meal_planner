@@ -7,11 +7,14 @@ class Calendar extends React.Component {
     this.state = {
       mealInput: "",
       pushToCalendar: [],
-      test: "test"
+      date: "2019-09-08"
     }
+    this.testDate = 8;
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.setDate = this.setDate.bind(this);
+    this.changeWeek = this.changeWeek.bind(this);
   }
   handleClick(){
     if (!event.path[0].textContent) {
@@ -38,7 +41,6 @@ class Calendar extends React.Component {
     let counter = 0;
     while(counter < mealsToPost.length){
       mealsToPost[counter].label = this.state.mealInput;
-      console.log( "mealsToPost with label updated: ", mealsToPost[counter]);
       const req = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -62,8 +64,7 @@ class Calendar extends React.Component {
       .then(response => response.json())
       .then(data => {
         this.sortDays(data);
-        console.log(data)})
-    // console.log(data))
+    })
   }
    sortDays(data){
     const copyOfMeal = data;
@@ -122,22 +123,40 @@ class Calendar extends React.Component {
       }
       datePosition++;
     }
+    this.setState({ date: this.setDate()})
      this.setState({ meal: weekMeals})
   }
-  setDate(){
-    var MyDate = new Date();
-    var MyDateString;
+  setDate(offset){
+    const today = new Date(2019, 8, this.testDate);
+    const finalDate = new Date(today);
+    const currentDate = today.getDate();
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    this.year = today.getFullYear();
+    let monthNumeric = today.getMonth();
+    this.monthLiteral = months[monthNumeric];
+    console.log(this.monthLiteral);
+    if(offset === 7 || offset === -7){
+      finalDate.setDate(currentDate + offset);
+      this.testDate += offset;
+    } else if( offset >= 0 && offset < 7) {
+      finalDate.setDate(currentDate + offset);
+    } else {
+      finalDate.setDate(currentDate);
+    }
 
-    MyDate.setDate(MyDate.getDate());
-    MyDate.setDate(MyDate.getDate() - 3);// gives us Sunday
-
-    MyDateString = MyDate.getFullYear() + '-'
-      + ('0' + MyDate.getDate()).slice(-2) + '-'
-      + ('0' + (MyDate.getMonth() + 1)).slice(-2);
-
-    console.log(MyDateString)
+    const date = finalDate.toISOString();
+    let returnDate = date.slice(0, 10);
+    return returnDate;
+  }
+  changeWeek(){
+    if (event.srcElement.textContent === "Previous Week"){
+      this.setState({ date: this.setDate(-7) })
+    } else if (event.srcElement.textContent === "Next Week"){
+      this.setState({ date: this.setDate(7) })
+    }
   }
   render(){
+    this.setDate();
     if(!this.state.meal){
       return (
         <div>Loading</div>
@@ -145,16 +164,16 @@ class Calendar extends React.Component {
     } else if(this.state.meal){
       return (
         <div>
-          <h3 className="text-center">September, 2019</h3>
-          <CalendarTable handleClick={this.handleClick} meal={this.state.meal}/>
+          <h3 className="text-center">{this.monthLiteral}, {this.year}</h3>
+          <CalendarTable handleClick={this.handleClick} meal={this.state.meal} setDate={this.setDate} date={this.state.date}/>
           <form className="form-inline text-align-center" onSubmit={this.handleSubmit}>
             <div className="form-group mx-sm-3 mb-2 mr-2 ml-5">
               <input required onChange={this.handleChange} type="text" className="form-control" placeholder="Add Meal" />
             </div>
             <button type="submit" className="btn btn-primary mb-2">Add</button>
           </form>
-          <button type="submit" className="btn btn-primary mb-2 mr-2 ml-5">Previous Week</button>
-          <button type="submit" className="btn btn-primary mb-2 ml-4">Next Week</button>
+          <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 mr-2 ml-5">Previous Week</button>
+          <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 ml-4">Next Week</button>
         </div>
       );
     }
