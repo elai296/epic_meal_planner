@@ -33,6 +33,7 @@ class Calendar extends React.Component {
         counter++;
       }
     }
+
   }
   handleChange(){
     this.setState({ mealInput: event.target.value });
