@@ -90,6 +90,11 @@ class App extends React.Component {
   }
 
   setModal(modal) {
+    if(this.state.modal) {
+      return <div>Modal</div>;
+    } else {
+      return null;
+    }
     this.setState({ modal });
   }
 
@@ -102,7 +107,7 @@ class App extends React.Component {
     } else if (this.state.view.name === "search bar result") {
       display = (<SearchResults setView={this.setView} value={this.state.searchTerm} />);
     } else if (this.state.view.name==="recipe details"){
-      display=(<RecipeDetails setView={this.setView} recipe={this.state.view.recipe}/>);
+      display=(<RecipeDetails setView={this.setView} setModal={this.setModal} recipe={this.state.view.recipe}/>);
     } else if (this.state.view.name ==="recipe details"){
       display=(<SearchBarRecipe setView={this.setView} />);
     }else if(this.state.view.name==="calendar"){

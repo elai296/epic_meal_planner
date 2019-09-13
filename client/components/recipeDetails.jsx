@@ -15,12 +15,11 @@ class RecipeDetails extends React.Component {
   handleFavorites() {
     this.setState(state=>({favStatus: !state.favStatus}));
     // this.props.setModal("favorites");
-    this.putRecipeInFavorites(this.props.recipe
-      );
+    this.putRecipeInFavorites(this.props.recipe);
   }
 
   handleShoppingList() {
-      
+    // this.props.setModal();
   }
 
   putRecipeInFavorites(data){
@@ -40,7 +39,7 @@ class RecipeDetails extends React.Component {
     const heartColor={
       whiteHeart:"./image/whiteHeartIcon.png",
       redHeart:"./image/redHeart.png"
-    } 
+    }
     let image = !this.state.favStatus ? 'whiteHeart' : 'redHeart';
 
     return (
@@ -91,6 +90,7 @@ class RecipeDetails extends React.Component {
         </div>
         <a href={recipe.url}>Click for Instructions</a>
       </div>
+      {this.props.setModal}
     );
   }
 }
