@@ -24,7 +24,7 @@ class RecipeDetails extends React.Component {
     } else {
       return (
         <div>
-          <div>I AM HERE!!!</div>
+          <div>I'M ALIVE!!!</div>
           <button
             onClick={() => {
               this.closeModal();
@@ -49,7 +49,6 @@ class RecipeDetails extends React.Component {
     this.setState({
       modal: true
     });
-    console.log(this.state.modal);
     this.showModal();
   }
 
