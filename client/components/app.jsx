@@ -105,7 +105,6 @@ class App extends React.Component {
       display=(<ShoppingList setView={this.setView} setModal={this.setModal}/>)
     }else if(this.state.view.name==="favorite list"){
       display=(<FavoriteList setView={this.setView}/>)
-
     }
     return (
       <div>
