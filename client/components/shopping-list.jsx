@@ -59,32 +59,56 @@ class ShoppingList extends React.Component {
   }
 
   toggleChecked(itemId) {
-    const itemObject = this.state.shoppingList.find(item => {
-      return item.id === itemId;
+    debugger;
+    console.log("current shopping list is ", this.state.shoppingList)
+    console.log("item is ", itemId)
+    var id = parseInt(itemId)
+    console.log("number id is", id)
+    const shoppingList = this.state.shoppingList
+
+    var checkedid;
+    const itemObject = this.state.shoppingList.map(item => {
+      if (itemId === item.id) {
+        item.is_completed = !item.is_completed
+        checkedid = item
+        return checkedid
+      } else{
+      return item;
+      }
     });
 
-    fetch(``, {
-      method: 'PATCH',
+    console.log("the checked id is ", checkedid)
+
+    fetch(`/api/toggleShoppingList.php`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ isChecked: !itemObject.isChecked })
+      body: JSON.stringify({
+        id: itemId,
+        is_completed: !itemObject.is_completed })
     })
-      .then(response => {
-        return response.json();
+      .then(()=> {
+        console.log('item object is ', itemObject)
+        this.setState({ list: itemObject })
       })
-      .then(data => {
-        const allEntries = this.state.shoppingList.map(oldEntry => {
-          if (oldEntry.id === data.id) {
-            return data.id;
-          } else {
-            return oldEntry;
-          }
-        });
-        this.setState({
-          shoppingList: allEntries
-        });
-      });
+      // .then(response => {
+      //   return response.json();
+      // })
+      // .then(data => {
+      //   debugger;
+      //   console.log("the current data is ", data)
+      //   const allEntries = this.state.shoppingList.map(oldEntry => {
+      //     if (oldEntry.id === data.id) {
+      //       return data.id;
+      //     } else {
+      //       return oldEntry;
+      //     }
+      //   });
+      //   this.setState({
+      //     shoppingList: allEntries
+      //   });
+      // });
   }
 
   render() {

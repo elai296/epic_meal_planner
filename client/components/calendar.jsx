@@ -138,6 +138,7 @@ class Calendar extends React.Component {
     console.log(MyDateString)
   }
   render(){
+    console.log("the meal is ", this.state.meal)
     if(!this.state.meal){
       return (
         <div>Loading</div>
