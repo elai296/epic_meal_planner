@@ -1,11 +1,10 @@
 import React from 'react';
 
 function DayCalendar(props){
-  console.log(props.mealObj);
   if(props.day){
     return (
       <div>
-        <h3 className="text-center" id={props.date}>{props.month} {props.getDateNumbers}, {props.year}</h3>
+        <h3 className="text-center" id={props.date}>{props.month} {props.getDateNumbers()}, {props.year}</h3>
         <button className="btn btn-link" onClick={props.changeView}>Week View</button>
         <div className="container d-flex">
           <div className="row">

@@ -144,6 +144,7 @@ class Calendar extends React.Component {
     this.setState({ meal: weekMeals})
   }
   setDate(offset){
+    // debugger;
     const today = new Date(2019, 8, this.testDate);
     const finalDate = new Date(today);
     const currentDate = today.getDate();
@@ -185,12 +186,9 @@ class Calendar extends React.Component {
   getDateNumbers(){
     if(this.mealObj.breakfast === 0){
       let date = (this.state.date[8]) + (this.state.date[9]);
-      console.log("date",date);
       return date;
     } else {
-
-      let date = (this.setDate(this.clickedId))[8] + (this.setDate(this.clickedId))[9];
-      console.log("date",date);
+      let date = (this.setDate(parseInt(this.clickedId)))[8] + (this.setDate(parseInt(this.clickedId)))[9];
       return date;
     }
   }
@@ -263,7 +261,8 @@ class Calendar extends React.Component {
         year={this.year}
         date={this.state.date}
         meal={this.state.meal}
-        mealObj={this.mealObj}/>
+        mealObj={this.mealObj}
+        getDateNumbers={this.getDateNumbers} />
       )
     } else if(this.state.meal){
       return (
@@ -274,8 +273,7 @@ class Calendar extends React.Component {
           changeView={this.changeView}
           meal={this.state.meal}
           setDate={this.setDate}
-          date={this.state.date}
-          getDateNumbers={this.getDateNumbers}/>
+          date={this.state.date}/>
           <form className="form-inline text-align-center" onSubmit={this.handleSubmit}>
             <div className="form-group mx-sm-3 mb-2 mr-2 ml-5">
               <input required onChange={this.handleChange} type="text" className="form-control" placeholder="Add Meal" />
