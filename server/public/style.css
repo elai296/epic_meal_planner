@@ -34,3 +34,26 @@
     width: 200px;
 } */
 
+.modal{
+    display: block;
+
+    height: auto;
+    width: auto;
+
+    position: fixed;
+
+    z-index: 100;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    background: rgb(252, 252, 252);
+    box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9)
+}
+
+.smallcalendar{
+    max-height: 685px;
+    width: 350px;
+}

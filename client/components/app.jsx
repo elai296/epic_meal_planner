@@ -22,7 +22,7 @@ class App extends React.Component {
       modal: "none"
     };
     this.setView = this.setView.bind(this);
-    this.setModal = this.setModal.bind(this);
+    // this.setModal = this.setModal.bind(this);
     this.getFavorites= this.getFavorites.bind(this);
     this.recipeDetails = this.recipeDetails.bind(this);
     this.addToShoppingList = this.addToShoppingList.bind(this);
@@ -50,7 +50,6 @@ class App extends React.Component {
       this.setState({ modal: response })});
   }
 
-
   recipeDetails(oneRecipe) {
     const req = {
       method: 'POST',
@@ -67,7 +66,6 @@ class App extends React.Component {
       });
 
   }
-
 
     addToShoppingList(addingredients) {
     const req = {
@@ -89,10 +87,6 @@ class App extends React.Component {
     this.getFavorites();
   }
 
-  setModal(modal) {
-    this.setState({ modal });
-  }
-
   render() {
     let display;
     let menu = <Menu setView={this.setView}/>
@@ -102,7 +96,7 @@ class App extends React.Component {
     } else if (this.state.view.name === "search bar result") {
       display = (<SearchResults setView={this.setView} value={this.state.searchTerm} />);
     } else if (this.state.view.name==="recipe details"){
-      display=(<RecipeDetails setView={this.setView} recipe={this.state.view.recipe}/>);
+      display=(<RecipeDetails setView={this.setView} setModal={this.setModal} recipe={this.state.view.recipe}/>);
     } else if (this.state.view.name ==="recipe details"){
       display=(<SearchBarRecipe setView={this.setView} />);
     }else if(this.state.view.name==="calendar"){
