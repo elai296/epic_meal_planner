@@ -1,12 +1,13 @@
 import React from "react";
 import SearchBarRecipe from "./searchBar";
+import Calendar from "./calendar";
 
 class RecipeDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       favStatus: false,
-      modal: false
+      modal: ''
     };
     this.handleShoppingList = this.handleShoppingList.bind(this);
     this.showModal = this.showModal.bind(this);
@@ -14,40 +15,74 @@ class RecipeDetails extends React.Component {
 
   closeModal() {
     this.setState({
-      modal: false
+      modal: ''
     });
   }
 
   showModal() {
-    if(this.state.modal === false){
+    if(this.state.modal === ''){
       return null;
-    } else {
+    } else if (this.state.modal === 'shoppinglist') {
       return (
         <div>
-          <div>I'M ALIVE!!!</div>
-          <button
-            onClick={() => {
-              this.closeModal();
-            }}>close</button>
+          <div className="modal">Added to Shopping List
+            <button
+              onClick={() => {
+                this.closeModal();
+              }}>close</button>
+          </div>
+        </div>
+      );
+    } else if (this.state.modal === 'favorites') {
+      return (
+        <div>
+          <div className="modal">Added to Favorites
+            <button
+              onClick={() => {
+                this.closeModal();
+              }}>close</button>
+          </div>
+        </div>
+      );
+    } else if (this.state.modal === 'calendar') {
+      return (
+        <div>
+          <div className="modal">
+            <div className="smallcalendar">
+              <Calendar/>
+            </div>
+            <button
+              onClick={() => {
+                this.closeModal();
+              }}>close</button>
+          </div>
         </div>
       );
     }
   }
 
   handleCalendar() {
-      this.props.setView("calendar");
+    this.setState({
+      modal: 'calendar'
+    });
+    this.showModal();
   }
 
   handleFavorites() {
-    this.setState(state=>({favStatus: !state.favStatus}));
-    // this.props.setModal("favorites");
-    this.putRecipeInFavorites(this.props.recipe);
+    if(!this.state.favStatus) {
+      this.setState(state=>({favStatus: !state.favStatus}));
+      this.setState({
+        modal: 'favorites'
+      });
+      this.showModal();
+      this.putRecipeInFavorites(this.props.recipe);
+    }
   }
 
   handleShoppingList() {
     console.log("clicked");
     this.setState({
-      modal: true
+      modal: 'shoppinglist'
     });
     this.showModal();
   }
