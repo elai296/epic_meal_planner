@@ -1,5 +1,6 @@
 import React from "react";
 import CalendarTable from "./calendar-table";
+import DayCalendar from "./calendar-day-view";
 
 class Calendar extends React.Component {
   constructor(props){
@@ -7,7 +8,8 @@ class Calendar extends React.Component {
     this.state = {
       mealInput: "",
       pushToCalendar: [],
-      date: "2019-09-08"
+      date: "2019-09-08",
+      day: false
     }
     this.testDate = 8;
     this.handleClick = this.handleClick.bind(this);
@@ -17,6 +19,9 @@ class Calendar extends React.Component {
     this.setDate = this.setDate.bind(this);
     this.sortDays = this.sortDays.bind(this);
     this.changeWeek = this.changeWeek.bind(this);
+    this.changeView = this.changeView.bind(this);
+    this.getDayOfWeek = this.getDayOfWeek.bind(this);
+    this.getDateNumbers = this.getDateNumbers.bind(this);
   }
   handleClick(){
     if (!event.path[0].textContent) {
@@ -167,18 +172,110 @@ class Calendar extends React.Component {
     }
     this.getStoredMeals();
   }
+  changeView(event){
+    if(!this.state.day){
+      this.setState({ day: true });
+      this.getDayOfWeek(event);
+
+    } else {
+      this.setState({ day: false });
+      this.getDayOfWeek(event);
+    }
+  }
+  getDateNumbers(){
+    if(this.mealObj.breakfast === 0){
+      let date = (this.state.date[8]) + (this.state.date[9]);
+      console.log("date",date);
+      return date;
+    } else {
+
+      let date = (this.setDate(this.clickedId))[8] + (this.setDate(this.clickedId))[9];
+      console.log("date",date);
+      return date;
+    }
+  }
+  getDayOfWeek(event){
+    this.clickedId = event.currentTarget.id;
+    switch(this.clickedId){
+      case "0":
+        this.mealObj = {
+          breakfast: 0,
+          lunch: 1,
+          dinner: 2
+        }
+      break;
+      case "1":
+        this.mealObj = {
+          breakfast: 3,
+          lunch: 4,
+          dinner: 5
+        }
+      break;
+      case "2":
+        this.mealObj = {
+          breakfast: 6,
+          lunch: 7,
+          dinner: 8
+        }
+      break;
+      case "3":
+        this.mealObj = {
+          breakfast: 9,
+          lunch: 10,
+          dinner: 11
+        }
+      break;
+      case "4":
+        this.mealObj = {
+          breakfast: 12,
+          lunch: 13,
+          dinner: 14
+        }
+      break;
+      case "5":
+        this.mealObj = {
+          breakfast: 15,
+          lunch: 16,
+          dinner: 17
+        }
+      break;
+      case "6":
+        this.mealObj = {
+          breakfast: 18,
+          lunch: 19,
+          dinner: 20
+        }
+      break;
+    }
+  }
   render(){
     this.setDate();
     if(!this.state.meal){
       return (
         <div>Loading</div>
       );
+    } else if (this.state.day) {
+      return (
+        <DayCalendar
+        day={this.state.day}
+        changeView={this.changeView}
+        month={this.monthLiteral}
+        year={this.year}
+        date={this.state.date}
+        meal={this.state.meal}
+        mealObj={this.mealObj}/>
+      )
     } else if(this.state.meal){
       return (
         <div>
           <h3 className="text-center">{this.monthLiteral}, {this.year}</h3>
-          <button className="btn btn-link" onClick={() => { this.props.setView('dayCalendar', {}); }}>Day View</button>
-          <CalendarTable handleClick={this.handleClick} meal={this.state.meal} setDate={this.setDate} date={this.state.date}/>
+          <CalendarTable
+          handleClick={this.handleClick}
+          changeView={this.changeView}
+          meal={this.state.meal}
+          setDate={this.setDate}
+          date={this.state.date}
+          getDateNumbers={this.getDateNumbers}/>
           <form className="form-inline text-align-center" onSubmit={this.handleSubmit}>
             <div className="form-group mx-sm-3 mb-2 mr-2 ml-5">
               <input required onChange={this.handleChange} type="text" className="form-control" placeholder="Add Meal" />

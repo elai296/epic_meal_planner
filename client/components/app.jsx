@@ -6,7 +6,6 @@ import SearchResults from "./searchResults";
 import RecipeDetails from "./recipeDetails";
 import FavoriteList from "./favoriteList";
 import Menu from "./menu";
-import DayCalendar from "./calendar-day-view";
 
 
 class App extends React.Component {
@@ -112,8 +111,6 @@ class App extends React.Component {
       display=(<ShoppingList setView={this.setView} setModal={this.setModal}/>)
     }else if(this.state.view.name==="favorite list"){
       display=(<FavoriteList setView={this.setView}/>)
-    }else if(this.state.view.name==="dayCalendar"){
-      display=(<DayCalendar setView={this.setView}/>)
     }
     return (
       <div>
