@@ -30,34 +30,11 @@ function SearchBarResult(props) {
               {props.name}
             </h5>
             <p className="card-text">Time: {props.time} minutes</p>
-            <p className="card-text">
-              <small className="text-muted">Last updated 3 mins ago</small>
-            </p>
           </div>
         </div>
       </div>
     </div>
   );
-  {
-    /* <div className="card " style={{ maxWidth: "540px" }}>
-      <div className="col-md-3 no-gutters">
-        <div className="col-md-4">
-          {<img className="card-img-top propsImage" src={props.image} />}
-        </div>
-        <div className="col-md-8">
-          <div className="card-body">
-            <div
-              className="propsName my-2"
-              onClick={e => handleClick(props, props.recipe)}
-            >
-              {props.name}
-            </div>
-            <div className="propsName my-2">Time: {props.time} minutes</div>
-          </div>
-        </div>
-      </div>
-    </div> */
-  }
 }
 
 export default SearchBarResult;

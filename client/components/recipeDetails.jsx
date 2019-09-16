@@ -1,26 +1,90 @@
 import React from "react";
 import SearchBarRecipe from "./searchBar";
+import Calendar from "./calendar";
 
 class RecipeDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      favStatus: false
+      favStatus: false,
+      modal: ''
     };
+    this.handleShoppingList = this.handleShoppingList.bind(this);
+    this.showModal = this.showModal.bind(this);
   }
+
+  closeModal() {
+    this.setState({
+      modal: ''
+    });
+  }
+
+  showModal() {
+    if(this.state.modal === ''){
+      return null;
+    } else if (this.state.modal === 'shoppinglist') {
+      return (
+        <div>
+          <div className="modal">Added to Shopping List
+            <button
+              onClick={() => {
+                this.closeModal();
+              }}>close</button>
+          </div>
+        </div>
+      );
+    } else if (this.state.modal === 'favorites') {
+      return (
+        <div>
+          <div className="modal">Added to Favorites
+            <button
+              onClick={() => {
+                this.closeModal();
+              }}>close</button>
+          </div>
+        </div>
+      );
+    } else if (this.state.modal === 'calendar') {
+      return (
+        <div>
+          <div className="modal">
+            <div className="smallcalendar">
+              <Calendar/>
+            </div>
+            <button
+              onClick={() => {
+                this.closeModal();
+              }}>close</button>
+          </div>
+        </div>
+      );
+    }
+  }
+
   handleCalendar() {
-      this.props.setView("calendar");
+    this.setState({
+      modal: 'calendar'
+    });
+    this.showModal();
   }
 
   handleFavorites() {
-    this.setState(state=>({favStatus: !state.favStatus}));
-    // this.props.setModal("favorites");
-    this.putRecipeInFavorites(this.props.recipe
-      );
+    if(!this.state.favStatus) {
+      this.setState(state=>({favStatus: !state.favStatus}));
+      this.setState({
+        modal: 'favorites'
+      });
+      this.showModal();
+      this.putRecipeInFavorites(this.props.recipe);
+    }
   }
 
   handleShoppingList() {
-      
+    console.log("clicked");
+    this.setState({
+      modal: 'shoppinglist'
+    });
+    this.showModal();
   }
 
   putRecipeInFavorites(data){
@@ -34,13 +98,12 @@ class RecipeDetails extends React.Component {
     .then(response=>response.json());
   }
 
-
   render() {
     let recipe = this.props.recipe;
     const heartColor={
       whiteHeart:"./image/whiteHeartIcon.png",
       redHeart:"./image/redHeart.png"
-    } 
+    }
     let image = !this.state.favStatus ? 'whiteHeart' : 'redHeart';
 
     return (
@@ -49,18 +112,19 @@ class RecipeDetails extends React.Component {
         <SearchBarRecipe setView={this.props.setView}/>
         </div>
         <div>
-          <h1>{recipe.label}</h1>
+          <p className='h1'>{recipe.label}</p>
           <div className="row">
-            {<img className="propsFood col-4" src={recipe.image} />}
-            <div>
+            <div className="propsFood" style={{
+              backgroundImage: "url("+recipe.image+")",
+              backgroundSize: "contain",
+              backgroundRepeat:"no-repeat"}}></div>
+            <div className="timeServing">
               <div>Time: {recipe.totalTime} minutes</div>
               <div>Serving size: {recipe.yield}</div>
-              <div>{recipe.servingSize}</div>
-            </div>
-            <div className="iconImages col-4">
+            <div className="iconImages">
               {
                 <img
-                  className="calendarIcon"
+                  className="calendarIcon imgIcon"
                   src="./image/calendarIcon.png"
                   alt="First Icon"
                   onClick={()=>this.handleCalendar()}
@@ -68,7 +132,7 @@ class RecipeDetails extends React.Component {
               }
               {
                 <img
-                  className="heartIcon"
+                  className="heartIcon imgIcon"
                   src={heartColor[image]}
                   alt="Second Icon"
                   onClick={()=>this.handleFavorites()}
@@ -76,11 +140,13 @@ class RecipeDetails extends React.Component {
               }
               {
                 <img
-                  className="shoppingListIcon" onClick= {() => this.props.setView('shoppinglist', {})} //need to change to the modal view for onClick. this is just for testing; it goes to shoppingList view
+                  className="shoppingListIcon imgIcon"
+                  onClick= {() => this.handleShoppingList()} //need to change to the modal view for onClick. this is just for testing; it goes to shoppingList view
                   src="./image/shoppingList.png"
                   alt="Third Icon"
                 />
               }
+            </div>
             </div>
           </div>
         </div>
@@ -90,8 +156,12 @@ class RecipeDetails extends React.Component {
           })}
         </div>
         <a href={recipe.url}>Click for Instructions</a>
+
+        {this.showModal()}
+
       </div>
     );
   }
 }
+
 export default RecipeDetails;

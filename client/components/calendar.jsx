@@ -1,5 +1,6 @@
 import React from "react";
 import CalendarTable from "./calendar-table";
+import DayCalendar from "./calendar-day-view";
 
 class Calendar extends React.Component {
   constructor(props){
@@ -7,11 +8,20 @@ class Calendar extends React.Component {
     this.state = {
       mealInput: "",
       pushToCalendar: [],
-      test: "test"
+      date: "2019-09-08",
+      day: false
     }
+    this.testDate = 8;
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.getStoredMeals = this.getStoredMeals.bind(this);
+    this.setDate = this.setDate.bind(this);
+    this.sortDays = this.sortDays.bind(this);
+    this.changeWeek = this.changeWeek.bind(this);
+    this.changeView = this.changeView.bind(this);
+    this.getDayOfWeek = this.getDayOfWeek.bind(this);
+    this.getDateNumbers = this.getDateNumbers.bind(this);
   }
   handleClick(){
     if (!event.path[0].textContent) {
@@ -28,6 +38,7 @@ class Calendar extends React.Component {
         counter++;
       }
     }
+
   }
   handleChange(){
     this.setState({ mealInput: event.target.value });
@@ -38,7 +49,6 @@ class Calendar extends React.Component {
     let counter = 0;
     while(counter < mealsToPost.length){
       mealsToPost[counter].label = this.state.mealInput;
-      console.log( "mealsToPost with label updated: ", mealsToPost[counter]);
       const req = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -62,100 +72,217 @@ class Calendar extends React.Component {
       .then(response => response.json())
       .then(data => {
         this.sortDays(data);
-        console.log(data)})
-    // console.log(data))
+    })
   }
    sortDays(data){
     const copyOfMeal = data;
     const weekMeals = [];
-    const week = ["2019-09-08", "2019-09-09", "2019-09-10", "2019-09-11", "2019-09-12", "2019-09-13", "2019-09-14"];
+    let counter = 0;
+    const dynamicWeek = [];
+    while(counter < 7){
+      if(counter === 0){
+        dynamicWeek.push(this.state.date)
+      } else {
+        dynamicWeek.push(this.setDate(counter));
+      }
+      counter++;
+    }
     let mealPosition = 0;
     let datePosition = 0;
-    while(datePosition < week.length){
+    while (datePosition < dynamicWeek.length){
       if(copyOfMeal[mealPosition]){
-        if (copyOfMeal[mealPosition].date === week[datePosition] && copyOfMeal[mealPosition].meal_time === "breakfast") {
+        if (copyOfMeal[mealPosition].date === dynamicWeek[datePosition] && copyOfMeal[mealPosition].meal_time === "breakfast") {
           weekMeals.push(copyOfMeal[mealPosition]);
           mealPosition++;
         } else {
           weekMeals.push({
-            date: week[[datePosition]],
+            date: dynamicWeek[[datePosition]],
             meal_time: "breakfast",
             label: ""
           });
         }
-        if (copyOfMeal[mealPosition].date === week[datePosition] && copyOfMeal[mealPosition].meal_time === "lunch") {
+        if (copyOfMeal[mealPosition].date === dynamicWeek[datePosition] && copyOfMeal[mealPosition].meal_time === "lunch") {
           weekMeals.push(copyOfMeal[mealPosition]);
           mealPosition++;
         } else {
           weekMeals.push({
-            date: week[[datePosition]],
+            date: dynamicWeek[[datePosition]],
             meal_time: "lunch",
             label: ""
           });
         }
-        if (copyOfMeal[mealPosition].date === week[datePosition] && copyOfMeal[mealPosition].meal_time === "dinner") {
+        if (copyOfMeal[mealPosition].date === dynamicWeek[datePosition] && copyOfMeal[mealPosition].meal_time === "dinner") {
           weekMeals.push(copyOfMeal[mealPosition]);
           mealPosition++;
         } else {
           weekMeals.push({
-            date: week[[datePosition]],
+            date: dynamicWeek[[datePosition]],
             meal_time: "dinner",
             label: ""
           });
         }
       } else {
         weekMeals.push({
-          date: week[[datePosition]],
+          date: dynamicWeek[[datePosition]],
           meal_time: "breakfast",
           label: ""
         });
         weekMeals.push({
-          date: week[[datePosition]],
+          date: dynamicWeek[[datePosition]],
           meal_time: "lunch",
           label: ""
         });
         weekMeals.push({
-          date: week[[datePosition]],
+          date: dynamicWeek[[datePosition]],
           meal_time: "dinner",
           label: ""
         });
       }
       datePosition++;
     }
-     this.setState({ meal: weekMeals})
+    this.setState({ date: this.setDate()})
+    this.setState({ meal: weekMeals})
   }
-  setDate(){
-    var MyDate = new Date();
-    var MyDateString;
+  setDate(offset){
+    // debugger;
+    const today = new Date(2019, 8, this.testDate);
+    const finalDate = new Date(today);
+    const currentDate = today.getDate();
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    this.year = today.getFullYear();
+    let monthNumeric = today.getMonth();
+    this.monthLiteral = months[monthNumeric];
+    if(offset === 7 || offset === -7){
+      finalDate.setDate(currentDate + offset);
+      this.testDate += offset;
+    } else if( offset >= 0 && offset < 7) {
+      finalDate.setDate(currentDate + offset);
+    } else {
+      finalDate.setDate(currentDate);
+    }
 
-    MyDate.setDate(MyDate.getDate());
-    MyDate.setDate(MyDate.getDate() - 3);// gives us Sunday
+    const date = finalDate.toISOString();
+    let returnDate = date.slice(0, 10);
+    return returnDate;
+  }
+  changeWeek(){
+    if (event.srcElement.textContent === "Previous Week"){
+      this.setState({ date: this.setDate(-7) })
+    } else if (event.srcElement.textContent === "Next Week"){
+      this.setState({ date: this.setDate(7) })
+    }
+    this.getStoredMeals();
+  }
+  changeView(event){
+    if(!this.state.day){
+      this.setState({ day: true });
+      this.getDayOfWeek(event);
 
-    MyDateString = MyDate.getFullYear() + '-'
-      + ('0' + MyDate.getDate()).slice(-2) + '-'
-      + ('0' + (MyDate.getMonth() + 1)).slice(-2);
-
-    console.log(MyDateString)
+    } else {
+      this.setState({ day: false });
+      this.getDayOfWeek(event);
+    }
+  }
+  getDateNumbers(){
+    if(this.mealObj.breakfast === 0){
+      let date = (this.state.date[8]) + (this.state.date[9]);
+      return date;
+    } else {
+      let date = (this.setDate(parseInt(this.clickedId)))[8] + (this.setDate(parseInt(this.clickedId)))[9];
+      return date;
+    }
+  }
+  getDayOfWeek(event){
+    this.clickedId = event.currentTarget.id;
+    switch(this.clickedId){
+      case "0":
+        this.mealObj = {
+          breakfast: 0,
+          lunch: 1,
+          dinner: 2
+        }
+      break;
+      case "1":
+        this.mealObj = {
+          breakfast: 3,
+          lunch: 4,
+          dinner: 5
+        }
+      break;
+      case "2":
+        this.mealObj = {
+          breakfast: 6,
+          lunch: 7,
+          dinner: 8
+        }
+      break;
+      case "3":
+        this.mealObj = {
+          breakfast: 9,
+          lunch: 10,
+          dinner: 11
+        }
+      break;
+      case "4":
+        this.mealObj = {
+          breakfast: 12,
+          lunch: 13,
+          dinner: 14
+        }
+      break;
+      case "5":
+        this.mealObj = {
+          breakfast: 15,
+          lunch: 16,
+          dinner: 17
+        }
+      break;
+      case "6":
+        this.mealObj = {
+          breakfast: 18,
+          lunch: 19,
+          dinner: 20
+        }
+      break;
+    }
   }
   render(){
-    console.log("the meal is ", this.state.meal)
+
+    this.setDate();
     if(!this.state.meal){
       return (
         <div>Loading</div>
       );
+    } else if (this.state.day) {
+      return (
+        <DayCalendar
+        day={this.state.day}
+        changeView={this.changeView}
+        month={this.monthLiteral}
+        year={this.year}
+        date={this.state.date}
+        meal={this.state.meal}
+        mealObj={this.mealObj}
+        getDateNumbers={this.getDateNumbers} />
+      )
     } else if(this.state.meal){
       return (
         <div>
-          <h3 className="text-center">September, 2019</h3>
-          <CalendarTable handleClick={this.handleClick} meal={this.state.meal}/>
+          <h3 className="text-center">{this.monthLiteral}, {this.year}</h3>
+          <CalendarTable
+          handleClick={this.handleClick}
+          changeView={this.changeView}
+          meal={this.state.meal}
+          setDate={this.setDate}
+          date={this.state.date}/>
           <form className="form-inline text-align-center" onSubmit={this.handleSubmit}>
             <div className="form-group mx-sm-3 mb-2 mr-2 ml-5">
               <input required onChange={this.handleChange} type="text" className="form-control" placeholder="Add Meal" />
             </div>
             <button type="submit" className="btn btn-primary mb-2">Add</button>
           </form>
-          <button type="submit" className="btn btn-primary mb-2 mr-2 ml-5">Previous Week</button>
-          <button type="submit" className="btn btn-primary mb-2 ml-4">Next Week</button>
+          <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 mr-2 ml-5">Previous Week</button>
+          <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 ml-4">Next Week</button>
         </div>
       );
     }

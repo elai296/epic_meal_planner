@@ -26,7 +26,6 @@ $query = "INSERT INTO shopping_list(ingredients_id)
           SELECT id
           FROM recipe_ingredients ". $whereClause;
 
-
 $result = mysqli_query($conn, $query);
 
 if (!$result) {
@@ -38,7 +37,6 @@ else{
   $output = ['success' => true];
 
 }
-
 
 print(json_encode($output));
 

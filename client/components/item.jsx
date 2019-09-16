@@ -27,7 +27,9 @@ function Item(props) {
         <label>
           {props.oneItem.ingredients_desc}
         </label>
+
         <button className="btn" onClick={()=> props.deleteItem(item.id)}>x</button>
+
       </div>
     </li>
   );
