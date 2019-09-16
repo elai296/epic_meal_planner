@@ -246,7 +246,6 @@ class Calendar extends React.Component {
     }
   }
   render(){
-
     this.setDate();
     if(!this.state.meal){
       return (
@@ -276,7 +275,12 @@ class Calendar extends React.Component {
           date={this.state.date}/>
           <form className="form-inline text-align-center" onSubmit={this.handleSubmit}>
             <div className="form-group mx-sm-3 mb-2 mr-2 ml-5">
-              <input required onChange={this.handleChange} type="text" className="form-control" placeholder="Add Meal" />
+              <input
+              required
+              onChange={this.handleChange}
+              type="text"
+              className="form-control"
+              placeholder="Add Meal" />
             </div>
             <button type="submit" className="btn btn-primary mb-2">Add</button>
           </form>

@@ -6,6 +6,7 @@ import SearchResults from "./searchResults";
 import RecipeDetails from "./recipeDetails";
 import FavoriteList from "./favoriteList";
 import Menu from "./menu";
+import UserInfo from "./user-info";
 
 
 class App extends React.Component {
@@ -105,6 +106,8 @@ class App extends React.Component {
       display=(<ShoppingList setView={this.setView} setModal={this.setModal}/>)
     }else if(this.state.view.name==="favorite list"){
       display=(<FavoriteList setView={this.setView}/>)
+    }else if(this.state.view.name==="userInfo"){
+      display=(<UserInfo setView={this.setView}/>)
     }
     return (
       <div>
