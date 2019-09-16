@@ -22,13 +22,13 @@ class favoriteList extends React.Component{
     }
 
     render(){
-        return ( 
+        return (
             <div className="card mb-3" style={{ maxWidth: "480px" }}>
               <div className="row no-gutters">
                 <h1>Favorites</h1>
                 <div className="col-sm-4">
                   <div
-                  
+
                     className="card-img-top propsImage"
                     style={{
                       backgroundImage: "url("+this.props.image_url+")",
@@ -38,7 +38,7 @@ class favoriteList extends React.Component{
                       width: "150px"
                     }}
                   ></div>
-                  
+
                 </div>
                 {this.state.favoriteList.map((recipe)=>{
                       return(
@@ -47,7 +47,7 @@ class favoriteList extends React.Component{
                                 <img
                                 className="card-title"
                                 src={recipe.image_url}
-                                // onClick={e => handleClick(recipe, recipe.image_url)}
+                                onClick={e => handleClick(recipe, recipe.image_url)}
                                 />
                                 <h5>{recipe.label}</h5>
                                 <p className="card-text">Time: {recipe.cooking_time} minutes</p>
@@ -57,11 +57,11 @@ class favoriteList extends React.Component{
                         </div>
                       );
                   })}
-                
+
               </div>
             </div>
           );
     }
 }
 
-export default favoriteList; 
+export default favoriteList;
