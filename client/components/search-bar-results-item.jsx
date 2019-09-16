@@ -5,7 +5,8 @@ function handleClick(props, recipe) {
   console.log(props);
   props.setView("recipe details", recipe, []);
 }
-function SearchBarResult(props) {
+
+function SearchBarResultsItem(props) {
   return (
     <div className="card mb-3" style={{ maxWidth: "480px" }}>
       <div className="row no-gutters">
@@ -37,4 +38,4 @@ function SearchBarResult(props) {
   );
 }
 
-export default SearchBarResult;
+export default SearchBarResultsItem;

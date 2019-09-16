@@ -1,7 +1,7 @@
 import React from "react";
-import SearchResultItem from "./searcResultItem";
+import SearchBarResultsItem from "./search-bar-results-item";
 
-export class SearchResults extends React.Component {
+class SearchBarResultsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,7 +25,7 @@ export class SearchResults extends React.Component {
       // "https://api.edamam.com/search?q=" +
       //   this.props.value +
       //   "&app_id=1930606a&app_key=165754ed1a324e1c76dc770f26190489&from=0&to=10&time=1-60"
-      `/api/test.php?q=` + this.props.value 
+      `/api/test.php?q=` + this.props.value
     )
       .then(response => response.json()) /* 8) */
       .then(recipes => {
@@ -47,9 +47,9 @@ export class SearchResults extends React.Component {
             {this.state.list.map((recipe, x) => {
               if (x < 5) {
                 return (
-    
+
                   // <div key={x}>
-                    <SearchResultItem
+                    <SearchBarResultsItem
                       key={x}
                       name={recipe.label}
                       image={recipe.image_url}
@@ -61,16 +61,16 @@ export class SearchResults extends React.Component {
                       recipe={recipe}
                     />
                   // </div>
-                  
-                
+
+
                 );
               }
             })}
           </div>
         </section>
       </div>
-    ); 
+    );
   }
 }
 
-export default SearchResults;
+export default SearchBarResultsList;

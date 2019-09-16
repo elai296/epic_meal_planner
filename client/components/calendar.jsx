@@ -1,6 +1,6 @@
 import React from "react";
 import CalendarTable from "./calendar-table";
-import DayCalendar from "./calendar-day-view";
+import CalendarDayView from "./calendar-day-view";
 
 class Calendar extends React.Component {
   constructor(props){
@@ -254,7 +254,7 @@ class Calendar extends React.Component {
       );
     } else if (this.state.day) {
       return (
-        <DayCalendar
+        <CalendarDayView
         day={this.state.day}
         changeView={this.changeView}
         month={this.monthLiteral}

@@ -26,7 +26,7 @@ class Menu extends React.Component {
               this.setMenu();}}>Home</div>
             <div onClick={
               () => { this.props.setView("favorite list", {});
-              this.setMenu();}}>Recipe</div>
+              this.setMenu();}}>Recipes</div>
             <div onClick={
               () => { this.props.setView("calendar", {});
               this.setMenu();}}>Calendar</div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './header';
-import ItemForm from './item-form';
-import ItemList from './item-list';
+import ShoppingListItemForm from './shopping-list-item-form';
+import ShoppingListItemList from './shopping-list-item-list';
 
 class ShoppingList extends React.Component {
   constructor(props) {
@@ -87,8 +87,8 @@ class ShoppingList extends React.Component {
     //   shoppingList: this.state.shoppingList.filter(itemId => itemId !== id)
     // });
     // this.getAllItems()
-      
-      
+
+
 //   deleteItem(itemId) {
 //     console.log(itemId);
 
@@ -159,8 +159,8 @@ class ShoppingList extends React.Component {
         <div className="row">
           <div className="col pt-5">
             <Header text="Shopping List"/>
-            <ItemForm onSubmit={this.addItem}/>
-            <ItemList allItems={this.state.shoppingList} deleteItem={this.deleteItem} toggleChecked={this.toggleChecked}/>
+            <ShoppingListItemForm onSubmit={this.addItem}/>
+            <ShoppingListItemList allItems={this.state.shoppingList} deleteItem={this.deleteItem} toggleChecked={this.toggleChecked}/>
           </div>
         </div>
       </div>
