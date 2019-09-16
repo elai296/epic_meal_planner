@@ -144,7 +144,6 @@ class Calendar extends React.Component {
     this.setState({ meal: weekMeals})
   }
   setDate(offset){
-    // debugger;
     const today = new Date(2019, 8, this.testDate);
     const finalDate = new Date(today);
     const currentDate = today.getDate();
