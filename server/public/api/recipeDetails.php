@@ -14,12 +14,10 @@ if (empty($_GET['id'])) {
   $whereClause = " WHERE recipe_ingredients.recipe_id = " . $_GET['id'];
 }
 
-
 $query = "SELECT * FROM recipe_ingredients 
 JOIN recipe ON recipe_ingredients.recipe_id = recipe.id" . $whereClause;
 
 $result = mysqli_query($conn, $query);
-
 
 if (!$result) {
   throw new Exception(mysqli_connect_error());
