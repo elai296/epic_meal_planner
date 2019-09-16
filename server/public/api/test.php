@@ -22,9 +22,6 @@ $query = "SELECT r.id, r.directions_url, r.image_url, r.serving_size, r.label, r
     GROUP BY i.recipe_id
     LIMIT 3";
 
-
-
-
 // var_dump('query is ',$query);
 
 $result = mysqli_query($conn, $query);
@@ -83,20 +80,17 @@ if($count < 5){
 
   // var_dump("ingredients are ", $ingredients);
   // var_dump("query is ", $query2);
+
   $ingArray[]=$ingredients;
   }
  
   
   var_dump("ingredients are ", $ingArray[0]);
-  print("testing");
-
   
+
   // var_dump("query2 is ", $query2);
   // $result = mysqli_query($conn, $query2);
   // var_dump("pls work ", $resultLabel);
-
-
-
 
   // var_dump("array data is ", $result2["hits"][9]["recipe"]);
 
@@ -122,7 +116,6 @@ if($count < 5){
 
 }
 */
-
 
 
 
