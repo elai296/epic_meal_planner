@@ -8,7 +8,7 @@ class ShoppingList extends React.Component {
     super(props);
     this.state = {
       shoppingList: [],
-      isChecked: false
+      // isChecked: false
     };
     this.getAllItems = this.getAllItems.bind(this);
     this.addItem = this.addItem.bind(this);
@@ -23,17 +23,22 @@ class ShoppingList extends React.Component {
 
   getAllItems() {
     fetch(`/api/getShoppingList.php`)
-      .then(response => {
-        return response.json();
-      })
+      .then(response => response.json())
       .then(data => {
-        this.setState({
-          shoppingList: data
-        });
-      });
+        var getData = data;
+        // console.log("get data is ", getData)
+        // var test = getData.map(bool => {
+        //   return console.log(data)
+        // })
+        console.log("data is ", data)
+        this.setState({ shoppingList: data })
+          ;
+      }
+      );
   }
 
   addItem(newItem) {
+
     fetch(`/api/addToShoppingList.php`, {
       method: 'POST',
       headers: {
@@ -41,25 +46,50 @@ class ShoppingList extends React.Component {
       },
       body: JSON.stringify(newItem)
     })
-      .then(response => {
-        return response.json();
-      })
+      .then(response => response.json())
       .then(data => {
-        this.setState({
-          shoppingList: this.state.shoppingList.concat(data)
-        });
-      });
-    this.getAllItems();
+        debugger;
+        // var getData = data;
+        // console.log("get data is ", getData)
+        // var test = getData.map(bool => {
+        //   return console.log(data)
+        // })
+        console.log("data add is ", data)
+        this.setState({ shoppingList: data });
+      }
+      );
+      // .then(response => {
+      //  return response.json();
+      // })
+      // .then(data => {
+      //   console.log("the data is ", data)
+      //   this.setState({
+      //     shoppingList: this.state.shoppingList.concat(data)
+      //   });
+      // });
+      this.getAllItems()
   }
 
   deleteItem(id) {
-    this.setState({
-      shoppingList: this.state.shoppingList.filter(itemId => itemId !== id)
-    });
+
+    console.log("hey yo the id is ", id)
+    fetch(`/api/deleteFromShoppigList.php`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(id)
+    })
+      .then(res => res.json()) // OR res.json()
+      .then(data =>{
+        debugger;
+        console.log("the res is ", data)
+        this.setState({ shoppingList: data})})
+    // this.setState({
+    //   shoppingList: this.state.shoppingList.filter(itemId => itemId !== id)
+    // });
+    // this.getAllItems()
   }
 
   toggleChecked(itemId) {
-    debugger;
     console.log("current shopping list is ", this.state.shoppingList)
     console.log("item is ", itemId)
     var id = parseInt(itemId)
@@ -69,6 +99,7 @@ class ShoppingList extends React.Component {
     var checkedid;
     const itemObject = this.state.shoppingList.map(item => {
       if (itemId === item.id) {
+        debugger;
         item.is_completed = !item.is_completed
         checkedid = item
         return checkedid
@@ -84,13 +115,11 @@ class ShoppingList extends React.Component {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        id: itemId,
-        is_completed: !itemObject.is_completed })
+      body: JSON.stringify(checkedid)
     })
       .then(()=> {
-        console.log('item object is ', itemObject)
-        this.setState({ list: itemObject })
+        this.setState({ shoppingList: itemObject })
+        console.log('state after toggle is ', this.state.shoppingList)
       })
       // .then(response => {
       //   return response.json();

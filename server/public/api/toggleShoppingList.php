@@ -7,15 +7,15 @@ startUp();
 
 $json_input = file_get_contents('php://input');
 $obj = json_decode($json_input, true);
-// $stuff = $_POST["itemObject"];
-// $obj= json_decode($stuff, true);
+
 
 $id = $obj["id"];
 $isCompleted = $obj["is_completed"];
 $myInt = (int)$isCompleted;
 
+var_dump('the object is ', $obj);
 $query = "UPDATE `shopping_list` SET `shopping_list`.`is_completed` = " . $myInt . " WHERE id =" . $id;
-
+var_dump('query is ', $query);
 $result = mysqli_query($conn, $query);
 
 if (!$result) {
