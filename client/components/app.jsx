@@ -108,8 +108,8 @@ class App extends React.Component {
     }
     return (
       <div>
-        {display}
         {menu}
+        {display}
       </div>
     );
   }

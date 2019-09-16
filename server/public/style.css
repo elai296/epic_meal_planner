@@ -1,26 +1,14 @@
 .contentRecipeBar{
-    height: 100px;
-    width: 300px;
+    margin: 10px;
 }
 
-.calendarIcon{
-    height: 50px;
-    width: 50px;
-}
-
-.heartIcon{
-    height: 50px;
-    width: 50px;
-}
-
-.shoppingListIcon{
-    height: 50px;
-    width: 50px;
+.imgIcon{
+    height: 30px;
+    width: 30px;
+    margin: 3px;
 }
 
 .iconImages{
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
     display: flex;
 }
 
@@ -56,4 +44,17 @@
 .smallcalendar{
     max-height: 685px;
     width: 350px;
+}
+.section>.row{
+    display: flex;
+    flex-direction: column;
+}
+.timeServing{
+    height: 50px;
+}
+.propsFood{
+    height: 100px;
+    width: 100px;
+    margin-right: 15px;
+    margin-left: 15px;
 }

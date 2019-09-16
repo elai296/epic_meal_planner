@@ -112,18 +112,19 @@ class RecipeDetails extends React.Component {
         <SearchBarRecipe setView={this.props.setView}/>
         </div>
         <div>
-          <h1>{recipe.label}</h1>
+          <p className='h1'>{recipe.label}</p>
           <div className="row">
-            {<img className="propsFood col-4" src={recipe.image} />}
-            <div>
+            <div className="propsFood" style={{
+              backgroundImage: "url("+recipe.image+")",
+              backgroundSize: "contain",
+              backgroundRepeat:"no-repeat"}}></div>
+            <div className="timeServing">
               <div>Time: {recipe.totalTime} minutes</div>
               <div>Serving size: {recipe.yield}</div>
-              <div>{recipe.servingSize}</div>
-            </div>
-            <div className="iconImages col-4">
+            <div className="iconImages">
               {
                 <img
-                  className="calendarIcon"
+                  className="calendarIcon imgIcon"
                   src="./image/calendarIcon.png"
                   alt="First Icon"
                   onClick={()=>this.handleCalendar()}
@@ -131,7 +132,7 @@ class RecipeDetails extends React.Component {
               }
               {
                 <img
-                  className="heartIcon"
+                  className="heartIcon imgIcon"
                   src={heartColor[image]}
                   alt="Second Icon"
                   onClick={()=>this.handleFavorites()}
@@ -139,12 +140,13 @@ class RecipeDetails extends React.Component {
               }
               {
                 <img
-                  className="shoppingListIcon"
+                  className="shoppingListIcon imgIcon"
                   onClick= {() => this.handleShoppingList()} //need to change to the modal view for onClick. this is just for testing; it goes to shoppingList view
                   src="./image/shoppingList.png"
                   alt="Third Icon"
                 />
               }
+            </div>
             </div>
           </div>
         </div>
