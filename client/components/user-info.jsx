@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from './header';
 
 class UserInfo extends React.Component {
   constructor(props) {
@@ -24,6 +25,7 @@ class UserInfo extends React.Component {
       nameInput: ""
     });
   }
+
   postName(){
     const req = {
       method: 'POST',
@@ -41,9 +43,11 @@ class UserInfo extends React.Component {
         .then(response => response.json())
         .then(name => { this.setState({ name }) })
   }
+
   render(){
     return (
       <div>
+        <Header text="User Info" />
         <form className="form-inline text-align-center" onSubmit={this.handleSubmit}>
           <div className="form-group mx-sm-3 mb-2 mr-2 ml-5">
             <input

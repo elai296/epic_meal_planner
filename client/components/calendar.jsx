@@ -1,6 +1,7 @@
 import React from "react";
 import CalendarTable from "./calendar-table";
 import DayCalendar from "./calendar-day-view";
+import Header from './header';
 
 class Calendar extends React.Component {
   constructor(props){
@@ -253,19 +254,23 @@ class Calendar extends React.Component {
       );
     } else if (this.state.day) {
       return (
-        <DayCalendar
-        day={this.state.day}
-        changeView={this.changeView}
-        month={this.monthLiteral}
-        year={this.year}
-        date={this.state.date}
-        meal={this.state.meal}
-        mealObj={this.mealObj}
-        getDateNumbers={this.getDateNumbers} />
+        <div>
+          <Header text="Calendar" />
+          <DayCalendar
+          day={this.state.day}
+          changeView={this.changeView}
+          month={this.monthLiteral}
+          year={this.year}
+          date={this.state.date}
+          meal={this.state.meal}
+          mealObj={this.mealObj}
+          getDateNumbers={this.getDateNumbers} />
+        </div>
       )
     } else if(this.state.meal){
       return (
         <div>
+          <Header text="Calendar" />
           <h3 className="text-center">{this.monthLiteral}, {this.year}</h3>
           <CalendarTable
           handleClick={this.handleClick}
