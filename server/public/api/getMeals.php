@@ -5,11 +5,10 @@ set_exception_handler('error_handler');
 
 startUp();
 
-//calendar need the date, name/label, mealtime
+
 $query = "SELECT * FROM calendar
 JOIN recipe
-ON  calendar.recipe_id = recipe.id
-";
+ON  calendar.recipe_id = recipe.id";
 
 $result = mysqli_query($conn, $query);
 
