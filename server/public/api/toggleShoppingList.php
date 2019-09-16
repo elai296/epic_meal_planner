@@ -8,13 +8,15 @@ startUp();
 $json_input = file_get_contents('php://input');
 $obj = json_decode($json_input, true);
 
-$ingredient = $obj['ingredients_desc'];
 
+$id = $obj["id"];
+$isCompleted = $obj["is_completed"];
+$myInt = (int)$isCompleted;
 
-$query = "INSERT INTO `shopping_list`(ingredient_text,is_completed) VALUES ('$ingredient', 0)";
-
+var_dump('the object is ', $obj);
+$query = "UPDATE `shopping_list` SET `shopping_list`.`is_completed` = " . $myInt . " WHERE id =" . $id;
+var_dump('query is ', $query);
 $result = mysqli_query($conn, $query);
-
 
 if (!$result) {
   throw new Exception(mysqli_connect_error());
@@ -27,5 +29,4 @@ while ($row = mysqli_fetch_assoc($result)) {
   $output[] = $row;
 };
 
-print(json_encode($output))
-?>
+print(json_encode($output));

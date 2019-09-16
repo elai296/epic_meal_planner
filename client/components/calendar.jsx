@@ -247,6 +247,7 @@ class Calendar extends React.Component {
     }
   }
   render(){
+
     this.setDate();
     if(!this.state.meal){
       return (
