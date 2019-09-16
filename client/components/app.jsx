@@ -5,7 +5,7 @@ import SearchBar from "./search-bar";
 import SearchBarResultsList from "./search-bar-results-list";
 import RecipeDetails from "./recipe-details";
 import RecipesFavoritesList from "./recipes-favorites-list";
-import Menu from "./menu";
+import Header from "./header";
 
 
 class App extends React.Component {
@@ -15,7 +15,7 @@ class App extends React.Component {
       addItemToShoppingList : [],
       oneRecipeDetail :[],
       view: {
-        name: "shoppinglist",
+        name: "home",
         recipe: {}
       },
       searchTerm: "",
@@ -89,20 +89,18 @@ class App extends React.Component {
 
   render() {
     let display;
-    let menu = <Menu setView={this.setView}/>
+    let header = <Header setView={this.setView}/>
 
     if (this.state.view.name === "home") {
       display = <SearchBar setView={this.setView}/>;
     } else if (this.state.view.name === "search bar result") {
-      display = (<SearchResults setView={this.setView} value={this.state.searchTerm} />);
+      display = (<SearchBarResultsList setView={this.setView} value={this.state.searchTerm}/>);
     } else if (this.state.view.name==="recipe details"){
-      display=(<RecipeDetails setView={this.setView} setModal={this.setModal} recipe={this.state.view.recipe}/>);
-    } else if (this.state.view.name ==="recipe details"){
-      display=(<SearchBar setView={this.setView} />);
+      display=(<RecipeDetails setView={this.setView} recipe={this.state.view.recipe}/>);
     }else if(this.state.view.name==="calendar"){
-      display=(<Calendar setView={this.setView} setModal={this.setModal}/>)
+      display=(<Calendar setView={this.setView}/>)
     }else if(this.state.view.name==="shoppinglist"){
-      display=(<ShoppingList setView={this.setView} setModal={this.setModal}/>)
+      display=(<ShoppingList setView={this.setView}/>)
     }else if(this.state.view.name==="favorite list"){
       display=(<RecipesFavoritesList setView={this.setView}/>)
     }
