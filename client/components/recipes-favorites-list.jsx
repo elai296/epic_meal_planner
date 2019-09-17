@@ -47,7 +47,7 @@ class RecipesFavoritesList extends React.Component{
                                 <img
                                 className="card-title"
                                 src={recipe.image_url}
-                                onClick={e => handleClick(recipe, recipe.image_url)}
+                                // onClick={e => handleClick(recipe, recipe.image_url)}
                                 />
                                 <h5>{recipe.label}</h5>
                                 <p className="card-text">Time: {recipe.cooking_time} minutes</p>

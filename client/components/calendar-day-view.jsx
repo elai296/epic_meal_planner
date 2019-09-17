@@ -25,5 +25,4 @@ function CalendarDayView(props){
   }
 }
 
-
 export default CalendarDayView;

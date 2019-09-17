@@ -8,7 +8,6 @@ import RecipesFavoritesList from "./recipes-favorites-list";
 import Header from "./header";
 import Recipes from './recipes';
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
