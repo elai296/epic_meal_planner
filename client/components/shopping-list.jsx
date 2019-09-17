@@ -87,8 +87,8 @@ class ShoppingList extends React.Component {
     //   shoppingList: this.state.shoppingList.filter(itemId => itemId !== id)
     // });
     // this.getAllItems()
-      
-      
+
+
 //   deleteItem(itemId) {
 //     console.log(itemId);
 

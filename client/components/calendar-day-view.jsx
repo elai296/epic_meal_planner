@@ -25,5 +25,4 @@ function DayCalendar(props){
   }
 }
 
-
 export default DayCalendar;
