@@ -1,8 +1,12 @@
 import React from 'react';
+import Menu from './menu';
 
 function Header(props) {
   return (
-    <h1 className="header">{ props.text }</h1>
+    <div>
+      <h1 className="header">{ props.text }</h1>
+      <Menu setView={ props.setView }/>
+    </div>
   );
 }
 

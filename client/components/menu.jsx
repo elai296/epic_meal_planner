@@ -25,8 +25,8 @@ class Menu extends React.Component {
               () => { this.props.setView("home", {});
               this.setMenu();}}>Home</div>
             <div onClick={
-              () => { this.props.setView("favorite list", {});
-              this.setMenu();}}>Recipe</div>
+              () => { this.props.setView("recipes", {});
+              this.setMenu();}}>Recipes</div>
             <div onClick={
               () => { this.props.setView("calendar", {});
               this.setMenu();}}>Calendar</div>
@@ -34,9 +34,14 @@ class Menu extends React.Component {
               () => { this.props.setView("shoppinglist", {});
               this.setMenu();}}>Shopping List</div>
             <div onClick={
+              () => { this.props.setView("favorite list", {});
+              this.setMenu();}}>Favorites</div>
+            <div onClick={
               () => { this.props.setView("userInfo", {});
               this.setMenu();}}>User Info</div>
           </div>
+        
+   
         </React.Fragment>
       )
     }

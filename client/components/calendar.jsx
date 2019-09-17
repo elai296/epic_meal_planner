@@ -1,6 +1,7 @@
 import React from "react";
 import CalendarTable from "./calendar-table";
-import DayCalendar from "./calendar-day-view";
+import CalendarDayView from "./calendar-day-view";
+import Header from './header';
 
 class Calendar extends React.Component {
   constructor(props){
@@ -23,6 +24,7 @@ class Calendar extends React.Component {
     this.getDayOfWeek = this.getDayOfWeek.bind(this);
     this.getDateNumbers = this.getDateNumbers.bind(this);
   }
+
   handleClick(){
     if (!event.path[0].textContent) {
       let counter = 0;
@@ -38,11 +40,12 @@ class Calendar extends React.Component {
         counter++;
       }
     }
-
   }
+
   handleChange(){
     this.setState({ mealInput: event.target.value });
   }
+
   handleSubmit() {
     event.preventDefault();
     const mealsToPost = this.state.pushToCalendar;
@@ -64,9 +67,11 @@ class Calendar extends React.Component {
       pushToCalendar: []
     })
   }
+
   componentDidMount(){
     this.getStoredMeals();
   }
+
   getStoredMeals(){
     fetch(`/api/getMeals.php`)
       .then(response => response.json())
@@ -74,6 +79,7 @@ class Calendar extends React.Component {
         this.sortDays(data);
     })
   }
+
    sortDays(data){
     const copyOfMeal = data;
     const weekMeals = [];
@@ -143,6 +149,7 @@ class Calendar extends React.Component {
     this.setState({ date: this.setDate()})
     this.setState({ meal: weekMeals})
   }
+
   setDate(offset){
     const today = new Date(2019, 8, this.testDate);
     const finalDate = new Date(today);
@@ -151,6 +158,7 @@ class Calendar extends React.Component {
     this.year = today.getFullYear();
     let monthNumeric = today.getMonth();
     this.monthLiteral = months[monthNumeric];
+
     if(offset === 7 || offset === -7){
       finalDate.setDate(currentDate + offset);
       this.testDate += offset;
@@ -164,6 +172,7 @@ class Calendar extends React.Component {
     let returnDate = date.slice(0, 10);
     return returnDate;
   }
+
   changeWeek(){
     if (event.srcElement.textContent === "Previous Week"){
       this.setState({ date: this.setDate(-7) })
@@ -172,6 +181,7 @@ class Calendar extends React.Component {
     }
     this.getStoredMeals();
   }
+
   changeView(event){
     if(!this.state.day){
       this.setState({ day: true });
@@ -182,6 +192,7 @@ class Calendar extends React.Component {
       this.getDayOfWeek(event);
     }
   }
+
   getDateNumbers(){
     if(this.mealObj.breakfast === 0){
       let date = (this.state.date[8]) + (this.state.date[9]);
@@ -191,6 +202,7 @@ class Calendar extends React.Component {
       return date;
     }
   }
+
   getDayOfWeek(event){
     this.clickedId = event.currentTarget.id;
     switch(this.clickedId){
@@ -245,8 +257,8 @@ class Calendar extends React.Component {
       break;
     }
   }
-  render(){
 
+  render(){
     this.setDate();
     if(!this.state.meal){
       return (
@@ -254,19 +266,23 @@ class Calendar extends React.Component {
       );
     } else if (this.state.day) {
       return (
-        <DayCalendar
-        day={this.state.day}
-        changeView={this.changeView}
-        month={this.monthLiteral}
-        year={this.year}
-        date={this.state.date}
-        meal={this.state.meal}
-        mealObj={this.mealObj}
-        getDateNumbers={this.getDateNumbers} />
+        <React.Fragment>
+          <Header setView={this.props.setView}/>
+          <CalendarDayView
+          day={this.state.day}
+          changeView={this.changeView}
+          month={this.monthLiteral}
+          year={this.year}
+          date={this.state.date}
+          meal={this.state.meal}
+          mealObj={this.mealObj}
+          getDateNumbers={this.getDateNumbers} />
+        </React.Fragment>
       )
     } else if(this.state.meal){
       return (
         <div>
+          <Header setView={this.props.setView}/>
           <h3 className="text-center">{this.monthLiteral}, {this.year}</h3>
           <CalendarTable
           handleClick={this.handleClick}
@@ -276,7 +292,12 @@ class Calendar extends React.Component {
           date={this.state.date}/>
           <form className="form-inline text-align-center" onSubmit={this.handleSubmit}>
             <div className="form-group mx-sm-3 mb-2 mr-2 ml-5">
-              <input required onChange={this.handleChange} type="text" className="form-control" placeholder="Add Meal" />
+              <input
+              required
+              onChange={this.handleChange}
+              type="text"
+              className="form-control"
+              placeholder="Add Meal" />
             </div>
             <button type="submit" className="btn btn-primary mb-2">Add</button>
           </form>
@@ -286,7 +307,6 @@ class Calendar extends React.Component {
       );
     }
   }
-
 }
 
 export default Calendar;

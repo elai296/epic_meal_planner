@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './header';
-import ItemForm from './item-form';
-import ItemList from './item-list';
+import ShoppingListItemForm from './shopping-list-item-form';
+import ShoppingListItemList from './shopping-list-item-list';
 
 class ShoppingList extends React.Component {
   constructor(props) {
@@ -73,7 +73,7 @@ class ShoppingList extends React.Component {
   deleteItem(id) {
 
     console.log("hey yo the id is ", id)
-    fetch(`/api/deleteFromShoppigList.php`, {
+    fetch(`/api/deleteFromShoppingList.php`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(id)
@@ -158,9 +158,9 @@ class ShoppingList extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col pt-5">
-            <Header text="Shopping List"/>
-            <ItemForm onSubmit={this.addItem}/>
-            <ItemList allItems={this.state.shoppingList} deleteItem={this.deleteItem} toggleChecked={this.toggleChecked}/>
+            <Header setView={this.props.setView}/>
+            <ShoppingListItemForm onSubmit={this.addItem}/>
+            <ShoppingListItemList allItems={this.state.shoppingList} deleteItem={this.deleteItem} toggleChecked={this.toggleChecked}/>
           </div>
         </div>
       </div>

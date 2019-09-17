@@ -1,10 +1,10 @@
 import React from 'react';
 
-class favoriteList extends React.Component{
+class RecipesCategoriesList extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            favoriteList:[]
+            categoryList:[]
         }
     }
 
@@ -14,10 +14,10 @@ class favoriteList extends React.Component{
       }
 
     componentDidMount(){
-            fetch("/api/getFavorites.php")
+            fetch("/api/getCategories.php")
               .then(response => response.json())
               .then(recipes => {
-                this.setState({ favoriteList: recipes });
+                this.setState({ categoryList: recipes });
               })
     }
 
@@ -25,7 +25,7 @@ class favoriteList extends React.Component{
         return (
             <div className="card mb-3" style={{ maxWidth: "480px" }}>
               <div className="row no-gutters">
-                <h1>Favorites</h1>
+                <h1>Categories</h1>
                 <div className="col-sm-4">
                   <div
 
@@ -40,7 +40,7 @@ class favoriteList extends React.Component{
                   ></div>
 
                 </div>
-                {this.state.favoriteList.map((recipe)=>{
+                {this.state.categoryList.map((recipe)=>{
                       return(
                         <div className="col-sm-8">
                             <div className="card-body">
@@ -64,4 +64,4 @@ class favoriteList extends React.Component{
     }
 }
 
-export default favoriteList;
+export default RecipesCategoriesList;

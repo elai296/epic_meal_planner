@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Item(props) {
+function ShoppingListItem(props) {
   const item = props.oneItem;
   // console.log("props.one item are ", props.oneItem)
   // console.log("item props are ", props)
@@ -35,4 +35,4 @@ function Item(props) {
   );
 }
 
-export default Item;
+export default ShoppingListItem;
