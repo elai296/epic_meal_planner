@@ -9,7 +9,7 @@ class Calendar extends React.Component {
     this.state = {
       mealInput: "",
       pushToCalendar: [],
-      date: "",
+      date: this.setDate(),
       day: false
     }
     this.testDate = null;
@@ -148,6 +148,7 @@ class Calendar extends React.Component {
     }
     this.setState({ meal: weekMeals})
   }
+
   setDate(offset){
     const today = new Date();
     const finalDate = new Date(today);
@@ -162,7 +163,7 @@ class Calendar extends React.Component {
     } else if( offset >= 0 && offset < 7) {
       finalDate.setDate(currentDate - weekDay + offset + this.testDate);
     } else {
-      finalDate.setDate(currentDate);
+      finalDate.setDate(currentDate - weekDay);
     }
     const date = finalDate.toISOString();
     let returnDate = date.slice(0, 10);
