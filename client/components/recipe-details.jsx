@@ -110,6 +110,7 @@ class RecipeDetails extends React.Component {
       <div className="container">
         <div>
         <SearchBar setView={this.props.setView}/>
+        <Header setView={this.props.setView}/>
         </div>
         <div>
           <p className='h1'>{recipe.label}</p>

@@ -99,16 +99,16 @@ class App extends React.Component {
       )
     } else if (this.state.view.name === "search bar result") {
       display = (<SearchBarResultsList setView={this.setView} value={this.state.searchTerm}/>);
-    } else if (this.state.view.name==="recipe details"){
-      display=(<RecipeDetails setView={this.setView} recipe={this.state.view.recipe}/>);
-    }else if(this.state.view.name==="calendar"){
-      display=(<Calendar setView={this.setView}/>)
-    }else if(this.state.view.name==="shoppinglist"){
-      display=(<ShoppingList setView={this.setView}/>)
-    }else if(this.state.view.name==="favorite list"){
-      display=(<RecipesFavoritesList setView={this.setView}/>)
-    }else if(this.state.view.name==="recipes"){
-      display=(<Recipes setView={this.setView}/>)
+    } else if (this.state.view.name==="recipe details") {
+      display = (<RecipeDetails setView={this.setView} recipe={this.state.view.recipe}/>);
+    } else if (this.state.view.name==="calendar") {
+      display = (<Calendar setView={this.setView}/>);
+    } else if (this.state.view.name==="shoppinglist") {
+      display = (<ShoppingList setView={this.setView}/>);
+    } else if (this.state.view.name==="favorite list") {
+      display = (<RecipesFavoritesList setView={this.setView}/>);
+    } else if (this.state.view.name==="recipes") {
+      display = (<Recipes setView={this.setView}/>);
     }
     return (
       <div>

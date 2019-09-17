@@ -35,8 +35,9 @@ class SearchBarResultsList extends React.Component {
       // this.loadResults();
     return (
       <div>
-        <a onClick={() => this.handleClick(this.props)}>Home</a>
+        {/* <a onClick={() => this.handleClick(this.props)}>Home</a> */}
         <h1>Search Results</h1>
+        <Header setView={this.props.setView}/>
         <section className="section">
             <div className="row">
             {this.state.list.map((recipe, x) => {

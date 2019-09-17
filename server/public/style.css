@@ -41,6 +41,10 @@
     box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9)
 }
 
+.menu{
+    z-index: 100;
+}
+
 .smallcalendar{
     max-height: 685px;
     width: 350px;
