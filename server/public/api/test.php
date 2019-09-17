@@ -20,8 +20,6 @@ $query = "SELECT r.id, r.directions_url, r.image_url, r.serving_size, r.label, r
     GROUP BY i.recipe_id
     LIMIT 5";
 
-// var_dump("query is: ", $query);
-
 $result = mysqli_query($conn, $query);
 
 if (!$result) {
@@ -57,9 +55,6 @@ if($count <= 5){
     $resultLabel[]=$thisData;
   };
 
-  // print_r($resultLabel);
-  // exit();
-
   for($i = 0; $i < 5; $i++){
     $label =  $resultLabel[$i]["label"];
     $image =  $resultLabel[$i]["image"];
@@ -82,18 +77,6 @@ if($count <= 5){
   };
 }
 
-
 print(json_encode($resultLabel));
-
-/* 7) */
-// $output = [];
-// while ($row = mysqli_fetch_assoc($result)) {
-//   $output[] = $row;
-// };
-
-
-// print(json_encode($output));
-
-
 
 ?>
