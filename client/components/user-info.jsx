@@ -32,6 +32,7 @@ class UserInfo extends React.Component {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(this.state.name)
     };
+
     fetch('/API/(need endpoint from back end)', req)
       .then(res => res.json())
       .then(name => { console.log("POST name: ", name) });
@@ -59,14 +60,12 @@ class UserInfo extends React.Component {
               required />
           </div>
           <button type="submit" className="btn btn-primary mb-2">Add</button>
-
         </form>
         <div>
           <div className="nameTitle">Name</div>
           <div className="name"><br />{this.state.name}</div>
         </div>
       </div>
-
     )
   }
 }

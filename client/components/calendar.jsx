@@ -24,6 +24,7 @@ class Calendar extends React.Component {
     this.getDayOfWeek = this.getDayOfWeek.bind(this);
     this.getDateNumbers = this.getDateNumbers.bind(this);
   }
+
   handleClick(){
     if (!event.path[0].textContent) {
       let counter = 0;
@@ -39,11 +40,12 @@ class Calendar extends React.Component {
         counter++;
       }
     }
-
   }
+
   handleChange(){
     this.setState({ mealInput: event.target.value });
   }
+
   handleSubmit() {
     event.preventDefault();
     const mealsToPost = this.state.pushToCalendar;
@@ -65,9 +67,11 @@ class Calendar extends React.Component {
       pushToCalendar: []
     })
   }
+
   componentDidMount(){
     this.getStoredMeals();
   }
+
   getStoredMeals(){
     fetch(`/api/getMeals.php`)
       .then(response => response.json())
@@ -75,6 +79,7 @@ class Calendar extends React.Component {
         this.sortDays(data);
     })
   }
+
    sortDays(data){
     const copyOfMeal = data;
     const weekMeals = [];
@@ -144,6 +149,7 @@ class Calendar extends React.Component {
     this.setState({ date: this.setDate()})
     this.setState({ meal: weekMeals})
   }
+
   setDate(offset){
     const today = new Date(2019, 8, this.testDate);
     const finalDate = new Date(today);
@@ -152,6 +158,7 @@ class Calendar extends React.Component {
     this.year = today.getFullYear();
     let monthNumeric = today.getMonth();
     this.monthLiteral = months[monthNumeric];
+
     if(offset === 7 || offset === -7){
       finalDate.setDate(currentDate + offset);
       this.testDate += offset;
@@ -165,6 +172,7 @@ class Calendar extends React.Component {
     let returnDate = date.slice(0, 10);
     return returnDate;
   }
+
   changeWeek(){
     if (event.srcElement.textContent === "Previous Week"){
       this.setState({ date: this.setDate(-7) })
@@ -173,6 +181,7 @@ class Calendar extends React.Component {
     }
     this.getStoredMeals();
   }
+
   changeView(event){
     if(!this.state.day){
       this.setState({ day: true });
@@ -183,6 +192,7 @@ class Calendar extends React.Component {
       this.getDayOfWeek(event);
     }
   }
+
   getDateNumbers(){
     if(this.mealObj.breakfast === 0){
       let date = (this.state.date[8]) + (this.state.date[9]);
@@ -192,6 +202,7 @@ class Calendar extends React.Component {
       return date;
     }
   }
+
   getDayOfWeek(event){
     this.clickedId = event.currentTarget.id;
     switch(this.clickedId){
@@ -246,6 +257,7 @@ class Calendar extends React.Component {
       break;
     }
   }
+
   render(){
     this.setDate();
     if(!this.state.meal){
@@ -295,7 +307,6 @@ class Calendar extends React.Component {
       );
     }
   }
-
 }
 
 export default Calendar;
