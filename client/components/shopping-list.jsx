@@ -158,7 +158,7 @@ class ShoppingList extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col pt-5">
-            <Header text="Shopping List"/>
+            <Header setView={this.props.setView}/>
             <ShoppingListItemForm onSubmit={this.addItem}/>
             <ShoppingListItemList allItems={this.state.shoppingList} deleteItem={this.deleteItem} toggleChecked={this.toggleChecked}/>
           </div>

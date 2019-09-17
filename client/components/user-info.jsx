@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from './header';
 
 class UserInfo extends React.Component {
   constructor(props){
@@ -9,7 +10,7 @@ class UserInfo extends React.Component {
   }
   render(){
     return (
-      null
+      <Header setView={this.props.setView}/>
     )
   }
 }
