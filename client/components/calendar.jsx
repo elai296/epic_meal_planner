@@ -57,7 +57,7 @@ class Calendar extends React.Component {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(mealsToPost[counter])
       };
-      fetch('/API/(need endpoint from back end)', req)
+      fetch('/api/postMeals.php', req)
         .then(res => res.json())
         .then(meal => {this.setState({ meal })});
       counter++;
