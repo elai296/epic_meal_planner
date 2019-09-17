@@ -1,12 +1,9 @@
 import React from "react";
-import SearchBarResult from "./searcResultItem";
 
-class SearchBarRecipe extends React.Component {
+class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // list: [],
-      view: "",
       value: ""
     };
     this.handleChange = this.handleChange.bind(this);
@@ -51,11 +48,11 @@ class SearchBarRecipe extends React.Component {
               onChange={this.handleChange}
             />
             {<img className="searchIcon"src="./image/searchIcon.png"alt="searchPicture" onClick={e=>this.handleSearch(e)}/>}
-          
+
           </form>
         </div>
       </div>
     );
   }
 }
-export default SearchBarRecipe;
+export default SearchBar;

@@ -1,14 +1,14 @@
 import React from 'react';
-import Item from './item';
+import ShoppingListItem from './shopping-list-item';
 
-function ItemList(props) {
+function ShoppingListItemList(props) {
   console.log("item list props are ", props.allItems)
   console.log("toggle checked is ", props.toggleChecked)
   return (
     <ul>
       {props.allItems.map(item => {
         return (
-          <Item
+          <ShoppingListItem
             key={item.id}
             oneItem={item}
             deleteItem={props.deleteItem}
@@ -19,4 +19,4 @@ function ItemList(props) {
   );
 }
 
-export default ItemList;
+export default ShoppingListItemList;

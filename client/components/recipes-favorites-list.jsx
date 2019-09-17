@@ -1,6 +1,6 @@
 import React from 'react';
 
-class favoriteList extends React.Component{
+class RecipesFavoritesList extends React.Component{
     constructor(props){
         super(props);
         this.state={
@@ -22,13 +22,13 @@ class favoriteList extends React.Component{
     }
 
     render(){
-        return ( 
+        return (
             <div className="card mb-3" style={{ maxWidth: "480px" }}>
               <div className="row no-gutters">
                 <h1>Favorites</h1>
                 <div className="col-sm-4">
                   <div
-                  
+
                     className="card-img-top propsImage"
                     style={{
                       backgroundImage: "url("+this.props.image_url+")",
@@ -38,7 +38,7 @@ class favoriteList extends React.Component{
                       width: "150px"
                     }}
                   ></div>
-                  
+
                 </div>
                 {this.state.favoriteList.map((recipe)=>{
                       return(
@@ -57,11 +57,11 @@ class favoriteList extends React.Component{
                         </div>
                       );
                   })}
-                
+
               </div>
             </div>
           );
     }
 }
 
-export default favoriteList; 
+export default RecipesFavoritesList;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function DayCalendar(props){
+function CalendarDayView(props){
   if(props.day){
     return (
       <div>
@@ -25,5 +25,4 @@ function DayCalendar(props){
   }
 }
 
-
-export default DayCalendar;
+export default CalendarDayView;

@@ -1,5 +1,5 @@
 import React from "react";
-import SearchBarRecipe from "./searchBar";
+import SearchBar from "./search-bar";
 import Calendar from "./calendar";
 
 class RecipeDetails extends React.Component {
@@ -109,7 +109,7 @@ class RecipeDetails extends React.Component {
     return (
       <div className="container">
         <div>
-        <SearchBarRecipe setView={this.props.setView}/>
+        <SearchBar setView={this.props.setView}/>
         </div>
         <div>
           <p className='h1'>{recipe.label}</p>
