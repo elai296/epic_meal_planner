@@ -9,10 +9,10 @@ class Calendar extends React.Component {
     this.state = {
       mealInput: "",
       pushToCalendar: [],
-      date: "2019-09-08",
+      date: this.setDate(),
       day: false
     }
-    this.testDate = 8;
+    this.testDate = null;
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -146,28 +146,25 @@ class Calendar extends React.Component {
       }
       datePosition++;
     }
-    this.setState({ date: this.setDate()})
     this.setState({ meal: weekMeals})
   }
 
   setDate(offset){
-    const today = new Date(2019, 8, this.testDate);
+    const today = new Date();
     const finalDate = new Date(today);
     const currentDate = today.getDate();
+    const weekDay = today.getDay();
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    this.year = today.getFullYear();
-    let monthNumeric = today.getMonth();
+    this.year = finalDate.getFullYear();
+    let monthNumeric = finalDate.getMonth();
     this.monthLiteral = months[monthNumeric];
-
     if(offset === 7 || offset === -7){
-      finalDate.setDate(currentDate + offset);
-      this.testDate += offset;
+      finalDate.setDate(currentDate - weekDay + offset + this.testDate);
     } else if( offset >= 0 && offset < 7) {
-      finalDate.setDate(currentDate + offset);
+      finalDate.setDate(currentDate - weekDay + offset + this.testDate);
     } else {
-      finalDate.setDate(currentDate);
+      finalDate.setDate(currentDate - weekDay);
     }
-
     const date = finalDate.toISOString();
     let returnDate = date.slice(0, 10);
     return returnDate;
@@ -176,8 +173,10 @@ class Calendar extends React.Component {
   changeWeek(){
     if (event.srcElement.textContent === "Previous Week"){
       this.setState({ date: this.setDate(-7) })
+      this.testDate -=7;
     } else if (event.srcElement.textContent === "Next Week"){
       this.setState({ date: this.setDate(7) })
+      this.testDate += 7;
     }
     this.getStoredMeals();
   }
