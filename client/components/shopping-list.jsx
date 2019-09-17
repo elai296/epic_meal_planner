@@ -82,11 +82,11 @@ class ShoppingList extends React.Component {
       .then(data =>{
         debugger;
         console.log("the res is ", data)
-        this.setState({ shoppingList: data})})
+        this.setState({ shoppingList: data})});
     // this.setState({
     //   shoppingList: this.state.shoppingList.filter(itemId => itemId !== id)
     // });
-    // this.getAllItems()
+    this.getAllItems()
 
 
 //   deleteItem(itemId) {
