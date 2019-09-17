@@ -11,14 +11,16 @@ $obj = json_decode($json_input, true);
 
 $input =  $_GET['q'];
 
-$query = "SELECT r.id, r.directions_url, r.image_url, r.serving_size, r.label, r.cooking_time, 
+$query = "SELECT r.id, r.directions_url, r.image_url, r.serving_size, r.label, r.cooking_time,
     i.recipe_id, GROUP_CONCAT(i.ingredients_desc)
-    FROM recipe AS r 
+    FROM recipe AS r
     JOIN recipe_ingredients AS i
     ON r.id = i.recipe_id
-    WHERE r.label LIKE '%".$input."%'
+    WHERE r.label LIKE '%{$input}%'
     GROUP BY i.recipe_id
-    LIMIT 3";
+    LIMIT 5";
+
+// var_dump("query is: ", $query);
 
 $result = mysqli_query($conn, $query);
 
@@ -30,8 +32,7 @@ if (!$result) {
 
 $count = mysqli_num_rows($result);
 
-if($count < 5){
- 
+if($count <= 5){
   $url = "https://api.edamam.com/search?q=".$input."&app_id=1930606a&app_key=165754ed1a324e1c76dc770f26190489&from=0&to=10&time=1-60";
   $ch = curl_init();
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -41,9 +42,10 @@ if($count < 5){
   curl_close($ch);
 
   $result2 = json_decode($result, true);
+
   $resultLabel= [];
   $plzwork = null;
-  for($i= 0; $i < 3; $i++){
+  for($i= 0; $i < 5; $i++){
     $thisData = [
       "label" => $result2["hits"][$i]["recipe"]["label"],
       "image" => $result2["hits"][$i]["recipe"]["image"],
@@ -52,10 +54,13 @@ if($count < 5){
       "totalTime" => $result2["hits"][$i]["recipe"]["totalTime"],
       "ingredientLines" => $result2["hits"][$i]["recipe"]["ingredientLines"],
      ];
-  $resultLabel[]=$thisData;
+    $resultLabel[]=$thisData;
   };
 
-  for($i = 0; $i < 3; $i++){
+  // print_r($resultLabel);
+  // exit();
+
+  for($i = 0; $i < 5; $i++){
     $label =  $resultLabel[$i]["label"];
     $image =  $resultLabel[$i]["image"];
     $url =  $resultLabel[$i]["url"];
@@ -63,21 +68,22 @@ if($count < 5){
     $totalTime =  $resultLabel[$i]["totalTime"];
     $ingredients = $resultLabel[$i]["ingredientLines"];
 
-    $query2 = "INSERT INTO `recipe`(directions_url, image_url, serving_size, label, cooking_time) VALUES ('". $url ."', '".$image."', ".$yield.", '".$label."', ".$totalTime.")";
+    $query2 = "INSERT INTO `recipe`(directions_url, image_url, serving_size, label, cooking_time) VALUES ('$url', '$image', $yield, '$label', $totalTime)";
     $result3 = mysqli_query($conn, $query2);
 
     $recipe_id = mysqli_insert_id($conn);
-
-    for ($x = 0; $x < count($ingredients); $x++) {
-      $recipe = $ingredients[$x];
-      $query4 ="INSERT INTO recipe_ingredients(recipe_id, ingredients_desc) VALUES(". $recipe_id .", '".$recipe."')";
-       $result4 = mysqli_query($conn, $query4); 
+    $ingredientCount = count($ingredients);
+    $ingredientQuery = "INSERT INTO recipe_ingredients(recipe_id, ingredients_desc) VALUES ";
+    for ($x = 0; $x < $ingredientCount; $x++) {
+      $ingredientQuery.= "($recipe_id, '".$ingredients[$x]."'),";
     };
+    $ingredientQuery = substr($ingredientQuery, 0, -1);
+    $insertQueryResult = mysqli_query($conn, $ingredientQuery);
   };
 }
 
 
-
+print(json_encode($resultLabel));
 
 /* 7) */
 // $output = [];
