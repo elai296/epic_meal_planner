@@ -6,6 +6,7 @@ import SearchBarResultsList from "./search-bar-results-list";
 import RecipeDetails from "./recipe-details";
 import RecipesFavoritesList from "./recipes-favorites-list";
 import Header from "./header";
+import Recipes from './recipes';
 
 
 class App extends React.Component {
@@ -15,7 +16,7 @@ class App extends React.Component {
       addItemToShoppingList : [],
       oneRecipeDetail :[],
       view: {
-        name: "home",
+        name: "recipes",
         recipe: {}
       },
       searchTerm: "",
@@ -89,10 +90,14 @@ class App extends React.Component {
 
   render() {
     let display;
-    let header = <Header setView={this.setView}/>
 
     if (this.state.view.name === "home") {
-      display = <SearchBar setView={this.setView}/>;
+      display = (
+        <React.Fragment>
+          <Header setView={this.setView}/>
+          <SearchBar setView={this.setView}/>
+        </React.Fragment>
+      )
     } else if (this.state.view.name === "search bar result") {
       display = (<SearchBarResultsList setView={this.setView} value={this.state.searchTerm}/>);
     } else if (this.state.view.name==="recipe details"){
@@ -103,10 +108,11 @@ class App extends React.Component {
       display=(<ShoppingList setView={this.setView}/>)
     }else if(this.state.view.name==="favorite list"){
       display=(<RecipesFavoritesList setView={this.setView}/>)
+    }else if(this.state.view.name==="recipes"){
+      display=(<Recipes setView={this.setView}/>)
     }
     return (
       <div>
-        {menu}
         {display}
       </div>
     );

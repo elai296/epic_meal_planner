@@ -12,6 +12,7 @@ class Recipes extends React.Component {
   render() {
     return (
       <div className="container">
+        <Header setView={this.props.setView}/>
         <div>Favorites</div>
         <div>Keto</div>
         <div>Vegetarian</div>
@@ -20,3 +21,5 @@ class Recipes extends React.Component {
     );
   }
 }
+
+export default Recipes;

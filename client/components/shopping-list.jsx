@@ -73,7 +73,7 @@ class ShoppingList extends React.Component {
   deleteItem(id) {
 
     console.log("hey yo the id is ", id)
-    fetch(`/api/deleteFromShoppigList.php`, {
+    fetch(`/api/deleteFromShoppingList.php`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(id)
