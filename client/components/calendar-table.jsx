@@ -14,7 +14,7 @@ function CalendarTable(props){
       </thead>
       <tbody>
         <tr>
-          <th scope="row" onClick={props.changeView} className={props.date} id="0">Sun<br /> {props.date[8]}{props.date[9]}</th>
+          <th scope="row" onClick={props.changeView} className={props.setDate(0)} id="0">Sun<br /> {(props.setDate(0))[8]}{(props.setDate(0))[9]}</th>
           <td className={props.meal[0].highlight ? "breakfast table-active" : "breakfast"} onClick={props.handleClick}>{props.meal[0].label}</td>
           <td className={props.meal[1].highlight ? "lunch table-active" : "lunch"} onClick={props.handleClick}>{props.meal[1].label}</td>
           <td className={props.meal[2].highlight ? "dinner table-active" : "dinner"} onClick={props.handleClick}>{props.meal[2].label}</td>
