@@ -88,6 +88,7 @@ class RecipeDetails extends React.Component {
   }
 
   putRecipeInFavorites(data){
+    console.log("the data is ", data)
     fetch("/api/getFavorites.php",{ //ask kim for endpoint
       method: 'POST',
       headers: {
