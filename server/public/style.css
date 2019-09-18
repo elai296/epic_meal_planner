@@ -91,14 +91,18 @@ h4{
     font-size: 1rem;
 }
 
-.card>.row{
+/* .card>.row{
     flex-grow:1;
 
-}
+} */
 
 .card-title{
     font-size: .75em;
 }
 .card-text{
     font-size: .75em;
+}
+
+.h1{
+    font-size: 2em;
 }

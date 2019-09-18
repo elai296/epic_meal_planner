@@ -63,17 +63,19 @@ class SearchBarResultsList extends React.Component {
               {this.state.list.map((recipe, x) => {
                 if (x < 5) {
                   return (
-                    <SearchBarResultsItem
-                      key={x}
-                      name={recipe.label}
-                      image={recipe.image}
-                      url={recipe.directions_url}
-                      servingSize={recipe.serving_size}
-                      ingredient={recipe.ingredientLines}
-                      time={recipe.totalTime}
-                      setView={this.props.setView}
-                      recipe={recipe}
-                    />
+                      <SearchBarResultsItem
+                        key={x}
+                        name={recipe.label}
+                        image={recipe.image}
+                        // url={recipe.directions_url}
+                        // servingSize={recipe.serving_size}
+                        // ingredient={recipe.ingredientLines}
+                        time={recipe.totalTime}
+
+                        setView={this.props.setView}
+                        recipe={recipe}
+                      />
+
                   );
                 }
               })}

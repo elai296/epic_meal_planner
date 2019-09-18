@@ -83,23 +83,7 @@ class ShoppingList extends React.Component {
         debugger;
         console.log("the res is ", data)
         this.setState({ shoppingList: data})});
-    // this.setState({
-    //   shoppingList: this.state.shoppingList.filter(itemId => itemId !== id)
-    // });
-    this.getAllItems()
-
-
-//   deleteItem(itemId) {
-//     console.log(itemId);
-
-//     const updatedList = this.state.shoppingList.filter(item => item.id !== itemId);
-//     console.log(updatedList);
-
-//     this.setState({
-//       shoppingList: updatedList
-//     });
-//     console.log(this.state.shoppingList);
-
+    this.getAllItems();
   }
 
   toggleChecked(itemId) {
