@@ -13,7 +13,7 @@ $data = getBodyData();
 
 $recipeDate = $obj['date'];
 $recipeMealTime = $obj['meal_time'];
-$recipeLabel = $obj['label'];
+$recipeLabel = $obj['recipe_label'];
 $recipeId = $obj['id'];
 
 $id = $data['id'];
