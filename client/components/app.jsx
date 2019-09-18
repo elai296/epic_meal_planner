@@ -122,7 +122,7 @@ class App extends React.Component {
     } else if (this.state.view.name === "calendar") {
       title = "Calendar";
       display = (
-        <Calendar setView={this.setView}/>
+        <Calendar setView={this.setView} />
       );
     } else if (this.state.view.name === "shoppingList") {
       title = "Shopping List";
@@ -152,7 +152,7 @@ class App extends React.Component {
     } else if (this.state.view.name === "recipeDetails") {
       title = "Recipe Details";
       display = (
-        <RecipeDetails setView={this.setView} recipe={this.state.view.recipe}/>
+        <RecipeDetails setView={this.setView} recipe={this.state.view.recipe} view={this.state.view}/>
       );
     }
     return (

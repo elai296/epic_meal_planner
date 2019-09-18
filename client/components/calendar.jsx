@@ -24,22 +24,42 @@ class Calendar extends React.Component {
     this.changeView = this.changeView.bind(this);
     this.getDayOfWeek = this.getDayOfWeek.bind(this);
     this.getDateNumbers = this.getDateNumbers.bind(this);
+    this.handleDetailSubmit = this.handleDetailSubmit.bind(this);
   }
 
   handleClick(){
     if (!event.path[0].textContent) {
-      let counter = 0;
-      while(counter < this.state.meal.length){
-        if (this.state.meal[counter].date === event.path[1].firstChild.className && this.state.meal[counter].meal_time === event.srcElement.className){
-          const mealStateCopy = this.state.meal;
-          mealStateCopy[counter].highlight = "true";
-          this.setState({ meal: mealStateCopy});
-          const pushToCalendarCopy = this.state.pushToCalendar;
-          pushToCalendarCopy.push(mealStateCopy[counter]);
-          this.setState({ pushToCalendar: pushToCalendarCopy});
+
+      if (this.props.view){
+        let counter = 0;
+        while (counter < this.state.meal.length) {
+          if (this.state.meal[counter].date === event.path[1].firstChild.className && this.state.meal[counter].meal_time === event.srcElement.className) {
+            const mealStateCopy = this.state.meal;
+            mealStateCopy[counter].highlight = "true";
+            mealStateCopy[counter].recipe_id = this.props.recipeId.id;
+            this.setState({ meal: mealStateCopy });
+            const pushToCalendarCopy = this.state.pushToCalendar;
+            pushToCalendarCopy.push(mealStateCopy[counter]);
+            this.setState({ pushToCalendar: pushToCalendarCopy });
+            console.log("pushToCalendar: ", this.state.pushToCalendar);
+          }
+          counter++;
         }
-        counter++;
+      } else {
+        let counter = 0;
+        while (counter < this.state.meal.length) {
+          if (this.state.meal[counter].date === event.path[1].firstChild.className && this.state.meal[counter].meal_time === event.srcElement.className) {
+            const mealStateCopy = this.state.meal;
+            mealStateCopy[counter].highlight = "true";
+            this.setState({ meal: mealStateCopy });
+            const pushToCalendarCopy = this.state.pushToCalendar;
+            pushToCalendarCopy.push(mealStateCopy[counter]);
+            this.setState({ pushToCalendar: pushToCalendarCopy });
+          }
+          counter++;
+        }
       }
+
     }
   }
 
@@ -47,11 +67,40 @@ class Calendar extends React.Component {
     this.setState({ mealInput: event.target.value });
   }
 
+  handleDetailSubmit(){
+    event.preventDefault();
+    const mealsToPost = this.state.pushToCalendar;
+    let counter = 0;
+    while (counter < mealsToPost.length) {
+      debugger;
+      mealsToPost[counter].recipe_label = this.props.recipeId.label;
+      const req = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(mealsToPost[counter])
+      };
+      fetch('/api/postMeals.php', req)
+        .then(res => res.json())
+        .then(meal => {
+          this.setState({ meal })
+          console.log("meal:", meal);
+        });
+      counter++;
+
+    }
+    this.setState({
+      mealInput: "",
+      pushToCalendar: []
+    })
+    this.getStoredMeals();
+  }
+
   handleSubmit() {
     event.preventDefault();
     const mealsToPost = this.state.pushToCalendar;
     let counter = 0;
     while(counter < mealsToPost.length){
+      debugger;
       mealsToPost[counter].recipe_label = this.state.mealInput;
       const req = {
         method: 'POST',
@@ -307,6 +356,22 @@ class Calendar extends React.Component {
           getDateNumbers={this.getDateNumbers}
           setView={this.props.setView}/>
       )
+    } else if (this.props.view) {
+      return (
+        <div>
+          <Header setView={this.props.setView} />
+          <h3 className="text-center">{this.monthLiteral}, {this.year}</h3>
+          <CalendarTable
+            handleClick={this.handleClick}
+            changeView={this.changeView}
+            meal={this.state.meal}
+            setDate={this.setDate}
+            date={this.state.date} />
+          <button onClick={this.handleDetailSubmit} className="btn btn-primary mb-2">Add</button>
+          <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 mr-2 ml-5">Previous Week</button>
+          <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 ml-4">Next Week</button>
+        </div>
+      );
     } else if(this.state.meal){
       const headerText = (<div className="text-center">{this.monthLiteral}, {this.year}</div>)
       return (
