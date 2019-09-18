@@ -2,7 +2,7 @@ import React from 'react';
 import Calendar from './calendar';
 
 function CalendarTable(props){
-  console.log('meals in CalendarTable:  ', props.meal);
+  // console.log('meals in CalendarTable:  ', props.meal);
   return (
     <table className="table table-bordered text-center">
       <thead>
