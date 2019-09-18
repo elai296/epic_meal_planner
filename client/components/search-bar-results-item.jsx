@@ -8,21 +8,22 @@ function handleClick(props, recipe) {
 
 function SearchBarResultsItem(props) {
   return (
-    <div className="card mb-3" style={{ maxWidth: "480px" }}>
+
+    <div className="card mb-0" style={{ maxWidth: "400px" }}>
       <div className="row no-gutters">
-        <div className="col-sm-4">
+        <div className="col-4">
           <div
             className="card-img-top propsImage"
             style={{
               backgroundImage: "url("+props.image+")",
-              backgroundSize: "contain",
+              backgroundSize: "cover",
               backgroundRepeat:"no-repeat",
-              height: "150px",
-              width: "150px"
+              height: "100%",
+              width: "100%"
             }}
           ></div>
         </div>
-        <div className="col-sm-8">
+        <div className="col-8">
           <div className="card-body">
             <h5
               className="card-title"
@@ -35,6 +36,7 @@ function SearchBarResultsItem(props) {
         </div>
       </div>
     </div>
+  
   );
 }
 

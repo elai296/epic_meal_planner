@@ -1,6 +1,7 @@
 import React from "react";
 import SearchBar from "./search-bar";
 import Calendar from "./calendar";
+import Header from './header';
 
 class RecipeDetails extends React.Component {
   constructor(props) {
@@ -88,8 +89,7 @@ class RecipeDetails extends React.Component {
   }
 
   putRecipeInFavorites(data){
-    console.log("the data is ", data)
-    fetch("/api/getFavorites.php",{ //ask kim for endpoint
+    fetch("/api/getFavorites.php",{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -111,6 +111,7 @@ class RecipeDetails extends React.Component {
       <div className="container">
         <div>
         <SearchBar setView={this.props.setView}/>
+        <Header setView={this.props.setView}/>
         </div>
         <div>
           <p className='h1'>{recipe.label}</p>
@@ -152,7 +153,7 @@ class RecipeDetails extends React.Component {
           </div>
         </div>
         <div>
-          {recipe.ingredientLines.map((ingredient, i) => {
+            {recipe.ingredientLines.map((ingredient, i) => {
             return <div key={i}>{ingredient}</div>;
           })}
         </div>
