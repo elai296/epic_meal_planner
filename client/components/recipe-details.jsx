@@ -89,7 +89,7 @@ class RecipeDetails extends React.Component {
   }
 
   putRecipeInFavorites(data){
-    fetch("/api/getFavorites.php",{ 
+    fetch("/api/getFavorites.php",{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

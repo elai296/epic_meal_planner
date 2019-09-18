@@ -63,7 +63,8 @@ if($count <= 5){
     $totalTime =  $resultLabel[$i]["totalTime"];
     $ingredients = $resultLabel[$i]["ingredientLines"];
 
-    $query2 = "INSERT INTO `recipe`(directions_url, image_url, serving_size, label, cooking_time) VALUES ('$url', '$image', $yield, '$label', $totalTime)";
+    $query2 = "INSERT IGNORE INTO `recipe`(directions_url, image_url, serving_size, label, cooking_time) VALUES ('$url', '$image', $yield, '$label', $totalTime)";
+    // var_dump("query2 is ", $query2);
     $result3 = mysqli_query($conn, $query2);
 
     $recipe_id = mysqli_insert_id($conn);
