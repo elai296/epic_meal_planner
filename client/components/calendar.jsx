@@ -309,6 +309,24 @@ class Calendar extends React.Component {
           getDateNumbers={this.getDateNumbers} />
         </React.Fragment>
       )
+    } else if (this.props.view) {
+      return (
+        <div>
+          <Header setView={this.props.setView} />
+          <h3 className="text-center">{this.monthLiteral}, {this.year}</h3>
+          <CalendarTable
+            handleClick={this.handleClick}
+            changeView={this.changeView}
+            meal={this.state.meal}
+            setDate={this.setDate}
+            date={this.state.date} />
+          <form className="form-inline text-align-center" onSubmit={this.handleSubmit}>
+            <button type="submit" className="btn btn-primary mb-2">Add</button>
+          </form>
+          <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 mr-2 ml-5">Previous Week</button>
+          <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 ml-4">Next Week</button>
+        </div>
+      );
     } else if(this.state.meal){
       return (
         <div>

@@ -107,7 +107,7 @@ class App extends React.Component {
       );
     } else if (this.state.view.name === "calendar") {
       display = (
-        <Calendar setView={this.setView}/>
+        <Calendar setView={this.setView} />
       );
     } else if (this.state.view.name === "shoppingList") {
       display = (
@@ -131,7 +131,7 @@ class App extends React.Component {
       );
     } else if (this.state.view.name === "recipeDetails") {
       display = (
-        <RecipeDetails setView={this.setView} recipe={this.state.view.recipe}/>
+        <RecipeDetails setView={this.setView} recipe={this.state.view.recipe} view={this.state.view}/>
       );
     }
     return (

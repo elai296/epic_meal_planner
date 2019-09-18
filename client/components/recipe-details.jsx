@@ -51,7 +51,7 @@ class RecipeDetails extends React.Component {
         <div>
           <div className="modal">
             <div className="smallcalendar">
-              <Calendar recipeId={recipe}/>
+              <Calendar recipeId={recipe} view={this.props.view}/>
             </div>
             <button
               onClick={() => {
@@ -120,7 +120,7 @@ class RecipeDetails extends React.Component {
     let ingredientLines = recipe.ingredients.split('\n');
     let image = !this.state.favStatus ? 'whiteHeart' : 'redHeart';
     console.log(recipe.id);
-    console.log("worked");
+    console.log("worked", this.props);
 
     return (
       <div className="container">
