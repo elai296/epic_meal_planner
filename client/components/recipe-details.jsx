@@ -88,7 +88,7 @@ class RecipeDetails extends React.Component {
   }
 
   putRecipeInFavorites(data){
-    fetch("/api/getFavorites.php",{ //ask kim for endpoint
+    fetch("/api/getFavorites.php",{ 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -151,7 +151,7 @@ class RecipeDetails extends React.Component {
           </div>
         </div>
         <div>
-          {recipe.ingredientLines.map((ingredient, i) => {
+            {recipe.ingredientLines.map((ingredient, i) => {
             return <div key={i}>{ingredient}</div>;
           })}
         </div>
