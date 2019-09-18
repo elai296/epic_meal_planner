@@ -1,5 +1,6 @@
 .contentRecipeBar{
     margin: 10px;
+    display: inline-block;
 }
 
 .imgIcon{
@@ -41,8 +42,16 @@
     box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9)
 }
 
+.header{
+    display: inline-block;
+}
+
+.headerText{
+    display: inline-block;
+}
+
 .menu{
-    z-index: 100;
+    display: inline-block;
 }
 
 .smallcalendar{
@@ -77,19 +86,23 @@ h4{
     display: inline-block;
     padding: 1rem 0 0 1rem
 }
- 
+
 .card-text{
     font-size: 1rem;
 }
 
-.card>.row{
+/* .card>.row{
     flex-grow:1;
 
-}
+} */
 
 .card-title{
     font-size: .75em;
 }
 .card-text{
     font-size: .75em;
+}
+
+.h1{
+    font-size: 2em;
 }

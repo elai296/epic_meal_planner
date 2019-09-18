@@ -15,9 +15,9 @@ $recipeMealTime = $obj['meal_time'];
 $recipeLabel =$obj['label'];
 // $recipeId = $obj['recipe_id'];
 
-// var_dump("recipeDate", $recipeDate);
-// var_dump("recipeLabel", $recipeLabel);
-// var_dump("recipemealTime", $recipeMealTime);
+var_dump("recipeDate", $recipeDate);
+var_dump("recipeLabel", $recipeLabel);
+var_dump("recipemealTime", $recipeMealTime);
 // var_dump("recipeId", $recipeId);
 
 
@@ -27,6 +27,11 @@ VALUES ('$recipeDate', '$recipeMealTime', '$recipeLabel')";
 // $query = "INSERT INTO `calendar`(date, meal_time, recipe_label)
 // SELECT '$recipeDate', '$recipeMealTime', labelText AS recipe_label
 // ";
+
+
+// setView to details page on a tag on calendar recipe labels
+//  adjust get call to specify columns coming back
+// need insert select to save meal label on calendar table
 
 
 // $query = "INSERT INTO calendar(date, meal_time, recipe_id)

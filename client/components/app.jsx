@@ -17,11 +17,10 @@ class App extends React.Component {
       addItemToShoppingList : [],
       oneRecipeDetail :[],
       view: {
-        name: "recipes",
+        name: "home",
         recipe: {}
       },
       searchTerm: "",
-      modal: "none",
       category: null
     };
     this.setView = this.setView.bind(this);
@@ -42,19 +41,20 @@ class App extends React.Component {
     this.setState({ category });
   }
 
-  // ---- new code -----
-   componentDidMount() {
+  componentDidMount() {
     this.getFavorites();
     this.recipeDetails();
-    // this.addToShoppingList({ id: 2 });
   }
 
   getFavorites(){
     fetch(`/api/getFavorites.php`)
       .then(res => res.json())
       .then(response => {
-        // console.log("description Page",response);
-      this.setState({ modal: response })});
+        this.setState({
+          modal: response
+        })
+      }
+    );
   }
 
   recipeDetails(oneRecipe) {
@@ -64,13 +64,13 @@ class App extends React.Component {
       body: JSON.stringify(oneRecipe)
     };
 
-    fetch('/api/recipeDetails.php', req)
-      .then(res => res.json())
-      .then(viewOneRecipe=> {
-        // console.log("recipeDetails n favorites:",viewOneRecipe)
-        const allItems = this.state.oneRecipeDetail.concat(viewOneRecipe);
-        this.setState({ oneRecipe: allItems });
-      });
+    // fetch('/api/recipeDetails.php', req)
+    //   .then(res => res.json())
+    //   .then(viewOneRecipe=> {
+    //     // console.log("recipeDetails n favorites:",viewOneRecipe)
+    //     const allItems = this.state.oneRecipeDetail.concat(viewOneRecipe);
+    //     this.setState({ oneRecipe: allItems });
+    //   });
 
   }
 
@@ -96,29 +96,43 @@ class App extends React.Component {
 
     if (this.state.view.name === "home") {
       display = (
-        <React.Fragment>
-          <Header setView={this.setView}/>
+        <div>
           <SearchBar setView={this.setView}/>
-        </React.Fragment>
-      )
-    } else if (this.state.view.name === "search bar result") {
-      display = (<SearchBarResultsList setView={this.setView} value={this.state.searchTerm}/>);
-    } else if (this.state.view.name==="recipe details") {
-      display = (<RecipeDetails setView={this.setView} recipe={this.state.view.recipe}/>);
-    } else if (this.state.view.name==="calendar") {
-      display = (<Calendar setView={this.setView}/>);
-    } else if (this.state.view.name==="shoppinglist") {
-      display = (<ShoppingList setView={this.setView}/>);
-    } else if (this.state.view.name==="categories") {
-      display = (<RecipesCategoriesList setView={this.setView} category={this.state.category}/>);
-    } else if (this.state.view.name==="recipes") {
-      display = (<Recipes
-        setCategory={this.setCategory}
-        setView={this.setView}/>);
-    } else if (this.state.view.name==="userinfo") {
-      display = (<UserInfo setView={this.setView}/>);
-    } else if (this.state.view.name==="favorites") {
-      display = (<RecipesFavoritesList setView={this.setView} category={this.state.category}/>);
+          <Header setView={this.setView}/>
+        </div>
+      );
+    } else if (this.state.view.name === "recipes") {
+      display = (
+        <Recipes setCategory={this.setCategory} setView={this.setView}/>
+      );
+    } else if (this.state.view.name === "calendar") {
+      display = (
+        <Calendar setView={this.setView}/>
+      );
+    } else if (this.state.view.name === "shoppingList") {
+      display = (
+        <ShoppingList setView={this.setView}/>
+      );
+    } else if (this.state.view.name === "userInfo") {
+      display = (
+        <UserInfo setView={this.setView}/>
+      );
+    } else if (this.state.view.name === "searchBarResultsList") {
+      display = (
+        <SearchBarResultsList setView={this.setView} value={this.state.searchTerm}/>
+      );
+    } else if (this.state.view.name === "recipesFavoritesList") {
+      display = (
+        <RecipesFavoritesList setView={this.setView} category={this.state.category}/>
+      );
+    } else if (this.state.view.name === "recipesCategoriesList") {
+      display = (
+        <RecipesCategoriesList setView={this.setView} category={this.state.category}/>
+      );
+    } else if (this.state.view.name === "recipeDetails") {
+      display = (
+        <RecipeDetails setView={this.setView} recipe={this.state.view.recipe}/>
+      );
     }
     return (
       <div>
@@ -126,7 +140,6 @@ class App extends React.Component {
       </div>
     );
   }
-
 }
 
 export default App;
