@@ -10,7 +10,7 @@ function SearchBarResultsItem(props) {
   return (
 
     <div className="card mb-0" style={{ maxWidth: "400px" }}>
-      <div className="row no-gutters">
+      <div className="row no-gutters flex-grow-1">
         <div className="col-4">
           <div
             className="card-img-top propsImage"
