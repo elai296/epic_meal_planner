@@ -92,50 +92,59 @@ class App extends React.Component {
   }
 
   render() {
-    let display;
+    let title, display;
 
     if (this.state.view.name === "home") {
+      title = "Home";
       display = (
         <div>
           <SearchBar setView={this.setView}/>
-          <Header setView={this.setView}/>
         </div>
       );
     } else if (this.state.view.name === "recipes") {
+      title = "Recipes";
       display = (
         <Recipes setCategory={this.setCategory} setView={this.setView}/>
       );
     } else if (this.state.view.name === "calendar") {
+      title = "Calendar";
       display = (
         <Calendar setView={this.setView}/>
       );
     } else if (this.state.view.name === "shoppingList") {
+      title = "Shopping List";
       display = (
         <ShoppingList setView={this.setView}/>
       );
     } else if (this.state.view.name === "userInfo") {
+      title = "User Info";
       display = (
         <UserInfo setView={this.setView}/>
       );
     } else if (this.state.view.name === "searchBarResultsList") {
+      title = "Search Results";
       display = (
         <SearchBarResultsList setView={this.setView} value={this.state.searchTerm}/>
       );
     } else if (this.state.view.name === "recipesFavoritesList") {
+      title = "Favorites";
       display = (
         <RecipesFavoritesList setView={this.setView} category={this.state.category}/>
       );
     } else if (this.state.view.name === "recipesCategoriesList") {
+      title = "Categories";
       display = (
         <RecipesCategoriesList setView={this.setView} category={this.state.category}/>
       );
     } else if (this.state.view.name === "recipeDetails") {
+      title = "Recipe Details";
       display = (
         <RecipeDetails setView={this.setView} recipe={this.state.view.recipe}/>
       );
     }
     return (
       <div>
+        <Header setView={this.setView} text={title}/>
         {display}
       </div>
     );

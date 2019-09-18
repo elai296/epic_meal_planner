@@ -131,8 +131,7 @@ class RecipeDetails extends React.Component {
     return (
       <div className="container">
         <div>
-        <SearchBar setView={this.props.setView}/>
-        <Header setView={this.props.setView}/>
+          <SearchBar setView={this.props.setView}/>
         </div>
         <div>
           <p className='h1'>{recipe.label}</p>
@@ -178,11 +177,12 @@ class RecipeDetails extends React.Component {
         <div>
           {
             ingredientLines.map((ingredient, i) => {
-            return <div key={i}>{ingredient}</div>;
+            return <div key={i}>- {ingredient}</div>;
           })}
         </div>
+        <div className="text-center">
         <a className="text-dark" href={recipe.directions_url}>Click for Instructions</a>
-
+        </div>
         {this.showModal(recipe)}
 
       </div>
