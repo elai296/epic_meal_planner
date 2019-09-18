@@ -17,7 +17,7 @@ class App extends React.Component {
       addItemToShoppingList : [],
       oneRecipeDetail :[],
       view: {
-        name: "recipes",
+        name: "home",
         recipe: {}
       },
       searchTerm: "",

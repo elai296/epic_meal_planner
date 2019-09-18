@@ -73,7 +73,7 @@ class RecipeDetails extends React.Component {
     if(!this.state.favStatus) {
       this.setState(state=>({favStatus: !state.favStatus}));
       this.setState({
-        modal: 'favorites'
+        modal: 'favorites',
       });
       this.showModal();
       this.putRecipeInFavorites(this.props.recipe);
@@ -81,22 +81,41 @@ class RecipeDetails extends React.Component {
   }
 
   handleShoppingList() {
-    console.log("clicked");
-    this.setState({
-      modal: 'shoppinglist'
-    });
-    this.showModal();
+    let recipe = this.props.recipe.ingredients.split('\n');
+    console.log("clicked", recipe);
+    fetch(`/api/addtoShoppingListFromDetails.php`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(recipe),
+    })
+      .then(response => {
+        console.log("response", response)
+        response.json()
+      });
   }
 
+    // this.setState({
+    //   modal: 'shoppinglist'
+    // });
+    // this.showModal();
+  // }
+
+
+
   putRecipeInFavorites(data){
-    fetch("/api/getFavorites.php",{
+    console.log("the data is ", this.state.sh)
+    fetch(`/api/addtoFavorites.php`,{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     })
-    .then(response=>response.json());
+    .then(response=>{
+      console.log("response", response)
+      response.json()});
   }
 
   render() {
@@ -105,6 +124,9 @@ class RecipeDetails extends React.Component {
       whiteHeart:"./image/whiteHeartIcon.png",
       redHeart:"./image/redHeart.png"
     }
+    console.log("Ingredeients before split", recipe.ingredients)
+    let ingredientLines = recipe.ingredients.split('\n');
+    console.log("ingredients after split ", ingredientLines);
     let image = !this.state.favStatus ? 'whiteHeart' : 'redHeart';
 
     return (
@@ -117,12 +139,12 @@ class RecipeDetails extends React.Component {
           <p className='h1'>{recipe.label}</p>
           <div className="row">
             <div className="propsFood" style={{
-              backgroundImage: "url("+recipe.image+")",
+              backgroundImage: "url("+recipe.image_url+")",
               backgroundSize: "contain",
               backgroundRepeat:"no-repeat"}}></div>
             <div className="timeServing">
-              <div>Time: {recipe.totalTime} minutes</div>
-              <div>Serving size: {recipe.yield}</div>
+              <div>Time: {recipe.cooking_time} minutes</div>
+              <div>Serving size: {recipe.serving_size}</div>
             <div className="iconImages">
               {
                 <img
@@ -152,13 +174,16 @@ class RecipeDetails extends React.Component {
             </div>
           </div>
         </div>
-        <div className="text-center">INGREDIENTS
-              </div>
-              <div>{recipe.ingredientLines.map((ingredient, i) => {
+
+        <div className="text-center">INGREDIENTS</div>
+        <div>
+          {
+            ingredientLines.map((ingredient, i) => {
             return <div key={i}>{ingredient}</div>;
           })}
         </div>
-        <a href={recipe.url} className="text-dark">Click for Instructions</a>
+        <a className="text-dark" href={recipe.directions_url}>Click for Instructions</a>
+
         {this.showModal()}
 
       </div>
