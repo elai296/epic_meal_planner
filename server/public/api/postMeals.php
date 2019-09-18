@@ -26,7 +26,7 @@ VALUES ('$recipeDate', '$recipeMealTime', '$recipeLabel')";
 
 // $query = "INSERT INTO `calendar`(date, meal_time, recipe_label)
 // SELECT '$recipeDate', '$recipeMealTime', labelText AS recipe_label
-// ";
+//
 
 
 // setView to details page on a tag on calendar recipe labels

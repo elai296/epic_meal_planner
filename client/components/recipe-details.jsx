@@ -97,14 +97,6 @@ class RecipeDetails extends React.Component {
       });
   }
 
-    // this.setState({
-    //   modal: 'shoppinglist'
-    // });
-    // this.showModal();
-  // }
-
-
-
   putRecipeInFavorites(data){
     fetch('/api/addToFavorites.php',{
       method: 'POST',
@@ -128,6 +120,8 @@ class RecipeDetails extends React.Component {
     let ingredientLines = recipe.ingredients.split('\n');
     console.log("ingredients after split ", ingredientLines);
     let image = !this.state.favStatus ? 'whiteHeart' : 'redHeart';
+
+    console.log("worked");
 
     return (
       <div className="container">
