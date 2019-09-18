@@ -93,34 +93,51 @@ class Calendar extends React.Component {
       }
       counter++;
     }
-    let mealPosition = 0;
     let datePosition = 0;
     while (datePosition < dynamicWeek.length){
-      if(copyOfMeal[mealPosition]){
-        if (copyOfMeal[mealPosition].date === dynamicWeek[datePosition] && copyOfMeal[mealPosition].meal_time === "breakfast") {
-          weekMeals.push(copyOfMeal[mealPosition]);
-          mealPosition++;
-        } else {
+      if(copyOfMeal[0]){
+        let mealCounter = 0;
+        let insert = false;
+        while(mealCounter < copyOfMeal.length){
+          if (copyOfMeal[mealCounter].date === dynamicWeek[datePosition] && copyOfMeal[mealCounter].meal_time === "breakfast") {
+            weekMeals.push(copyOfMeal[mealCounter]);
+            insert = true;
+          }
+          mealCounter++;
+        }
+        if(!insert){
           weekMeals.push({
             date: dynamicWeek[[datePosition]],
             meal_time: "breakfast",
             label: ""
           });
         }
-        if (copyOfMeal[mealPosition].date === dynamicWeek[datePosition] && copyOfMeal[mealPosition].meal_time === "lunch") {
-          weekMeals.push(copyOfMeal[mealPosition]);
-          mealPosition++;
-        } else {
+        mealCounter = 0;
+        insert = false;
+        while (mealCounter < copyOfMeal.length) {
+          if (copyOfMeal[mealCounter].date === dynamicWeek[datePosition] && copyOfMeal[mealCounter].meal_time === "lunch") {
+            weekMeals.push(copyOfMeal[mealCounter]);
+            insert = true;
+          }
+          mealCounter++;
+        }
+        if (!insert) {
           weekMeals.push({
             date: dynamicWeek[[datePosition]],
             meal_time: "lunch",
             label: ""
           });
         }
-        if (copyOfMeal[mealPosition].date === dynamicWeek[datePosition] && copyOfMeal[mealPosition].meal_time === "dinner") {
-          weekMeals.push(copyOfMeal[mealPosition]);
-          mealPosition++;
-        } else {
+        mealCounter = 0;
+        insert = false;
+        while (mealCounter < copyOfMeal.length) {
+          if (copyOfMeal[mealCounter].date === dynamicWeek[datePosition] && copyOfMeal[mealCounter].meal_time === "dinner") {
+            weekMeals.push(copyOfMeal[mealCounter]);
+            insert = true;
+          }
+          mealCounter++;
+        }
+        if (!insert) {
           weekMeals.push({
             date: dynamicWeek[[datePosition]],
             meal_time: "dinner",
@@ -165,8 +182,11 @@ class Calendar extends React.Component {
     } else {
       finalDate.setDate(currentDate - weekDay);
     }
-    const date = finalDate.toISOString();
-    let returnDate = date.slice(0, 10);
+
+    let returnDate = this.year + '-'
+      + ('0' + (finalDate.getMonth() + 1)).slice(-2) + '-'
+      + ('0' + finalDate.getDate()).slice(-2);
+
     return returnDate;
   }
 

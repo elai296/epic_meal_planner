@@ -15,9 +15,9 @@ $recipeLabel =$obj['label'];
 $recipeMealTime = $obj['meal_time'];
 // $recipeId = $obj['recipe_id'];
 
-var_dump("recipeDate", $recipeDate);
-var_dump("recipeLabel", $recipeLabel);
-var_dump("recipemealTime", $recipeMealTime);
+// var_dump("recipeDate", $recipeDate);
+// var_dump("recipeLabel", $recipeLabel);
+// var_dump("recipemealTime", $recipeMealTime);
 // var_dump("recipeId", $recipeId);
 
 
@@ -28,14 +28,14 @@ $query = "INSERT INTO `calendar`(date, meal_time, recipe_id)
           LIMIT 1";
 
 
-var_dump($query);
+// var_dump($query);
 
 $result = mysqli_query($conn, $query);
 
 
 if (!$result) {
   throw new Exception(mysqli_error($conn));
-} 
+}
 else if (!mysqli_affected_rows($conn) && !empty($id)) {
   throw new Exception('Invalid ID: ' . $id);
 }
@@ -62,4 +62,3 @@ print(json_encode($output));
 
 
 ?>
-
