@@ -54,7 +54,6 @@ class SearchBarResultsList extends React.Component {
         {/* <a onClick={() => this.handleClick(this.props)}>Home</a> */}
         <div>
           <SearchBar setView={this.props.setView}/>
-          <Header setView={this.props.setView}/>
         </div>
         <div>
           <h4>Search Results</h4>

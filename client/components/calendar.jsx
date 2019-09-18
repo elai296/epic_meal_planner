@@ -290,7 +290,6 @@ class Calendar extends React.Component {
     } else if (this.state.day) {
       return (
         <React.Fragment>
-          <Header setView={this.props.setView}/>
           <CalendarDayView
           day={this.state.day}
           changeView={this.changeView}
@@ -305,7 +304,6 @@ class Calendar extends React.Component {
     } else if(this.state.meal){
       return (
         <div>
-          <Header setView={this.props.setView}/>
           <h3 className="text-center">{this.monthLiteral}, {this.year}</h3>
           <CalendarTable
           handleClick={this.handleClick}

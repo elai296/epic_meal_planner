@@ -25,9 +25,7 @@ class RecipesFavoritesList extends React.Component{
     render(){
         return (
             <div className="card mb-3" style={{ maxWidth: "480px" }}>
-              <Header setView={this.props.setView}/>
               <div className="row no-gutters">
-                <h1>Favorites</h1>
                 <div className="col-sm-4">
                   <div
 

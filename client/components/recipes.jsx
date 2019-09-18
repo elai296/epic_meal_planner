@@ -4,7 +4,6 @@ import Header from './header';
 function Recipes(props){
   return (
     <div className="container">
-      <Header setView={props.setView}/>
       <div
         onClick={
         () => {
