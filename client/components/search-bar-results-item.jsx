@@ -1,10 +1,10 @@
 import React from "react";
 
 
-function handleClick(props, recipe) {
-  console.log(props);
-  props.setView("recipe details", recipe, []);
-}
+// function handleClick(props, recipe) {
+//   console.log(props);
+//   props.setView("recipe details", recipe, []);
+// }
 
 function SearchBarResultsItem(props) {
   return (
@@ -27,7 +27,9 @@ function SearchBarResultsItem(props) {
           <div className="card-body">
             <h5
               className="card-title"
-              onClick={e => handleClick(props, props.recipe)}
+              onClick={e => {
+                props.setView("recipe details", props.recipe, [])
+              }}
             >
               {props.name}
             </h5>
@@ -36,7 +38,7 @@ function SearchBarResultsItem(props) {
         </div>
       </div>
     </div>
-  
+
   );
 }
 
