@@ -71,6 +71,7 @@ class SearchBarResultsList extends React.Component {
                         // servingSize={recipe.serving_size}
                         // ingredient={recipe.ingredientLines}
                         time={recipe.totalTime}
+
                         setView={this.props.setView}
                         recipe={recipe}
                       />

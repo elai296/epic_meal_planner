@@ -12,14 +12,15 @@ $obj = json_decode($json_input, true);
 $input =  $_GET['q'];
 
 $query = "SELECT r.id, r.directions_url, r.image_url, r.serving_size, r.label, r.cooking_time,
-    i.recipe_id, GROUP_CONCAT(i.ingredients_desc)
+    i.recipe_id, GROUP_CONCAT(i.ingredients_desc SEPARATOR '\n') AS ingredients
     FROM recipe AS r
     JOIN recipe_ingredients AS i
     ON r.id = i.recipe_id
-    WHERE r.label LIKE '%{$input}%'
+    WHERE r.label LIKE '%$input%'
     GROUP BY i.recipe_id
     LIMIT 5";
 
+// var_dump("query is ", $query);
 $result = mysqli_query($conn, $query);
 
 if (!$result) {
@@ -63,7 +64,8 @@ if($count <= 5){
     $totalTime =  $resultLabel[$i]["totalTime"];
     $ingredients = $resultLabel[$i]["ingredientLines"];
 
-    $query2 = "INSERT INTO `recipe`(directions_url, image_url, serving_size, label, cooking_time) VALUES ('$url', '$image', $yield, '$label', $totalTime)";
+    $query2 = "INSERT IGNORE INTO `recipe`(directions_url, image_url, serving_size, label, cooking_time) VALUES ('$url', '$image', $yield, '$label', $totalTime)";
+    // var_dump("query2 is ", $query2);
     $result3 = mysqli_query($conn, $query2);
 
     $recipe_id = mysqli_insert_id($conn);
@@ -77,6 +79,15 @@ if($count <= 5){
   };
 }
 
-print(json_encode($resultLabel));
+
+$result2 = mysqli_query($conn, $query);
+$output = [];
+while ($row = mysqli_fetch_assoc($result2)) {
+  $output[] = $row;
+};
+
+
+// var_dump("output is ", $output);
+print(json_encode($output));
 
 ?>
