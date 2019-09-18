@@ -28,7 +28,7 @@ function SearchBarResultsItem(props) {
             <h5
               className="card-title"
               onClick={e => {
-                props.setView("recipe details", props.recipe, [])
+                props.setView("recipeDetails", props.recipe, [])
               }}
             >
               {props.name}

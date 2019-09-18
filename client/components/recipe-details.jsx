@@ -95,15 +95,6 @@ class RecipeDetails extends React.Component {
         response.json()
       });
   }
-
-    // this.setState({
-    //   modal: 'shoppinglist'
-    // });
-    // this.showModal();
-  // }
-
-
-
   putRecipeInFavorites(data){
     fetch("/api/getFavorites.php",{
       method: 'POST',
