@@ -15,9 +15,9 @@ $recipeLabel =$obj['label'];
 $recipeMealTime = $obj['meal_time'];
 // $recipeId = $obj['recipe_id'];
 
-// var_dump("recipeDate", $recipeDate);
-// var_dump("recipeLabel", $recipeLabel);
-// var_dump("recipemealTime", $recipeMealTime);
+var_dump("recipeDate", $recipeDate);
+var_dump("recipeLabel", $recipeLabel);
+var_dump("recipemealTime", $recipeMealTime);
 // var_dump("recipeId", $recipeId);
 
 
