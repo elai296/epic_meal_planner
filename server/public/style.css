@@ -17,10 +17,10 @@
     width: 19px;
 }
 
-/* .propsImage{
-    height: 200px;
-    width: 200px;
-} */
+.propsImage{
+    display: inline-block;
+
+}
 
 .modal{
     display: block;
@@ -52,6 +52,7 @@
 .section>.row{
     display: flex;
     flex-direction: column;
+    margin: 20px;
 }
 .timeServing{
     height: 50px;
@@ -61,4 +62,34 @@
     width: 100px;
     margin-right: 15px;
     margin-left: 15px;
+}
+
+.searchBarForm{
+    margin: 100px auto 0;
+    width: 200px;
+}
+h4{
+    text-align: center;
+}
+
+.card-body{
+    font-size: 1rem;
+    display: inline-block;
+    padding: 1rem 0 0 1rem
+}
+ 
+.card-text{
+    font-size: 1rem;
+}
+
+.card>.row{
+    flex-grow:1;
+
+}
+
+.card-title{
+    font-size: .75em;
+}
+.card-text{
+    font-size: .75em;
 }

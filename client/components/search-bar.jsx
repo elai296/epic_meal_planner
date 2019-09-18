@@ -39,7 +39,7 @@ class SearchBar extends React.Component {
     return (
       <div className="contentRecipeBar">
         <div className="container rounded-circle">
-          <form onSubmit={this.handleSearch}>
+          <form className="searchBarForm searchBarForm2"onSubmit={this.handleSearch}>
             <input
               className="rounded-pill"
               type="search"
