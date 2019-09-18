@@ -21,7 +21,7 @@ class RecipeDetails extends React.Component {
     });
   }
 
-  showModal() {
+  showModal(recipe) {
     if(this.state.modal === ''){
       return null;
     } else if (this.state.modal === 'shoppinglist') {
@@ -51,7 +51,7 @@ class RecipeDetails extends React.Component {
         <div>
           <div className="modal">
             <div className="smallcalendar">
-              <Calendar/>
+              <Calendar recipeId={recipe}/>
             </div>
             <button
               onClick={() => {
@@ -116,11 +116,10 @@ class RecipeDetails extends React.Component {
       whiteHeart:"./image/whiteHeartIcon.png",
       redHeart:"./image/redHeart.png"
     }
-    console.log("Ingredeients before split", recipe.ingredients)
-    let ingredientLines = recipe.ingredients.split('\n');
-    console.log("ingredients after split ", ingredientLines);
-    let image = !this.state.favStatus ? 'whiteHeart' : 'redHeart';
 
+    let ingredientLines = recipe.ingredients.split('\n');
+    let image = !this.state.favStatus ? 'whiteHeart' : 'redHeart';
+    console.log(recipe.id);
     console.log("worked");
 
     return (
@@ -178,7 +177,7 @@ class RecipeDetails extends React.Component {
         </div>
         <a className="text-dark" href={recipe.directions_url}>Click for Instructions</a>
 
-        {this.showModal()}
+        {this.showModal(recipe)}
 
       </div>
     );
