@@ -105,8 +105,7 @@ class RecipeDetails extends React.Component {
 
 
   putRecipeInFavorites(data){
-    console.log("the data is ", this.state.sh)
-    fetch(`/api/addtoFavorites.php`,{
+    fetch("/api/getFavorites.php",{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

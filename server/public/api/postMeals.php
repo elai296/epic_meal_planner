@@ -15,19 +15,21 @@ $recipeLabel =$obj['label'];
 $recipeMealTime = $obj['meal_time'];
 // $recipeId = $obj['recipe_id'];
 
-// var_dump("recipeDate", $recipeDate);
-// var_dump("recipeLabel", $recipeLabel);
-// var_dump("recipemealTime", $recipeMealTime);
+var_dump("recipeDate", $recipeDate);
+var_dump("recipeLabel", $recipeLabel);
+var_dump("recipemealTime", $recipeMealTime);
 // var_dump("recipeId", $recipeId);
 
 
-$query = "INSERT INTO `calendar`(date, meal_time, recipe_id)
-          SELECT '$recipeDate', '$recipeMealTime',  id AS recipe_id
-          FROM recipe
-          WHERE label LIKE \"%$recipeLabel%\"
-          LIMIT 1";
+$query = "INSERT INTO `calendar`(date, meal_time, recipe_label)
+VALUES ('$recipeDate', '$recipeMealTime', '$recipeLabel')";
 
 
+// setView to details page on a tag on calendar recipe labels
+//  adjust get call to specify columns coming back
+// need insert select to save meal label on calendar table
+
+var_dump("the query is:", $query);
 // var_dump($query);
 
 $result = mysqli_query($conn, $query);

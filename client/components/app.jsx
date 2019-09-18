@@ -64,13 +64,13 @@ class App extends React.Component {
       body: JSON.stringify(oneRecipe)
     };
 
-    fetch('/api/recipeDetails.php', req)
-      .then(res => res.json())
-      .then(viewOneRecipe=> {
-        // console.log("recipeDetails n favorites:",viewOneRecipe)
-        const allItems = this.state.oneRecipeDetail.concat(viewOneRecipe);
-        this.setState({ oneRecipe: allItems });
-      });
+    // fetch('/api/recipeDetails.php', req)
+    //   .then(res => res.json())
+    //   .then(viewOneRecipe=> {
+    //     // console.log("recipeDetails n favorites:",viewOneRecipe)
+    //     const allItems = this.state.oneRecipeDetail.concat(viewOneRecipe);
+    //     this.setState({ oneRecipe: allItems });
+    //   });
 
   }
 

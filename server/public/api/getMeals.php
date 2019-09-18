@@ -6,9 +6,10 @@ set_exception_handler('error_handler');
 startUp();
 
 
-$query = "SELECT * FROM calendar
-JOIN recipe
-ON  calendar.recipe_id = recipe.id";
+$query = "SELECT * FROM `calendar`";
+// specify date, mealtime and recipe label to send back
+
+// var_dump("the query is:", $query);
 
 $result = mysqli_query($conn, $query);
 
