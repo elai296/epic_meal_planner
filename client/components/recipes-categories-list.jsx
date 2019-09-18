@@ -39,7 +39,6 @@ class RecipesCategoriesList extends React.Component{
 
           <div className="card mb-3" style={{ maxWidth: "480px" }}>
 
-            <Header setView={this.props.setView}/>
             <div className="row no-gutters">
               <h1>{this.props.category}</h1>
               <div className="col-sm-4">
