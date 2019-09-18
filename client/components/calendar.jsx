@@ -2,6 +2,7 @@ import React from "react";
 import CalendarTable from "./calendar-table";
 import CalendarDayView from "./calendar-day-view";
 import Header from './header';
+import { Duplex } from "stream";
 
 class Calendar extends React.Component {
   constructor(props){
@@ -51,7 +52,7 @@ class Calendar extends React.Component {
     const mealsToPost = this.state.pushToCalendar;
     let counter = 0;
     while(counter < mealsToPost.length){
-      mealsToPost[counter].label = this.state.mealInput;
+      mealsToPost[counter].recipe_label = this.state.mealInput;
       const req = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -59,13 +60,18 @@ class Calendar extends React.Component {
       };
       fetch('/api/postMeals.php', req)
         .then(res => res.json())
-        .then(meal => {this.setState({ meal })});
+        .then(meal => {
+          this.setState({ meal })
+          console.log("meal:", meal);
+        });
       counter++;
+
     }
     this.setState({
       mealInput: "",
       pushToCalendar: []
     })
+    this.getStoredMeals();
   }
 
   componentDidMount(){
@@ -113,7 +119,7 @@ class Calendar extends React.Component {
           weekMeals.push({
             date: dynamicWeek[[datePosition]],
             meal_time: "breakfast",
-            label: ""
+            recipe_label: ""
           });
         }
         mealCounter = 0;
@@ -129,7 +135,7 @@ class Calendar extends React.Component {
           weekMeals.push({
             date: dynamicWeek[[datePosition]],
             meal_time: "lunch",
-            label: ""
+            recipe_label: ""
           });
         }
         mealCounter = 0;
@@ -145,7 +151,7 @@ class Calendar extends React.Component {
           weekMeals.push({
             date: dynamicWeek[[datePosition]],
             meal_time: "dinner",
-            label: ""
+            recipe_label: ""
           });
         }
       } else {
@@ -283,6 +289,7 @@ class Calendar extends React.Component {
 
   render(){
     this.setDate();
+    console.log("props: ", this.props);
     if(!this.state.meal){
       return (
         <div>Loading</div>

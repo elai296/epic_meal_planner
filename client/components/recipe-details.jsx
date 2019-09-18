@@ -5,7 +5,8 @@ import Header from './header';
 
 class RecipeDetails extends React.Component {
   constructor(props) {
-    console.log("props")
+    console.log("props are ", props)
+    console.log("Recipe is ", props.recipe)
     super(props);
     this.state = {
       favStatus: false,
@@ -21,7 +22,7 @@ class RecipeDetails extends React.Component {
     });
   }
 
-  showModal() {
+  showModal(recipe) {
     if(this.state.modal === ''){
       return null;
     } else if (this.state.modal === 'shoppinglist') {
@@ -51,7 +52,7 @@ class RecipeDetails extends React.Component {
         <div>
           <div className="modal">
             <div className="smallcalendar">
-              <Calendar/>
+              <Calendar recipeId={recipe}/>
             </div>
             <button
               onClick={() => {
@@ -112,15 +113,19 @@ class RecipeDetails extends React.Component {
 
   render() {
     let recipe = this.props.recipe;
+    let props = this.props
+    // console.log("props is ", props)
     const heartColor={
       whiteHeart:"./image/whiteHeartIcon.png",
       redHeart:"./image/redHeart.png"
     }
-    console.log("Ingredeients before split", recipe.ingredients)
-    let ingredientLines = recipe.ingredients.split('\n');
-    console.log("ingredients after split ", ingredientLines);
-    let image = !this.state.favStatus ? 'whiteHeart' : 'redHeart';
 
+    // console.log("Ingredeients before split", recipe.ingredients)
+    let ingredientLines = recipe.ingredients.split('\n');
+    // console.log("ingredients after split ", ingredientLines);
+
+    let image = !this.state.favStatus ? 'whiteHeart' : 'redHeart';
+    console.log(recipe.id);
     console.log("worked");
 
     return (
@@ -178,7 +183,7 @@ class RecipeDetails extends React.Component {
         <div className="text-center">
         <a className="text-dark" href={recipe.directions_url}>Click for Instructions</a>
         </div>
-        {this.showModal()}
+        {this.showModal(recipe)}
 
       </div>
     );
