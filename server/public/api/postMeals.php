@@ -15,17 +15,23 @@ $recipeLabel =$obj['label'];
 $recipeMealTime = $obj['meal_time'];
 // $recipeId = $obj['recipe_id'];
 
-// var_dump("recipeDate", $recipeDate);
-// var_dump("recipeLabel", $recipeLabel);
-// var_dump("recipemealTime", $recipeMealTime);
+var_dump("recipeDate", $recipeDate);
+var_dump("recipeLabel", $recipeLabel);
+var_dump("recipemealTime", $recipeMealTime);
 // var_dump("recipeId", $recipeId);
 
 
-$query = "INSERT INTO `calendar`(date, meal_time, recipe_id)
-          SELECT '$recipeDate', '$recipeMealTime',  id AS recipe_id
-          FROM recipe
-          WHERE label LIKE \"%$recipeLabel%\"
-          LIMIT 1";
+// $query = "INSERT INTO `calendar`(date, meal_time, recipe_label, recipe_id)
+// SELECT '$recipeDate', '$recipeMealTime', '$recipeLabel', 0";
+
+
+$query = "INSERT INTO `calendar`(date, meal_time, recipe_label)
+VALUES ('$recipeDate', '$recipeMealTime', '$recipeLabel')";
+
+
+var_dump("the query is:", $query);
+
+
 
 
 // var_dump($query);
@@ -45,18 +51,6 @@ else{
 }
 
 
-
-// if(!$result){
-//   throw new Exception(mysqli_error($conn));
-// }
-// else if(!mysqli_num_rows($result) && !empty($_GET['id'])){
-//   throw new Exception('Invalid ID: ' . $_GET['id']);
-// }
-
-// $output = [];
-// while($row = mysqli_fetch_assoc($result)){
-//   $output[] = $row;
-// };
 
 print(json_encode($output));
 
