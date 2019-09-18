@@ -1,5 +1,6 @@
 import React from "react";
 import SearchBarResultsItem from "./search-bar-results-item";
+import Header from './header';
 
 class SearchBarResultsList extends React.Component {
   constructor(props) {

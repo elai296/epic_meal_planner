@@ -1,25 +1,24 @@
 import React from 'react';
 import Header from './header';
 
-class Recipes extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
-
-  render() {
-    return (
-      <div className="container">
-        <Header setView={this.props.setView}/>
-        <div>Favorites</div>
-        <div>Keto</div>
-        <div>Vegetarian</div>
-        <div>Halal</div>
-      </div>
-    );
-  }
+function Recipes(props){
+  return (
+    <div className="container">
+      <Header setView={props.setView}/>
+      <div
+        onClick={
+        () => {
+         props.setView("categories", {}, '');
+         props.setCategory("Vegan");
+         }}>Vegan</div>
+      <div
+        onClick={
+        () => { props.setView("categories", {}, '');
+        props.setCategory("Keto");}}>Keto</div>
+      <div>Vegan</div>
+      <div>Paleo</div>
+    </div>
+  );
 }
 
 export default Recipes;

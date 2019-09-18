@@ -1,6 +1,7 @@
 import React from "react";
 import SearchBar from "./search-bar";
 import Calendar from "./calendar";
+import Header from './header';
 
 class RecipeDetails extends React.Component {
   constructor(props) {
