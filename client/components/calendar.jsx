@@ -82,7 +82,6 @@ class Calendar extends React.Component {
   }
 
    sortDays(data){
-    console.log("data: ", data);
     const copyOfMeal = data;
     const weekMeals = [];
     let counter = 0;
@@ -96,6 +95,8 @@ class Calendar extends React.Component {
       counter++;
     }
 
+    // debugger;
+    console.log("data is", data);
     let datePosition = 0;
     while (datePosition < dynamicWeek.length){
       if(copyOfMeal[0]){

@@ -11,8 +11,8 @@ $obj = json_decode($json_input, true);
 // var_dump("the objet is", $obj);
 
 $recipeDate = $obj['date'];
-$recipeLabel =$obj['label'];
 $recipeMealTime = $obj['meal_time'];
+$recipeLabel =$obj['label'];
 // $recipeId = $obj['recipe_id'];
 
 var_dump("recipeDate", $recipeDate);
@@ -24,16 +24,38 @@ var_dump("recipemealTime", $recipeMealTime);
 $query = "INSERT INTO `calendar`(date, meal_time, recipe_label)
 VALUES ('$recipeDate', '$recipeMealTime', '$recipeLabel')";
 
+// $query = "INSERT INTO `calendar`(date, meal_time, recipe_label)
+// SELECT '$recipeDate', '$recipeMealTime', labelText AS recipe_label
+// ";
+
 
 // setView to details page on a tag on calendar recipe labels
 //  adjust get call to specify columns coming back
 // need insert select to save meal label on calendar table
 
-var_dump("the query is:", $query);
-// var_dump($query);
+
+// $query = "INSERT INTO calendar(date, meal_time, recipe_id)
+//          SELECT '$recipeDate', '$recipeMealTime',  id AS recipe_id
+//          FROM recipe
+//          WHERE label LIKE \"%$recipeLabel%\"
+//          LIMIT 1";
+
+
+// $query = "
+// (INSERT INTO `calendar`(date, meal_time, recipe_label)
+// VALUES ('$recipeDate', '$recipeMealTime', '$recipeLabel')
+// )
+// UNION
+// (
+// SELECT date, meal_time, label_text AS recipe_label
+// FROM calendar
+// )";
+
+
+// var_dump("the query is:", $query);
+
 
 $result = mysqli_query($conn, $query);
-
 
 if (!$result) {
   throw new Exception(mysqli_error($conn));
@@ -46,19 +68,6 @@ else{
 
 }
 
-
-
-// if(!$result){
-//   throw new Exception(mysqli_error($conn));
-// }
-// else if(!mysqli_num_rows($result) && !empty($_GET['id'])){
-//   throw new Exception('Invalid ID: ' . $_GET['id']);
-// }
-
-// $output = [];
-// while($row = mysqli_fetch_assoc($result)){
-//   $output[] = $row;
-// };
 
 print(json_encode($output));
 
