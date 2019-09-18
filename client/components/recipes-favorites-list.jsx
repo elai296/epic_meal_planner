@@ -11,7 +11,7 @@ class RecipesFavoritesList extends React.Component{
 
     handleClick(props, recipe) {
     console.log(props);
-    this.props.setView("recipe details", recipe, []);
+    this.props.setView("recipeDetails", recipe, []);
       }
 
     componentDidMount(){
