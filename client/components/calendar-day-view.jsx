@@ -13,9 +13,9 @@ function CalendarDayView(props){
             <div className="col-md-4 offset-md-2 mb-3">Dinner</div>
           </div>
           <div className="row">
-            <div className="col-md-3 offset-md-3 mb-3">{props.meal[props.mealObj.breakfast].label}</div>
-            <div className="col-md-3 offset-md-3 mb-3">{props.meal[props.mealObj.lunch].label}</div>
-            <div className="col-md-3 offset-md-3 mb-3">{props.meal[props.mealObj.dinner].label}</div>
+            <div className="col-md-3 offset-md-3 mb-3">{props.meal[props.mealObj.breakfast].recipe_label}</div>
+            <div className="col-md-3 offset-md-3 mb-3">{props.meal[props.mealObj.lunch].recipe_label}</div>
+            <div className="col-md-3 offset-md-3 mb-3">{props.meal[props.mealObj.dinner].recipe_label}</div>
           </div>
         </div>
       </div>

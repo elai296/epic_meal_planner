@@ -13,16 +13,16 @@ $obj = json_decode($json_input, true);
 $recipeDate = $obj['date'];
 $recipeMealTime = $obj['meal_time'];
 $recipeLabel =$obj['recipe_label'];
-// $recipeId = $obj['recipe_id'];
+$recipeId = $obj['recipe_id'];
 
 var_dump("recipeDate", $recipeDate);
 var_dump("recipeLabel", $recipeLabel);
 var_dump("recipemealTime", $recipeMealTime);
-// var_dump("recipeId", $recipeId);
+var_dump("recipeId", $recipeId);
 
 
-$query = "INSERT INTO `calendar`(date, meal_time, recipe_label)
-VALUES ('$recipeDate', '$recipeMealTime', '$recipeLabel')";
+$query = "INSERT INTO `calendar`(date, meal_time, recipe_label, recipe_id)
+VALUES ('$recipeDate', '$recipeMealTime', '$recipeLabel',  $recipeId)";
 
 // $query = "INSERT INTO `calendar`(date, meal_time, recipe_label)
 // SELECT '$recipeDate', '$recipeMealTime', labelText AS recipe_label
