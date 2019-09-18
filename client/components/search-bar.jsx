@@ -16,7 +16,7 @@ class SearchBar extends React.Component {
 
   handleSearch(event) {
     event.preventDefault();
-    this.props.setView("search bar result", null, this.state.value);
+    this.props.setView("searchBarResultsList", null, this.state.value);
     // this.getRecipes();
   }
 

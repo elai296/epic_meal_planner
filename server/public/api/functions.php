@@ -11,6 +11,7 @@ function error_handler($error){
 
 function startUp(){
   header('Content-Type: application/json');
+  // header('Content-Type: text/html; charset=utf-8');
 }
 
 function getBodyData(){
