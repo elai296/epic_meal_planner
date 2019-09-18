@@ -50,16 +50,16 @@ class SearchBarResultsList extends React.Component {
   }
   render() {
     return (
+      <div>
+        <a onClick={() => this.handleClick(this.props)}>Home</a>
         <div>
-          <a onClick={() => this.handleClick(this.props)}>Home</a>
-          <div>
-            <SearchBar setView={this.props.setView}/>
+          <SearchBar setView={this.props.setView}/>
+          <Header setView={this.props.setView}/>
         </div>
         <div>
           <h4>Search Results</h4>
-          <Header setView={this.props.setView}/>
           <section className="section">
-              <div className="row">
+            <div className="row">
               {this.state.list.map((recipe, x) => {
                 if (x < 5) {
                   return (
@@ -75,15 +75,16 @@ class SearchBarResultsList extends React.Component {
                         setView={this.props.setView}
                         recipe={recipe}
                       />
+
                   );
                 }
               })}
             </div>
           </section>
         </div>
-        </div>
-      );
-    }
+      </div>
+    );
+  }
 }
 
 export default SearchBarResultsList;

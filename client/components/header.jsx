@@ -3,8 +3,8 @@ import Menu from './menu';
 
 function Header(props) {
   return (
-    <div>
-      <h1 className="header">{ props.text }</h1>
+    <div className="header">
+      <h1 className="headerText">{ props.text }</h1>
       <Menu setView={ props.setView }/>
     </div>
   );
