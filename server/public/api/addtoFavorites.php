@@ -10,6 +10,7 @@ $obj = json_decode($json_input, true);
 $id = $obj["id"];
 
 $query = "INSERT INTO `favorites`(recipe_id) VALUES ($id)";
+var_dump("query is, ", $query);
 mysqli_query($conn, $query);
 
 ?>
