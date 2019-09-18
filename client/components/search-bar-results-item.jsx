@@ -1,14 +1,7 @@
 import React from "react";
 
-
-// function handleClick(props, recipe) {
-//   console.log(props);
-//   props.setView("recipe details", recipe, []);
-// }
-
 function SearchBarResultsItem(props) {
   return (
-
     <div className="card mb-0" style={{ maxWidth: "400px" }}>
       <div className="row no-gutters flex-grow-1">
         <div className="col-4">
@@ -27,10 +20,10 @@ function SearchBarResultsItem(props) {
           <div className="card-body">
             <h5
               className="card-title"
-              onClick={e => {
+              onClick={
+                e => {
                 props.setView("recipeDetails", props.recipe, [])
-              }}
-            >
+              }}>
               {props.name}
             </h5>
             <p className="card-text">Time: {props.time} minutes</p>

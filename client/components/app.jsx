@@ -9,6 +9,7 @@ import RecipesFavoritesList from "./recipes-favorites-list";
 import Header from "./header";
 import Recipes from './recipes';
 import UserInfo from "./user-info";
+import CategoriesDetails from "./categories-details"
 
 class App extends React.Component {
   constructor(props) {
@@ -121,10 +122,6 @@ class App extends React.Component {
       display = (
         <SearchBarResultsList setView={this.setView} value={this.state.searchTerm}/>
       );
-    } else if (this.state.view.name === "recipesFavoritesList") {
-      display = (
-        <RecipesFavoritesList setView={this.setView} category={this.state.category}/>
-      );
     } else if (this.state.view.name === "recipesCategoriesList") {
       display = (
         <RecipesCategoriesList setView={this.setView} category={this.state.category}/>
@@ -132,6 +129,10 @@ class App extends React.Component {
     } else if (this.state.view.name === "recipeDetails") {
       display = (
         <RecipeDetails setView={this.setView} recipe={this.state.view.recipe}/>
+      );
+    } else if (this.state.view.name === "categoryDetails") {
+      display = (
+        <CategoriesDetails setView={this.setView} recipe={this.state.view.recipe} />
       );
     }
     return (

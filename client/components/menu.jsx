@@ -36,9 +36,6 @@ class Menu extends React.Component {
             <div onClick={
               () => { this.props.setView("userInfo", {});
               this.setMenu();}}>User Info</div>
-            <div onClick={
-              () => { this.props.setView("recipesFavoritesList", {});
-              this.setMenu();}}>Favorites</div>
           </div>
         </div>
       )
