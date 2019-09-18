@@ -5,6 +5,7 @@ import Header from './header';
 
 class RecipeDetails extends React.Component {
   constructor(props) {
+    console.log("props")
     super(props);
     this.state = {
       favStatus: false,
@@ -105,7 +106,7 @@ class RecipeDetails extends React.Component {
 
 
   putRecipeInFavorites(data){
-    fetch("/api/getFavorites.php",{
+    fetch('/api/addToFavorites.php',{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
