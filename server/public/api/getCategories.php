@@ -6,7 +6,7 @@ set_exception_handler('error_handler');
 startUp();
 
 $query = "SELECT r.id, r.directions_url, r.image_url, r.serving_size, r.label, r.cooking_time,
-i.recipe_id, GROUP_CONCAT(i.ingredients_desc)
+GROUP_CONCAT(i.ingredients_desc)
 FROM recipe AS r
 JOIN recipe_ingredients AS i
 ON r.id = i.recipe_id
@@ -29,5 +29,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 // var_dump("output is ",$output );
 
+// $decoded = json_decode($output, true);
+// print($decoded);
 print(json_encode($output));
 ?>

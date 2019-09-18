@@ -66,11 +66,12 @@ class SearchBarResultsList extends React.Component {
                       <SearchBarResultsItem
                         key={x}
                         name={recipe.label}
-                        image={recipe.image_url}
-                        url={recipe.directions_url}
-                        servingSize={recipe.serving_size}
-                        ingredient={recipe.ingredients}
-                        time={recipe.cooking_time}
+                        image={recipe.image}
+                        // url={recipe.directions_url}
+                        // servingSize={recipe.serving_size}
+                        // ingredient={recipe.ingredientLines}
+                        time={recipe.totalTime}
+
                         setView={this.props.setView}
                         recipe={recipe}
                       />
