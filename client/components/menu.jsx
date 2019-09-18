@@ -15,11 +15,11 @@ class Menu extends React.Component {
 
   render() {
     if (!this.state.showMenu) {
-      return <i className="fas fa-bars" onClick={this.setMenu}></i>
+      return <i className="fas fa-bars menu" onClick={this.setMenu}></i>
     } else {
       return (
         <React.Fragment>
-          <div className="border bg-secondary" onClick={this.setMenu}>{`click here to exit menu`}</div>
+          <div className="border bg-secondary menu" onClick={this.setMenu}>{`click here to exit menu`}</div>
           <div className="border border-dark">
             <div onClick={
               () => { this.props.setView("home", {});
@@ -34,14 +34,12 @@ class Menu extends React.Component {
               () => { this.props.setView("shoppinglist", {});
               this.setMenu();}}>Shopping List</div>
             <div onClick={
-              () => { this.props.setView("favorite list", {});
-              this.setMenu();}}>Favorites</div>
-            <div onClick={
-              () => { this.props.setView("userInfo", {});
+              () => { this.props.setView("userinfo", {});
               this.setMenu();}}>User Info</div>
+              <div onClick={
+              () => { this.props.setView("favorites", {});
+              this.setMenu();}}>Favorites</div>
           </div>
-        
-   
         </React.Fragment>
       )
     }

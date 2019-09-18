@@ -1,6 +1,7 @@
 import React from "react";
 import SearchBar from "./search-bar";
 import Calendar from "./calendar";
+import Header from './header';
 
 class RecipeDetails extends React.Component {
   constructor(props) {
@@ -110,6 +111,7 @@ class RecipeDetails extends React.Component {
       <div className="container">
         <div>
         <SearchBar setView={this.props.setView}/>
+        <Header setView={this.props.setView}/>
         </div>
         <div>
           <p className='h1'>{recipe.label}</p>

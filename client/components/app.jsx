@@ -4,9 +4,11 @@ import ShoppingList from './shopping-list';
 import SearchBar from "./search-bar";
 import SearchBarResultsList from "./search-bar-results-list";
 import RecipeDetails from "./recipe-details";
+import RecipesCategoriesList from "./recipes-categories-list";
 import RecipesFavoritesList from "./recipes-favorites-list";
 import Header from "./header";
 import Recipes from './recipes';
+import UserInfo from "./user-info";
 
 class App extends React.Component {
   constructor(props) {
@@ -15,14 +17,15 @@ class App extends React.Component {
       addItemToShoppingList : [],
       oneRecipeDetail :[],
       view: {
-        name: "home",
+        name: "recipes",
         recipe: {}
       },
       searchTerm: "",
-      modal: "none"
+      modal: "none",
+      category: null
     };
     this.setView = this.setView.bind(this);
-    // this.setModal = this.setModal.bind(this);
+    this.setCategory = this.setCategory.bind(this);
     this.getFavorites= this.getFavorites.bind(this);
     this.recipeDetails = this.recipeDetails.bind(this);
     this.addToShoppingList = this.addToShoppingList.bind(this);
@@ -35,11 +38,15 @@ class App extends React.Component {
     });
   }
 
+  setCategory(category) {
+    this.setState({ category });
+  }
+
   // ---- new code -----
    componentDidMount() {
     this.getFavorites();
     this.recipeDetails();
-    this.addToShoppingList({ id: 2 });
+    // this.addToShoppingList({ id: 2 });
   }
 
   getFavorites(){
@@ -83,9 +90,6 @@ class App extends React.Component {
       });
 
   }
-  componentDidMount(){
-    this.getFavorites();
-  }
 
   render() {
     let display;
@@ -99,16 +103,22 @@ class App extends React.Component {
       )
     } else if (this.state.view.name === "search bar result") {
       display = (<SearchBarResultsList setView={this.setView} value={this.state.searchTerm}/>);
-    } else if (this.state.view.name==="recipe details"){
-      display=(<RecipeDetails setView={this.setView} recipe={this.state.view.recipe}/>);
-    }else if(this.state.view.name==="calendar"){
-      display=(<Calendar setView={this.setView}/>)
-    }else if(this.state.view.name==="shoppinglist"){
-      display=(<ShoppingList setView={this.setView}/>)
-    }else if(this.state.view.name==="favorite list"){
-      display=(<RecipesFavoritesList setView={this.setView}/>)
-    }else if(this.state.view.name==="recipes"){
-      display=(<Recipes setView={this.setView}/>)
+    } else if (this.state.view.name==="recipe details") {
+      display = (<RecipeDetails setView={this.setView} recipe={this.state.view.recipe}/>);
+    } else if (this.state.view.name==="calendar") {
+      display = (<Calendar setView={this.setView}/>);
+    } else if (this.state.view.name==="shoppinglist") {
+      display = (<ShoppingList setView={this.setView}/>);
+    } else if (this.state.view.name==="categories") {
+      display = (<RecipesCategoriesList setView={this.setView} category={this.state.category}/>);
+    } else if (this.state.view.name==="recipes") {
+      display = (<Recipes
+        setCategory={this.setCategory}
+        setView={this.setView}/>);
+    } else if (this.state.view.name==="userinfo") {
+      display = (<UserInfo setView={this.setView}/>);
+    } else if (this.state.view.name==="favorites") {
+      display = (<RecipesFavoritesList setView={this.setView} category={this.state.category}/>);
     }
     return (
       <div>

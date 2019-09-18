@@ -1,5 +1,6 @@
 import React from "react";
 import SearchBarResultsItem from "./search-bar-results-item";
+import Header from './header';
 import SearchBar from './search-bar';
 
 class SearchBarResultsList extends React.Component {
@@ -56,6 +57,7 @@ class SearchBarResultsList extends React.Component {
         </div>
         <div>
           <h4>Search Results</h4>
+          <Header setView={this.props.setView}/>
           <section className="section">
               <div className="row">
               {this.state.list.map((recipe, x) => {
