@@ -152,13 +152,13 @@ class RecipeDetails extends React.Component {
             </div>
           </div>
         </div>
-        <div>
-            {recipe.ingredientLines.map((ingredient, i) => {
+        <div className="text-center">INGREDIENTS
+              </div>
+              <div>{recipe.ingredientLines.map((ingredient, i) => {
             return <div key={i}>{ingredient}</div>;
           })}
         </div>
-        <a href={recipe.url}>Click for Instructions</a>
-
+        <a href={recipe.url} className="text-dark">Click for Instructions</a>
         {this.showModal()}
 
       </div>
