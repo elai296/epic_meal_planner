@@ -73,6 +73,7 @@ class Calendar extends React.Component {
   }
 
   getStoredMeals(){
+    // debugger;
     fetch(`/api/getMeals.php`)
       .then(response => response.json())
       .then(data => {
@@ -81,6 +82,7 @@ class Calendar extends React.Component {
   }
 
    sortDays(data){
+    console.log("data: ", data);
     const copyOfMeal = data;
     const weekMeals = [];
     let counter = 0;
@@ -93,6 +95,7 @@ class Calendar extends React.Component {
       }
       counter++;
     }
+
     let datePosition = 0;
     while (datePosition < dynamicWeek.length){
       if(copyOfMeal[0]){
