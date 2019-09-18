@@ -48,6 +48,7 @@ class UserInfo extends React.Component {
   render(){
     return (
       <div>
+        <Header setView={this.props.setView} text="User Info"/>
         <form className="form-inline text-align-center" onSubmit={this.handleSubmit}>
           <div className="form-group mx-sm-3 mb-2 mr-2 ml-5">
             <input

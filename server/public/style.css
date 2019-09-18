@@ -83,10 +83,14 @@
     margin-left: 15px;
 }
 
-.searchBarForm{
-    margin: 100px auto 0;
-    width: 200px;
+.searchBarContainer{
+    display: inline-block;
 }
+
+.searchBarForm{
+    display: inline-block;
+}
+
 h4{
     text-align: center;
 }

@@ -97,9 +97,22 @@ class App extends React.Component {
     if (this.state.view.name === "home") {
       title = "Home";
       display = (
-        <div>
-          <SearchBar setView={this.setView}/>
-        </div>
+        <React.Fragment>
+          <div className="container">
+            <div className="row justify-content-end">
+              <Header setView={this.setView}/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="row justify-content-center my-2">
+              <SearchBar setView={this.setView}/>
+            </div>
+            <div className="row justify-content-center my-2">
+              <h3>Find a new dish.</h3>
+              <h3>Plan your next meal.</h3>
+            </div>
+          </div>
+        </React.Fragment>
       );
     } else if (this.state.view.name === "recipes") {
       title = "Recipes";
