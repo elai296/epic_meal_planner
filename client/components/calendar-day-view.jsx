@@ -1,10 +1,13 @@
 import React from 'react';
+import Header from './header';
 
 function CalendarDayView(props){
   if(props.day){
+    const headerText = (<div className="text-center" id={props.date}>{props.month} {props.getDateNumbers()}, {props.year}</div>)
+
     return (
       <div>
-        <h3 className="text-center" id={props.date}>{props.month} {props.getDateNumbers()}, {props.year}</h3>
+        <Header setView={props.setView} text={headerText}/>
         <button className="btn btn-link" onClick={props.changeView}>Week View</button>
         <div className="container d-flex">
           <div className="row">
