@@ -3,21 +3,27 @@ import Header from './header';
 
 class RecipesFavoritesList extends React.Component{
     constructor(props){
+      console.log("constructor props are ", props)
         super(props);
         this.state={
-            favoriteList:[]
+            favoriteList: []
         }
+    this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick(props, recipe) {
-    console.log(props);
-    this.props.setView("recipeDetails", recipe, []);
+    console.log("props are ", props);
+    // console.log("recipe is ", this.state.favoriteList)
+    var favoriteDetails = this.state.favoriteList[0];
+    console.log("favoriteDetails ", favoriteDetails);
+    this.props.setView("recipeDetails", favoriteDetails);
       }
 
     componentDidMount(){
             fetch("/api/getFavorites.php")
               .then(response => response.json())
               .then(recipes => {
+                console.log("recipes are ", recipes)
                 this.setState({ favoriteList: recipes });
               })
     }
@@ -49,7 +55,7 @@ class RecipesFavoritesList extends React.Component{
                                 <img
                                 className="card-title"
                                 src={recipe.image_url}
-                                onClick={e => handleClick(recipe, recipe.image_url)}
+                                onClick={() => this.handleClick()}
                                 />
                                 <h5>{recipe.label}</h5>
                                 <p className="card-text">Time: {recipe.cooking_time} minutes</p>
