@@ -154,6 +154,7 @@ class Calendar extends React.Component {
     const finalDate = new Date(today);
     const currentDate = today.getDate();
     const weekDay = today.getDay();
+    console.log("weekDay", weekDay);
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     this.year = finalDate.getFullYear();
     let monthNumeric = finalDate.getMonth();
@@ -165,8 +166,10 @@ class Calendar extends React.Component {
     } else {
       finalDate.setDate(currentDate - weekDay);
     }
+    console.log("weekDay", finalDate);
     const date = finalDate.toISOString();
     let returnDate = date.slice(0, 10);
+    console.log(returnDate)
     return returnDate;
   }
 
