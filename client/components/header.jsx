@@ -4,7 +4,7 @@ import Menu from './menu';
 function Header(props) {
   return (
     <div className="header">
-      <h1 className="headerText">{ props.text }</h1>
+      <h3 className="headerText">{ props.text }</h3>
       <Menu setView={ props.setView }/>
     </div>
   );

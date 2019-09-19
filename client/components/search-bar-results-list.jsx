@@ -52,7 +52,6 @@ class SearchBarResultsList extends React.Component {
       <div>
         <div>
           <SearchBar setView={this.props.setView}/>
-          <Header setView={this.props.setView}/>
         </div>
         <div>
           <h4>Search Results</h4>

@@ -4,7 +4,7 @@ import Header from './header';
 function Recipes(props){
   return (
     <div className="container">
-      <Header setView={props.setView}/>
+      <Header setView={props.setView} text="Recipes"/>
       <div
         onClick={
           () => {
@@ -20,7 +20,7 @@ function Recipes(props){
       <div
         onClick={
           () => {
-            props.setView("recipesCategoriesList", {}, '');
+         props.setView("recipesCategoriesList", {}, '');
         props.setCategory("keto");}}>Keto</div>
       <div
         onClick={

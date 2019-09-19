@@ -15,7 +15,7 @@ class Menu extends React.Component {
 
   render() {
     if (!this.state.showMenu) {
-      return <i className="fas fa-bars menu" onClick={this.setMenu}></i>
+      return <i className="fas fa-bars menu mx-1" onClick={this.setMenu}></i>
     } else {
       return (
         <div className="menu">

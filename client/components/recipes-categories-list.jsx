@@ -32,13 +32,6 @@ class RecipesCategoriesList extends React.Component{
         return null;
       } else {
         return (
-          <div>
-            <div>
-              <SearchBar setView={this.props.setView} />
-              <Header setView={this.props.setView} />
-            </div>
-            <div>
-              <h4>Search Results</h4>
               <section className="section">
                 <div className="row">
                   {this.state.categoryList.map((recipe, x) => {
