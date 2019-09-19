@@ -6,7 +6,7 @@ import Header from './header';
 class RecipeDetails extends React.Component {
   constructor(props) {
     console.log("props are ", props)
-    console.log("Recipe is ", props.recipe)
+    console.log("Recipe is ", props.recipe.ingredients)
     super(props);
     this.state = {
       favStatus: false,
@@ -66,7 +66,7 @@ class RecipeDetails extends React.Component {
               </button>
 
             <div className="smallcalendar">
-              <Calendar recipeId={recipe} view={this.props.view}/>
+              <Calendar recipeId={recipe} setView={this.props.setView} view={this.props.view}/>
             </div>
 
           </div>
@@ -131,6 +131,7 @@ class RecipeDetails extends React.Component {
       redHeart:"./image/redHeart.png"
     }
 
+
     // console.log("Ingredeients before split", recipe.ingredients)
     let ingredientLines = recipe.ingredients.split('\n');
     // console.log("ingredients after split ", ingredientLines);
@@ -138,6 +139,7 @@ class RecipeDetails extends React.Component {
     let image = !this.state.favStatus ? 'whiteHeart' : 'redHeart';
     console.log(recipe.id);
     console.log("worked", this.props);
+
 
     return (
       <div className="container">
