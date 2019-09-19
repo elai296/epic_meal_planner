@@ -22,12 +22,13 @@ class Menu extends React.Component {
     };
 
     const menuDivOpacity = {
-      backgroundColor: "lightgrey",
-      opacity: "0.6"
+      backgroundColor: "yellow",
+      // opacity: "0.6"
     }
 
     const greyDivOpacity = {
-      backgroundColor: "rgb(242, 240, 240)",
+      // backgroundColor: "rgb(242, 240, 240)",
+      backgroundColor: "pink",
       opacity: "0.4"
     }
 
