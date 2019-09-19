@@ -69,6 +69,10 @@
     font-size: 1.5em;
 }
 
+input[type=checkbox]:checked + label{
+    text-decoration: line-through;
+}
+
 .smallcalendar{
     max-height: 685px;
     width: 350px;
@@ -109,11 +113,6 @@ h4{
 .card-text{
     font-size: 1rem;
 }
-
-/* .card>.row{
-    flex-grow:1;
-
-} */
 
 .card-title{
     font-size: .75em;
