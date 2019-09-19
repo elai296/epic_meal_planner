@@ -6,7 +6,7 @@ import Header from './header';
 class RecipeDetails extends React.Component {
   constructor(props) {
     console.log("props are ", props)
-    console.log("Recipe is ", props.recipe)
+    console.log("Recipe is ", props.recipe.ingredients)
     super(props);
     this.state = {
       favStatus: false,
@@ -32,7 +32,9 @@ class RecipeDetails extends React.Component {
             <button
               onClick={() => {
                 this.closeModal();
-              }}>close</button>
+              }}>
+                   <i className="far fa-window-close"></i>
+              </button>
           </div>
         </div>
       );
@@ -43,7 +45,12 @@ class RecipeDetails extends React.Component {
             <button
               onClick={() => {
                 this.closeModal();
-              }}>close</button>
+              }}>
+              {/* close */}
+
+              <i className="far fa-window-close"></i>
+              
+              </button>
           </div>
         </div>
       );
@@ -51,13 +58,17 @@ class RecipeDetails extends React.Component {
       return (
         <div>
           <div className="modal">
+              <button className= "closeModal"
+                onClick={() => {
+                  this.closeModal();
+                }}>
+             <i className="far fa-window-close"></i>
+              </button>
+
             <div className="smallcalendar">
-              <Calendar recipeId={recipe} view={this.props.view}/>
+              <Calendar recipeId={recipe} setView={this.props.setView} view={this.props.view}/>
             </div>
-            <button
-              onClick={() => {
-                this.closeModal();
-              }}>close</button>
+
           </div>
         </div>
       );
@@ -115,6 +126,7 @@ class RecipeDetails extends React.Component {
     let props = this.props
     // console.log("props is ", props)
 
+
     // console.log("Ingredeients before split", recipe.ingredients)
     let ingredientLines = recipe.ingredients.split('\n'); // need this for ingredient formatting
     // console.log("ingredients after split ", ingredientLines);
@@ -131,6 +143,7 @@ class RecipeDetails extends React.Component {
     let red = "./image/redHeart.png";
     let white = "./image/whiteHeartIcon.png";
     let jaeTestHeart = recipe.categories === "favorites" ? red : white;
+
 
     return (
       <div className="container">

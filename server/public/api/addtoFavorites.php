@@ -8,6 +8,7 @@ startUp();
 $json_input = file_get_contents('php://input');
 $obj = json_decode($json_input, true);
 $id = $obj["id"];
+
 $categories = $obj["categories"];
 
 $query = "";
