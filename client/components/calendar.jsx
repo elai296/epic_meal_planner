@@ -42,7 +42,6 @@ class Calendar extends React.Component {
             const pushToCalendarCopy = this.state.pushToCalendar;
             pushToCalendarCopy.push(mealStateCopy[counter]);
             this.setState({ pushToCalendar: pushToCalendarCopy });
-            console.log("pushToCalendar: ", this.state.pushToCalendar);
           }
           counter++;
         }
@@ -73,7 +72,6 @@ class Calendar extends React.Component {
     const mealsToPost = this.state.pushToCalendar;
     let counter = 0;
     while (counter < mealsToPost.length) {
-      debugger;
       mealsToPost[counter].recipe_label = this.props.recipeId.label;
       const req = {
         method: 'POST',
@@ -84,7 +82,6 @@ class Calendar extends React.Component {
         .then(res => res.json())
         .then(meal => {
           this.setState({ meal })
-          console.log("meal:", meal);
         });
       counter++;
 
@@ -101,7 +98,6 @@ class Calendar extends React.Component {
     const mealsToPost = this.state.pushToCalendar;
     let counter = 0;
     while(counter < mealsToPost.length){
-      debugger;
       mealsToPost[counter].recipe_label = this.state.mealInput;
       const req = {
         method: 'POST',
@@ -112,7 +108,6 @@ class Calendar extends React.Component {
         .then(res => res.json())
         .then(meal => {
           this.setState({ meal })
-          console.log("meal:", meal);
         });
       counter++;
 
@@ -129,7 +124,6 @@ class Calendar extends React.Component {
   }
 
   getStoredMeals(){
-    // debugger;
     fetch(`/api/getMeals.php`)
       .then(response => response.json())
       .then(data => {
@@ -151,8 +145,6 @@ class Calendar extends React.Component {
       counter++;
     }
 
-    // debugger;
-    console.log("data is", data);
     let datePosition = 0;
     while (datePosition < dynamicWeek.length){
       if(copyOfMeal[0]){
@@ -338,18 +330,15 @@ class Calendar extends React.Component {
   }
 
   recipeLink(label){
-    console.log("recipeLink working", label);
     fetch(`/api/calendar-details.php?q=` + label)
       .then(response => response.json())
       .then(recipes => {
-        console.log("recipes",recipes);
         this.props.setView("recipeDetails", recipes[0])
       });
   }
 
   render(){
     this.setDate();
-    console.log("props: ", this.props);
     if(!this.state.meal){
       return (
         <div>Loading</div>
