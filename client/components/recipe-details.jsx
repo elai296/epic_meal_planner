@@ -32,7 +32,9 @@ class RecipeDetails extends React.Component {
             <button
               onClick={() => {
                 this.closeModal();
-              }}>close</button>
+              }}>
+                   <i className="far fa-window-close"></i>
+              </button>
           </div>
         </div>
       );
@@ -43,7 +45,12 @@ class RecipeDetails extends React.Component {
             <button
               onClick={() => {
                 this.closeModal();
-              }}>close</button>
+              }}>
+              {/* close */}
+
+              <i className="far fa-window-close"></i>
+              
+              </button>
           </div>
         </div>
       );
@@ -51,13 +58,17 @@ class RecipeDetails extends React.Component {
       return (
         <div>
           <div className="modal">
+              <button className= "closeModal"
+                onClick={() => {
+                  this.closeModal();
+                }}>
+             <i className="far fa-window-close"></i>
+              </button>
+
             <div className="smallcalendar">
               <Calendar recipeId={recipe} setView={this.props.setView} view={this.props.view}/>
             </div>
-            <button
-              onClick={() => {
-                this.closeModal();
-              }}>close</button>
+
           </div>
         </div>
       );
