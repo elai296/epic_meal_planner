@@ -21,22 +21,19 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      // <div className="contentRecipeBar">
-        <div className="searchBarContainer rounded-circle justify-content-center">
-          <form className="searchBarForm" onSubmit={this.handleSearch}>
-            <input
-              className="rounded-pill mx-1"
-              type="search"
-              value={this.state.value}
-              placeholder=" Search"
-              onChange={this.handleChange}
-            />
-            {<img className="searchIcon mx-1"src="./image/searchIcon.png"alt="searchPicture" onClick={e=>this.handleSearch(e)}/>}
-
-          </form>
-        </div>
-      // </div>
+      <div className="searchBarContainer rounded-circle">
+        <form className="searchBarForm" onSubmit={this.handleSearch}>
+          <input
+            className="rounded-pill mx-1"
+            type="search"
+            value={this.state.value}
+            placeholder=" Search"
+            onChange={this.handleChange}/>
+          {<img className="searchIcon mx-1" src="./image/searchIcon.png" alt="searchPicture" onClick={e=>this.handleSearch(e)}/>}
+        </form>
+      </div>
     );
   }
 }
+
 export default SearchBar;

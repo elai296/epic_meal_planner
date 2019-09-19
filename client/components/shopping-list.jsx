@@ -139,11 +139,14 @@ class ShoppingList extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col pt-5">
-            <ShoppingListItemForm onSubmit={this.addItem}/>
-            <ShoppingListItemList allItems={this.state.shoppingList} deleteItem={this.deleteItem} toggleChecked={this.toggleChecked}/>
+      <div>
+        <Header setView={this.props.setView} text="Shopping List"/>
+        <div className="container">
+          <div className="row">
+            <div className="col">
+              <ShoppingListItemForm onSubmit={this.addItem}/>
+              <ShoppingListItemList allItems={this.state.shoppingList} deleteItem={this.deleteItem} toggleChecked={this.toggleChecked}/>
+            </div>
           </div>
         </div>
       </div>

@@ -3,9 +3,11 @@ import Menu from './menu';
 
 function Header(props) {
   return (
-    <div className="header">
-      <h3 className="headerText">{ props.text }</h3>
-      <Menu setView={ props.setView }/>
+    <div className="container">
+      <div className="header row justify-content-end mx-3 mt-5 mb-1">
+        <div className="headerTextMenu mx-2 align-self-center">{ props.text }</div>
+        <Menu setView={ props.setView }/>
+      </div>
     </div>
   );
 }

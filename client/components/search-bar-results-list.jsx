@@ -50,29 +50,30 @@ class SearchBarResultsList extends React.Component {
   render() {
     return (
       <div>
-        <div>
-          <SearchBar setView={this.props.setView}/>
-        </div>
-        <div>
-          <h4>Search Results</h4>
-          <section className="section">
-            <div className="row">
-              {this.state.list.map((recipe, x) => {
-                if (x < 5) {
-                  return (
+        <Header setView={this.props.setView}/>
+        <div className="container">
+          <div className="row justify-content-center my-5">
+            <SearchBar setView={this.props.setView}/>
+          </div>
+          <div>
+            <section className="section">
+              <div className="row">
+                {this.state.list.map((recipe, x) => {
+                  if (x < 5) {
+                    return (
                       <SearchBarResultsItem
                         key={x}
                         name={recipe.label}
                         image={recipe.image_url}
                         time={recipe.cooking_time}
                         setView={this.props.setView}
-                        recipe={recipe}
-                      />
-                  );
-                }
-              })}
-            </div>
-          </section>
+                        recipe={recipe}/>
+                    );
+                  }
+                })}
+              </div>
+            </section>
+          </div>
         </div>
       </div>
     );

@@ -59,7 +59,7 @@ class UserInfo extends React.Component {
               type="text"
               required />
           </div>
-          <button type="submit" className="btn btn-primary mb-2">Add</button>
+          <button type="submit" className="btn btn-secondary mb-2">Add</button>
         </form>
         <div>
           <div className="nameTitle">Name</div>

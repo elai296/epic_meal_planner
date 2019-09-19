@@ -33,7 +33,7 @@ class Menu extends React.Component {
     }
 
     if (!this.state.showMenu) {
-      return <i className="fas fa-bars menu mx-1" onClick={this.setMenu}></i>
+      return <i className="fas fa-bars headerTextMenu mx-2 align-self-center" onClick={this.setMenu}></i>
     } else {
       console.log("modal loading")
       return (

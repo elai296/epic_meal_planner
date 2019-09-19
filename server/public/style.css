@@ -43,10 +43,10 @@
 }
 
 .header{
-    display: inline-block;
+    font-size: 1.5em;
 }
 
-.headerText{
+.headerTextMenu{
     display: inline-block;
 }
 
@@ -55,13 +55,22 @@
     position: "absolute";
     top: 0;
     left: 0;
+    font-size: 1rem;
     /* position: relative; */
     /* left: 0;
     top: 0;
     transform: translate3d(-100vw, 0, 0);
-         
+
     width: 100vw;
     height: 100vh; */
+}
+
+.calendarHeaderText{
+    font-size: 1.5em;
+}
+
+input[type=checkbox]:checked + label{
+    text-decoration: line-through;
 }
 
 .smallcalendar{
@@ -104,11 +113,6 @@ h4{
 .card-text{
     font-size: 1rem;
 }
-
-/* .card>.row{
-    flex-grow:1;
-
-} */
 
 .card-title{
     font-size: .75em;

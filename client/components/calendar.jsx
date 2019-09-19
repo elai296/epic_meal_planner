@@ -330,7 +330,7 @@ class Calendar extends React.Component {
     this.setDate();
     if(!this.state.meal){
       return (
-        <div>Loading</div>
+        <div>Loading...</div>
       );
     } else if (this.state.day) {
       return (
@@ -349,8 +349,8 @@ class Calendar extends React.Component {
     } else if (this.props.view) {
       return (
         <div>
-          <Header setView={this.props.setView} />
-          <h3 className="text-center">{this.monthLiteral}, {this.year}</h3>
+          <div className="text-center calendarHeaderText">{this.monthLiteral} {this.year}</div>
+          <div className="container">
           <CalendarTable
             handleClick={this.handleClick}
             changeView={this.changeView}
@@ -367,16 +367,19 @@ class Calendar extends React.Component {
                 </div>
                 <div class="col-4">
                     <button type="submit" onClick={this.changeWeek} className="btn btn-primary nextModal">Next Week</button>                  
-              </div>     
+              </div> 
+               </div>
             </div>
         </div>
       );
     } else if(this.state.meal){
-      const headerText = (<div className="text-center">{this.monthLiteral}, {this.year}</div>)
+      const headerText = (<div className="text-center">{this.monthLiteral} {this.year}</div>);
       return (
         <div>
           <Header setView={this.props.setView} text={headerText}/>
-          <CalendarTable
+
+                    <div className="container">
+        <CalendarTable
           handleClick={this.handleClick}
           changeView={this.changeView}
           meal={this.state.meal}
@@ -386,7 +389,7 @@ class Calendar extends React.Component {
           <form className="form-inline text-align-center" onSubmit={this.handleSubmit}>
             <div className="form-group mx-sm-3 mb-2 mr-2 ml-5">
               <input
-              maxlength="20"
+              maxLength="20"
               required
               onChange={this.handleChange}
               type="text"
@@ -397,6 +400,7 @@ class Calendar extends React.Component {
           </form>
           <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 mr-2 ml-5">Previous Week</button>
           <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 ml-4">Next Week</button>
+            </div>
         </div>
       );
     }

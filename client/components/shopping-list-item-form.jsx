@@ -23,9 +23,7 @@ class ShoppingListItemForm extends React.Component {
       isChecked: false
     };
     this.props.onSubmit(newItem);
-    this.setState({
-      listItem: ''
-    });
+    event.target.reset();
   }
 
   render() {
@@ -40,7 +38,7 @@ class ShoppingListItemForm extends React.Component {
           required
           autoFocus/>
         <div className="input-group-append">
-          <button type="submit" className="btn btn-primary">Add</button>
+          <button type="submit" className="btn btn-secondary">Add</button>
         </div>
       </form>
     );

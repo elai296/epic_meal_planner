@@ -4,11 +4,10 @@ import Header from './header';
 function CalendarDayView(props){
   if(props.day){
     const headerText = (<div className="text-center" id={props.date}>{props.month} {props.getDateNumbers()}, {props.year}</div>)
-
     return (
       <div>
         <Header setView={props.setView} text={headerText}/>
-
+        <div className="container">
         <button className="btn btn-primary weekView" onClick={props.changeView}>Week View</button>
            <div className="row justify-content-center">
             <div className="col-2 mealTitle">
@@ -45,6 +44,7 @@ function CalendarDayView(props){
               }
             }} >{props.meal[props.mealObj.dinner].recipe_label}</div>
             </div>
+          </div>
           </div>
       </div>
     );

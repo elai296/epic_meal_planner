@@ -95,57 +95,45 @@ class App extends React.Component {
     let title, display;
 
     if (this.state.view.name === "home") {
-      title = "Home";
       display = (
-        <React.Fragment>
+        <div>
+          <Header setView={this.setView}/>
           <div className="container">
-            <div className="row justify-content-end">
-              <Header setView={this.setView}/>
-            </div>
-          </div>
-          <div className="container">
-            <div className="row justify-content-center my-2">
+            <div className="row justify-content-center my-5">
               <SearchBar setView={this.setView}/>
             </div>
-            <div className="row justify-content-center my-2">
-              <h3>Find a new dish.</h3>
-              <h3>Plan your next meal.</h3>
+            <div>
+              <h3 className="row justify-content-center">Find a new dish.</h3>
+              <h3 className="row justify-content-center">Plan your next meal.</h3>
             </div>
           </div>
-        </React.Fragment>
+        </div>
       );
     } else if (this.state.view.name === "recipes") {
-      title = "Recipes";
       display = (
         <Recipes setCategory={this.setCategory} setView={this.setView}/>
       );
     } else if (this.state.view.name === "calendar") {
-      title = "Calendar";
       display = (
         <Calendar setView={this.setView} />
       );
     } else if (this.state.view.name === "shoppingList") {
-      title = "Shopping List";
       display = (
         <ShoppingList setView={this.setView}/>
       );
     } else if (this.state.view.name === "userInfo") {
-      title = "User Info";
       display = (
         <UserInfo setView={this.setView}/>
       );
     } else if (this.state.view.name === "searchBarResultsList") {
-      title = "Search Results";
       display = (
         <SearchBarResultsList setView={this.setView} value={this.state.searchTerm}/>
       );
     } else if (this.state.view.name === "recipesCategoriesList") {
-      title = "Categories";
       display = (
         <RecipesCategoriesList setView={this.setView} category={this.state.category}/>
       );
     } else if (this.state.view.name === "recipeDetails") {
-      title = "Recipe Details";
       display = (
         <RecipeDetails setView={this.setView} recipe={this.state.view.recipe} view={this.state.view}/>
       );
@@ -153,7 +141,6 @@ class App extends React.Component {
 
     return (
       <div>
-        <Header setView={this.setView} text={title}/>
         {display}
       </div>
     );

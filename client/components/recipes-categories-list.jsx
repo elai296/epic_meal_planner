@@ -28,25 +28,32 @@ class RecipesCategoriesList extends React.Component{
 
     render(){
       if ( this.state.categoryList.length === 0 ){
-        return null;
+        return <div>Loading...</div>;
       } else {
         return (
+          <div>
+            <Header setView={this.props.setView}/>
+            <div className="container">
               <section className="section">
-                <div className="row">
-                  {this.state.categoryList.map((recipe, x) => {
-                    return (
-                      <SearchBarResultsItem
-                        key={x}
-                        name={recipe.label}
-                        image={recipe.image_url}
-                        time={recipe.cooking_time}
-                        setView={this.props.setView}
-                        recipe={recipe}
-                      />
-                    );
-                  })}
-                </div>
-              </section>
+                  <div className="row">
+                    {this.state.categoryList.map((recipe, x) => {
+                      return (
+                        // <CategoriesItem
+                        <SearchBarResultsItem
+                          key={x}
+                          name={recipe.label}
+                          image={recipe.image_url}
+                          time={recipe.cooking_time}
+                          setView={this.props.setView}
+                          recipe={recipe}
+                        />
+                      );
+                    })}
+                  </div>
+                </section>
+            </div>
+          </div>
+
         );
       }
     }

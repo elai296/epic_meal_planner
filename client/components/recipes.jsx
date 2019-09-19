@@ -5,6 +5,7 @@ function Recipes(props) {
   return (
     <div>
       <Header setView={props.setView} text="Recipes" />
+      <div className="container mt-5">
       <div className="d-flex flex-wrap recipeContainerParent mt-5">
         <div
           className='border border-dark text-center recipeContainer'
