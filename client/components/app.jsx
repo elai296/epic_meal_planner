@@ -14,8 +14,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      addItemToShoppingList : [],
-      oneRecipeDetail :[],
+      // addItemToShoppingList: [], // what is this?
+      // oneRecipeDetail: [], // what is this?
       view: {
         name: "home",
         recipe: {}
@@ -25,9 +25,9 @@ class App extends React.Component {
     };
     this.setView = this.setView.bind(this);
     this.setCategory = this.setCategory.bind(this);
-    this.getFavorites= this.getFavorites.bind(this);
-    this.recipeDetails = this.recipeDetails.bind(this);
-    this.addToShoppingList = this.addToShoppingList.bind(this);
+    // this.getFavorites= this.getFavorites.bind(this);
+    // this.recipeDetails = this.recipeDetails.bind(this);
+    // this.addToShoppingList = this.addToShoppingList.bind(this);
   }
 
   setView(name, recipe, searchTerm) {
@@ -41,28 +41,28 @@ class App extends React.Component {
     this.setState({ category });
   }
 
-  componentDidMount() {
-    this.getFavorites();
-    this.recipeDetails();
-  }
+  // componentDidMount() {
+    // this.getFavorites();
+    // this.recipeDetails();
+  // }
 
-  getFavorites(){
-    fetch(`/api/getFavorites.php`)
-      .then(res => res.json())
-      .then(response => {
-        this.setState({
-          modal: response
-        })
-      }
-    );
-  }
+  // getFavorites(){
+  //   fetch(`/api/getFavorites.php`)
+  //     .then(res => res.json())
+  //     .then(response => {
+  //       this.setState({
+  //         modal: response
+  //       })
+  //     }
+  //   );
+  // }
 
-  recipeDetails(oneRecipe) {
-    const req = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(oneRecipe)
-    };
+  // recipeDetails(oneRecipe) {
+  //   const req = {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(oneRecipe)
+  //   };
 
     // fetch('/api/recipeDetails.php', req)
     //   .then(res => res.json())
@@ -72,24 +72,24 @@ class App extends React.Component {
     //     this.setState({ oneRecipe: allItems });
     //   });
 
-  }
+  // }
 
-    addToShoppingList(addingredients) {
-    const req = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(addingredients)
-    };
+  //   addToShoppingList(addingredients) {
+  //   const req = {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(addingredients)
+  //   };
 
-    fetch('/api/addIngredientsToShoppingList.php', req)
-      .then(res => res.json())
-      .then(addItem=> {
-        // console.log("add ingredients to shoppingList Page",addItem)
-        const allItems = this.state.addItemToShoppingList .concat(addItem);
-        this.setState({ addingredients: allItems });
-      });
+  //   fetch('/api/addIngredientsToShoppingList.php', req)
+  //     .then(res => res.json())
+  //     .then(addItem=> {
+  //       // console.log("add ingredients to shoppingList Page",addItem)
+  //       const allItems = this.state.addItemToShoppingList .concat(addItem);
+  //       this.setState({ addingredients: allItems });
+  //     });
 
-  }
+  // }
 
   render() {
     let title, display;

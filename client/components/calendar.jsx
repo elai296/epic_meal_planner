@@ -25,6 +25,7 @@ class Calendar extends React.Component {
     this.getDayOfWeek = this.getDayOfWeek.bind(this);
     this.getDateNumbers = this.getDateNumbers.bind(this);
     this.handleDetailSubmit = this.handleDetailSubmit.bind(this);
+    this.recipeLink = this.recipeLink.bind(this);
   }
 
   handleClick(){
@@ -41,7 +42,6 @@ class Calendar extends React.Component {
             const pushToCalendarCopy = this.state.pushToCalendar;
             pushToCalendarCopy.push(mealStateCopy[counter]);
             this.setState({ pushToCalendar: pushToCalendarCopy });
-            console.log("pushToCalendar: ", this.state.pushToCalendar);
           }
           counter++;
         }
@@ -72,7 +72,6 @@ class Calendar extends React.Component {
     const mealsToPost = this.state.pushToCalendar;
     let counter = 0;
     while (counter < mealsToPost.length) {
-      debugger;
       mealsToPost[counter].recipe_label = this.props.recipeId.label;
       const req = {
         method: 'POST',
@@ -81,17 +80,8 @@ class Calendar extends React.Component {
       };
       fetch('/api/postMeals.php', req)
         .then(res => res.json())
-        .then(meal => {
-          this.setState({ meal })
-          console.log("meal:", meal);
-        });
       counter++;
-
     }
-    this.setState({
-      mealInput: "",
-      pushToCalendar: []
-    })
     this.getStoredMeals();
   }
 
@@ -100,7 +90,6 @@ class Calendar extends React.Component {
     const mealsToPost = this.state.pushToCalendar;
     let counter = 0;
     while(counter < mealsToPost.length){
-      debugger;
       mealsToPost[counter].recipe_label = this.state.mealInput;
       const req = {
         method: 'POST',
@@ -109,18 +98,10 @@ class Calendar extends React.Component {
       };
       fetch('/api/postMeals.php', req)
         .then(res => res.json())
-        .then(meal => {
-          this.setState({ meal })
-          console.log("meal:", meal);
-        });
       counter++;
-
     }
-    this.setState({
-      mealInput: "",
-      pushToCalendar: []
-    })
     this.getStoredMeals();
+    event.target.reset();
   }
 
   componentDidMount(){
@@ -128,11 +109,14 @@ class Calendar extends React.Component {
   }
 
   getStoredMeals(){
-    // debugger;
     fetch(`/api/getMeals.php`)
       .then(response => response.json())
       .then(data => {
         this.sortDays(data);
+    })
+    this.setState({
+      mealInput: "",
+      pushToCalendar: []
     })
   }
 
@@ -150,8 +134,6 @@ class Calendar extends React.Component {
       counter++;
     }
 
-    // debugger;
-    console.log("data is", data);
     let datePosition = 0;
     while (datePosition < dynamicWeek.length){
       if(copyOfMeal[0]){
@@ -336,9 +318,16 @@ class Calendar extends React.Component {
     }
   }
 
+  recipeLink(label){
+    fetch(`/api/calendar-details.php?q=` + label)
+      .then(response => response.json())
+      .then(recipes => {
+        this.props.setView("recipeDetails", recipes[0])
+      });
+  }
+
   render(){
     this.setDate();
-    console.log("props: ", this.props);
     if(!this.state.meal){
       return (
         <div>Loading...</div>
@@ -354,23 +343,33 @@ class Calendar extends React.Component {
           meal={this.state.meal}
           mealObj={this.mealObj}
           getDateNumbers={this.getDateNumbers}
-          setView={this.props.setView}/>
+          setView={this.props.setView}
+          recipeLink={this.recipeLink} />
       )
     } else if (this.props.view) {
       return (
         <div>
           <div className="text-center calendarHeaderText">{this.monthLiteral} {this.year}</div>
           <div className="container">
-            <CalendarTable
-              handleClick={this.handleClick}
-              changeView={this.changeView}
-              meal={this.state.meal}
-              setDate={this.setDate}
-              date={this.state.date} />
-            <button onClick={this.handleDetailSubmit} className="btn btn-secondary mb-2">Add</button>
-            <button type="submit" onClick={this.changeWeek} className="btn btn-secondary mb-2 mr-2 ml-5">Previous Week</button>
-            <button type="submit" onClick={this.changeWeek} className="btn btn-secondary mb-2 ml-4">Next Week</button>
-          </div>
+          <CalendarTable
+            handleClick={this.handleClick}
+            changeView={this.changeView}
+            meal={this.state.meal}
+            setDate={this.setDate}
+            date={this.state.date}
+            recipeLink={this.recipeLink} />
+             <div class="row justify-content-center">
+                <div class="col-4">
+                    <button type="submit" onClick={this.changeWeek} className="btn btn-primary prevModal">Previous Week</button>
+                </div>
+                <div class="col-4">
+                  <button onClick={this.handleDetailSubmit} className="btn btn-primary mb-2 addModal">Add</button>               
+                </div>
+                <div class="col-4">
+                    <button type="submit" onClick={this.changeWeek} className="btn btn-primary nextModal">Next Week</button>                  
+              </div> 
+               </div>
+            </div>
         </div>
       );
     } else if(this.state.meal){
@@ -378,27 +377,30 @@ class Calendar extends React.Component {
       return (
         <div>
           <Header setView={this.props.setView} text={headerText}/>
-          <div className="container">
-            <CalendarTable
-            handleClick={this.handleClick}
-            changeView={this.changeView}
-            meal={this.state.meal}
-            setDate={this.setDate}
-            date={this.state.date}/>
-            <form className="form-inline text-align-center" onSubmit={this.handleSubmit}>
-              <div className="form-group mx-sm-3 mb-2 mr-2 ml-5">
-                <input
-                required
-                onChange={this.handleChange}
-                type="text"
-                className="form-control"
-                placeholder="Add Meal" />
-              </div>
-              <button type="submit" className="btn btn-secondary mb-2">Add</button>
-            </form>
-            <button type="submit" onClick={this.changeWeek} className="btn btn-secondary mb-2 mr-2 ml-5">Previous Week</button>
-            <button type="submit" onClick={this.changeWeek} className="btn btn-secondary mb-2 ml-4">Next Week</button>
-          </div>
+
+                    <div className="container">
+        <CalendarTable
+          handleClick={this.handleClick}
+          changeView={this.changeView}
+          meal={this.state.meal}
+          setDate={this.setDate}
+          date={this.state.date}
+          recipeLink={this.recipeLink} />
+          <form className="form-inline text-align-center" onSubmit={this.handleSubmit}>
+            <div className="form-group mx-sm-3 mb-2 mr-2 ml-5">
+              <input
+              maxLength="20"
+              required
+              onChange={this.handleChange}
+              type="text"
+              className="form-control"
+              placeholder="Add Meal" />
+            </div>
+            <button type="submit" className="btn btn-primary mb-2">Add</button>
+          </form>
+          <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 mr-2 ml-5">Previous Week</button>
+          <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 ml-4">Next Week</button>
+            </div>
         </div>
       );
     }

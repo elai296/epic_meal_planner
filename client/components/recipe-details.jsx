@@ -6,7 +6,7 @@ import Header from './header';
 class RecipeDetails extends React.Component {
   constructor(props) {
     console.log("props are ", props)
-    console.log("Recipe is ", props.recipe)
+    console.log("Recipe is ", props.recipe.ingredients)
     super(props);
     this.state = {
       favStatus: false,
@@ -32,7 +32,9 @@ class RecipeDetails extends React.Component {
             <button
               onClick={() => {
                 this.closeModal();
-              }}>close</button>
+              }}>
+                   <i className="far fa-window-close"></i>
+              </button>
           </div>
         </div>
       );
@@ -43,7 +45,12 @@ class RecipeDetails extends React.Component {
             <button
               onClick={() => {
                 this.closeModal();
-              }}>close</button>
+              }}>
+              {/* close */}
+
+              <i className="far fa-window-close"></i>
+              
+              </button>
           </div>
         </div>
       );
@@ -51,13 +58,17 @@ class RecipeDetails extends React.Component {
       return (
         <div>
           <div className="modal">
+              <button className= "closeModal"
+                onClick={() => {
+                  this.closeModal();
+                }}>
+             <i className="far fa-window-close"></i>
+              </button>
+
             <div className="smallcalendar">
-              <Calendar recipeId={recipe} view={this.props.view}/>
+              <Calendar recipeId={recipe} setView={this.props.setView} view={this.props.view}/>
             </div>
-            <button
-              onClick={() => {
-                this.closeModal();
-              }}>close</button>
+
           </div>
         </div>
       );
@@ -111,7 +122,6 @@ class RecipeDetails extends React.Component {
       body: JSON.stringify(data),
     })
     .then(response=>{
-      console.log("response", response)
       response.json()});
   }
 
@@ -119,18 +129,25 @@ class RecipeDetails extends React.Component {
     let recipe = this.props.recipe;
     let props = this.props
     // console.log("props is ", props)
-    const heartColor={
-      whiteHeart:"./image/whiteHeartIcon.png",
-      redHeart:"./image/redHeart.png"
-    }
+
 
     // console.log("Ingredeients before split", recipe.ingredients)
-    let ingredientLines = recipe.ingredients.split('\n');
+    let ingredientLines = recipe.ingredients.split('\n'); // need this for ingredient formatting
     // console.log("ingredients after split ", ingredientLines);
 
+    /* Elaine's heart using this.state.favStatus */
+    const heartColor = {
+      whiteHeart: "./image/whiteHeartIcon.png",
+      redHeart: "./image/redHeart.png"
+    }
     let image = !this.state.favStatus ? 'whiteHeart' : 'redHeart';
-    console.log(recipe.id);
-    console.log("worked", this.props);
+    // console.log(recipe.id);
+    // console.log("worked", this.props);
+
+    let red = "./image/redHeart.png";
+    let white = "./image/whiteHeartIcon.png";
+    let jaeTestHeart = recipe.categories === "favorites" ? red : white;
+
 
     return (
       <div>
@@ -139,40 +156,43 @@ class RecipeDetails extends React.Component {
           <div className="row justify-content-center my-5">
             <SearchBar setView={this.props.setView}/>
           </div>
-          <div>
-            <p className='h1'>{recipe.label}</p>
-            <div className="row">
-              <div className="propsFood" style={{
-                backgroundImage: "url("+recipe.image_url+")",
-                backgroundSize: "contain",
-                backgroundRepeat:"no-repeat"}}></div>
-              <div className="timeServing">
-                <div>Time: {recipe.cooking_time} minutes</div>
-                <div>Serving size: {recipe.serving_size}</div>
-                <div className="iconImages">
-                  {
-                    <img
-                      className="calendarIcon imgIcon"
-                      src="./image/calendarIcon.png"
-                      alt="First Icon"
-                      onClick={()=>this.handleCalendar()}/>
-                  }
-                  {
-                    <img
-                      className="heartIcon imgIcon"
-                      src={heartColor[image]}
-                      alt="Second Icon"
-                      onClick={()=>this.handleFavorites()}/>
-                  }
-                  {
-                    <img
-                      className="shoppingListIcon imgIcon"
-                      onClick= {() => this.handleShoppingList()} //need to change to the modal view for onClick. this is just for testing; it goes to shoppingList view
-                      src="./image/shoppingList.png"
-                      alt="Third Icon"/>
-                  }
-                </div>
-              </div>
+        <div>
+          <p className='h1'>{recipe.label}</p>
+          <div className="row">
+            <div className="propsFood" style={{
+              backgroundImage: "url("+recipe.image_url+")",
+              backgroundSize: "contain",
+              backgroundRepeat:"no-repeat"}}></div>
+            <div className="timeServing">
+              <div>Time: {recipe.cooking_time} minutes</div>
+              <div>Serving size: {recipe.serving_size}</div>
+            <div className="iconImages">
+              {
+                <img
+                  className="calendarIcon imgIcon"
+                  src="./image/calendarIcon.png"
+                  alt="First Icon"
+                  onClick={()=>this.handleCalendar()}
+                />
+              }
+              {
+                <img
+                  className="heartIcon imgIcon"
+                  // src={heartColor[image]} // Elaine's heart via
+                  src={jaeTestHeart}        // Jae's testHeart to reflect actual database
+                  alt="Second Icon"
+                  onClick={()=>this.handleFavorites()}
+                />
+              }
+              {
+                <img
+                  className="shoppingListIcon imgIcon"
+                  onClick= {() => this.handleShoppingList()} //need to change to the modal view for onClick. this is just for testing; it goes to shoppingList view
+                  src="./image/shoppingList.png"
+                  alt="Third Icon"
+                />
+              }
+            </div>
             </div>
           </div>
           <div className="text-center">INGREDIENTS</div>

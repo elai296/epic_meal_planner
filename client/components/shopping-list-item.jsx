@@ -5,7 +5,7 @@ function ShoppingListItem(props) {
   // console.log("props.one item are ", props.oneItem)
   // console.log("item props are ", props)
 
-  console.log('props are ', props.deleteItem)
+  // console.log('props are ', props.deleteItem)
 
   if(item.is_completed === "0"){
     item.is_completed = false

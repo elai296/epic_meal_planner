@@ -8,32 +8,44 @@ function CalendarDayView(props){
       <div>
         <Header setView={props.setView} text={headerText}/>
         <div className="container">
-          <button className="btn btn-link" onClick={props.changeView}>Week View</button>
-          <div class="row justify-content-center">
-              <div class="col-4 mt-5">
-                Breaksfast
-              </div>
-              <div class="col-4">
-                <div className="col-md-3 offset-md-3 mb-3">{props.meal[props.mealObj.breakfast].recipe_label}</div>
-              </div>
+        <button className="btn btn-primary weekView" onClick={props.changeView}>Week View</button>
+           <div className="row justify-content-center">
+            <div className="col-2 mealTitle">
+              Breaksfast
             </div>
-            <div class="row justify-content-center">
-              <div class="col-4 mt-5">
-                Lunch
-              </div>
-              <div class="col-4">
-                <div className="col-md-3 offset-md-3 mb-3">{props.meal[props.mealObj.lunch].recipe_label}</div>
-              </div>
+            <div className="col-6 mealRecipe">
+              <div onClick={() => {
+                if (props.meal[props.mealObj.breakfast].recipe_id){
+                  props.recipeLink(props.meal[props.mealObj.breakfast].recipe_label);
+                }
+              }} >{props.meal[props.mealObj.breakfast].recipe_label}</div>
             </div>
-            <div class="row justify-content-center">
-              <div class="col-4 mt-5">
-                Dinner
-              </div>
-              <div class="col-4">
-                <div className="col-md-3 offset-md-3 mb-3">{props.meal[props.mealObj.dinner].recipe_label}</div>
-              </div>
+          </div>
+           <div className="row justify-content-center">
+            <div className="col-2 mealTitle">
+              Lunch
             </div>
-        </div>
+            <div className="col-6 mealRecipe">
+            <div onClick={() => {
+              if (props.meal[props.mealObj.lunch].recipe_id) {
+                props.recipeLink(props.meal[props.mealObj.lunch].recipe_label);
+              }
+            }} >{props.meal[props.mealObj.lunch].recipe_label}</div>
+            </div>
+          </div>
+           <div className="row justify-content-center">
+            <div className="col-2 mealTitle">
+              Dinner
+            </div>
+            <div className="col-6 mealRecipe">
+            <div onClick={() => {
+              if (props.meal[props.mealObj.dinner].recipe_id) {
+                props.recipeLink(props.meal[props.mealObj.dinner].recipe_label);
+              }
+            }} >{props.meal[props.mealObj.dinner].recipe_label}</div>
+            </div>
+          </div>
+          </div>
       </div>
     );
   } else {

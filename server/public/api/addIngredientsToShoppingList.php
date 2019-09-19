@@ -6,7 +6,6 @@ set_exception_handler('error_handler');
 startUp();
 
 $data = getBodyData();
-// var_dump($data); exit();
 $id = $data['id'];
 
 if( intval($id) < 0 ){

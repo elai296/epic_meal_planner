@@ -9,8 +9,15 @@ $json_input = file_get_contents('php://input');
 $obj = json_decode($json_input, true);
 $id = $obj["id"];
 
-$query = "INSERT INTO `favorites`(recipe_id) VALUES ($id)";
-var_dump("query is, ", $query);
+$categories = $obj["categories"];
+
+$query = "";
+if ($categories === 'favorites') {
+  $query = "UPDATE recipe SET recipe.categories = NULL WHERE id = $id";
+} else if ($categories === NULL) {
+  $query = "UPDATE recipe SET recipe.categories = 'favorites' WHERE id = $id";
+}
+
 mysqli_query($conn, $query);
 
 ?>
