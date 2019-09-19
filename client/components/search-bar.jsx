@@ -17,23 +17,7 @@ class SearchBar extends React.Component {
   handleSearch(event) {
     event.preventDefault();
     this.props.setView("searchBarResultsList", null, this.state.value);
-    // this.getRecipes();
   }
-
-  // getRecipes() {
-  //   fetch(
-  //     "https://api.edamam.com/search?q=" +
-  //       this.state.value +
-  //       "&app_id=1930606a&app_key=165754ed1a324e1c76dc770f26190489&from=0&to=10&time=1-60"
-  //   )
-  //     .then(response => response.json())
-  //     .then(recipes => {
-  //       this.setState({ list: recipes.hits });
-  //     })
-  //     .then(() => {
-  //       this.props.setView("search bar result",{}, this.state.list);
-  //     });
-  // }
 
   render() {
     return (

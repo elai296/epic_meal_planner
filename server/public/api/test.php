@@ -20,7 +20,6 @@ $query = "SELECT r.id, r.directions_url, r.image_url, r.serving_size, r.label, r
     GROUP BY i.recipe_id
     LIMIT 5";
 
-// var_dump("query is ", $query);
 $result = mysqli_query($conn, $query);
 
 if (!$result) {
@@ -65,7 +64,6 @@ if($count <= 5){
     $ingredients = $resultLabel[$i]["ingredientLines"];
 
     $query2 = "INSERT IGNORE INTO `recipe`(directions_url, image_url, serving_size, label, cooking_time) VALUES ('$url', '$image', $yield, '$label', $totalTime)";
-    // var_dump("query2 is ", $query2);
     $result3 = mysqli_query($conn, $query2);
 
     $recipe_id = mysqli_insert_id($conn);
@@ -86,8 +84,6 @@ while ($row = mysqli_fetch_assoc($result2)) {
   $output[] = $row;
 };
 
-
-// var_dump("output is ", $output);
 print(json_encode($output));
 
 ?>

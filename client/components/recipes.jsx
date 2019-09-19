@@ -9,16 +9,37 @@ function Recipes(props){
         onClick={
           () => {
             props.setView("recipesCategoriesList", {}, '');
-            props.setCategory("Vegan");
-          }}>Vegan</div>
+            props.setCategory("favorites");
+          }}>Favorites</div>
+      <div
+        onClick={
+        () => {
+          props.setView("recipesCategoriesList", {}, '');
+         props.setCategory("vegan");
+         }}>Vegan</div>
+      <div
+        onClick={
+          () => {
+         props.setView("recipesCategoriesList", {}, '');
+        props.setCategory("keto");}}>Keto</div>
       <div
         onClick={
           () => {
             props.setView("recipesCategoriesList", {}, '');
-            props.setCategory("Keto");
-          }}>Keto</div>
-      <div>Vegan</div>
-      <div>Paleo</div>
+            props.setCategory("paleo");
+          }}>Paleo</div>
+      <div
+        onClick={
+          () => {
+            props.setView("recipesCategoriesList", {}, '');
+            props.setCategory("dairy-free");
+          }}>Dairy-Free</div>
+      <div
+        onClick={
+          () => {
+            props.setView("recipesCategoriesList", {}, '');
+            props.setCategory("gluten-free");
+          }}>Gluten-Free</div>
     </div>
   );
 }

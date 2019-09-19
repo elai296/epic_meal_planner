@@ -7,8 +7,7 @@ class SearchBarResultsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: [],
-      // value: ""
+      list: []
     };
   }
   // componentDidMount() {
@@ -51,7 +50,6 @@ class SearchBarResultsList extends React.Component {
   render() {
     return (
       <div>
-        {/* <a onClick={() => this.handleClick(this.props)}>Home</a> */}
         <div>
           <SearchBar setView={this.props.setView}/>
         </div>
@@ -66,9 +64,6 @@ class SearchBarResultsList extends React.Component {
                         key={x}
                         name={recipe.label}
                         image={recipe.image_url}
-                        url={recipe.directions_url}
-                        servingSize={recipe.serving_size}
-                        ingredient={recipe.ingredients}
                         time={recipe.cooking_time}
                         setView={this.props.setView}
                         recipe={recipe}
