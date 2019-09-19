@@ -8,34 +8,32 @@ function CalendarDayView(props){
     return (
       <div>
         <Header setView={props.setView} text={headerText}/>
-        <button className="btn btn-link" onClick={props.changeView}>Week View</button>
 
-
-           <div class="row justify-content-center">
-            <div class="col-4 mt-5">
-              Breaksfast
+           <button className="btn btn-primary weekView" onClick={props.changeView}>Week View</button>
+      
+           <div className="row justify-content-center">
+            <div className="col-2 mealTitle">
+              Breakfast
             </div>
-            <div class="col-4">
-              <div className="col-md-3 offset-md-3 mb-3">{props.meal[props.mealObj.breakfast].recipe_label}</div>
+            <div className="col-6">
+              <div className=" card border-dark col mealRecipe" >{props.meal[props.mealObj.breakfast].recipe_label}</div>
             </div>
           </div>
-
-           <div class="row justify-content-center">
-            <div class="col-4 mt-5">
+           <div className="row justify-content-center">
+            <div className="col-2 mealTitle">
               Lunch
             </div>
-            <div class="col-4">
-               <div className="col-md-3 offset-md-3 mb-3">{props.meal[props.mealObj.lunch].recipe_label}</div>
+            <div className="col-6">
+               <div className="card border-dark col mealRecipe">{props.meal[props.mealObj.lunch].recipe_label}</div>
             </div>
-      
           </div>
 
-           <div class="row justify-content-center">
-            <div class="col-4 mt-5">
+           <div className="row justify-content-center">
+            <div className="col-2 mealTitle">
               Dinner
             </div>
-            <div class="col-4">
-              <div className="col-md-3 offset-md-3 mb-3">{props.meal[props.mealObj.dinner].recipe_label}</div>
+            <div className="col-6">
+              <div className="card border-dark col mealRecipe">{props.meal[props.mealObj.dinner].recipe_label}</div>
             </div>
       
           </div>
