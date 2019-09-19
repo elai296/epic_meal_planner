@@ -38,7 +38,7 @@ class ShoppingListItemForm extends React.Component {
           required
           autoFocus/>
         <div className="input-group-append">
-          <button type="submit" className="btn btn-primary">Add</button>
+          <button type="submit" className="btn btn-secondary">Add</button>
         </div>
       </form>
     );

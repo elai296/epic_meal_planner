@@ -179,7 +179,7 @@ class RecipeDetails extends React.Component {
             })}
           </div>
           <div className="text-center">
-          <a className="text-dark" href={recipe.directions_url}>Click for Instructions</a>
+            <a className="text-secondary font-weight-bold" href={recipe.directions_url} target="_blank">Click for Instructions</a>
           </div>
           {this.showModal(recipe)}
         </div>

@@ -367,9 +367,9 @@ class Calendar extends React.Component {
               meal={this.state.meal}
               setDate={this.setDate}
               date={this.state.date} />
-            <button onClick={this.handleDetailSubmit} className="btn btn-primary mb-2">Add</button>
-            <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 mr-2 ml-5">Previous Week</button>
-            <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 ml-4">Next Week</button>
+            <button onClick={this.handleDetailSubmit} className="btn btn-secondary mb-2">Add</button>
+            <button type="submit" onClick={this.changeWeek} className="btn btn-secondary mb-2 mr-2 ml-5">Previous Week</button>
+            <button type="submit" onClick={this.changeWeek} className="btn btn-secondary mb-2 ml-4">Next Week</button>
           </div>
         </div>
       );
@@ -394,10 +394,10 @@ class Calendar extends React.Component {
                 className="form-control"
                 placeholder="Add Meal" />
               </div>
-              <button type="submit" className="btn btn-primary mb-2">Add</button>
+              <button type="submit" className="btn btn-secondary mb-2">Add</button>
             </form>
-            <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 mr-2 ml-5">Previous Week</button>
-            <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 ml-4">Next Week</button>
+            <button type="submit" onClick={this.changeWeek} className="btn btn-secondary mb-2 mr-2 ml-5">Previous Week</button>
+            <button type="submit" onClick={this.changeWeek} className="btn btn-secondary mb-2 ml-4">Next Week</button>
           </div>
         </div>
       );
