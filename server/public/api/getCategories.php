@@ -11,7 +11,7 @@ $obj = json_decode($json_input, true);
 
 $category = $_GET['category'];
 
-$query = "SELECT r.id, r.directions_url, r.image_url, r.serving_size, r.label, r.cooking_time,
+$query = "SELECT r.id, r.directions_url, r.image_url, r.serving_size, r.label, r.cooking_time, r.categories,
 GROUP_CONCAT(i.ingredients_desc SEPARATOR '\n') AS ingredients
 FROM recipe AS r
 JOIN recipe_ingredients AS i

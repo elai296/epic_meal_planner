@@ -2,7 +2,6 @@ import React from 'react';
 import Header from './header';
 import SearchBar from './search-bar';
 import SearchBarResultsItem from "./search-bar-results-item";
-// import CategoriesItem from "./categories-item";
 
 class RecipesCategoriesList extends React.Component{
     constructor(props){
@@ -36,7 +35,6 @@ class RecipesCategoriesList extends React.Component{
                 <div className="row">
                   {this.state.categoryList.map((recipe, x) => {
                     return (
-                      // <CategoriesItem
                       <SearchBarResultsItem
                         key={x}
                         name={recipe.label}

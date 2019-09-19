@@ -151,7 +151,7 @@ class Calendar extends React.Component {
     }
 
     // debugger;
-    console.log("data is", data);
+    // console.log("data is", data);
     let datePosition = 0;
     while (datePosition < dynamicWeek.length){
       if(copyOfMeal[0]){
@@ -338,7 +338,7 @@ class Calendar extends React.Component {
 
   render(){
     this.setDate();
-    console.log("props: ", this.props);
+    // console.log("props: ", this.props);
     if(!this.state.meal){
       return (
         <div>Loading</div>
