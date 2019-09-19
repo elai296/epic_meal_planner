@@ -28,9 +28,6 @@ class SearchBarResultsList extends React.Component {
         console.log("recipes are:", recipes)
         this.setState({ list: recipes });
       });
-      // .then(() => {
-      //   this.props.setView("search bar result",{}, this.state.list);
-      // });
   }
   componentDidUpdate(prevProps){
     if (prevProps.value === this.props.value){
@@ -47,8 +44,31 @@ class SearchBarResultsList extends React.Component {
       //   this.props.setView("search bar result",{}, this.state.list);
       // });
   }
-  render() {
-    return (
+  render()  {
+    console.log("do we have a list ", this.state.list);
+    console.log("state list length is ", this.state.list.length)
+    console.log("do we have props  ", this.props)
+    if(this.state.list.length === 0){
+      return (
+        <div>
+          <Header setView={this.props.setView} />
+          <div className="container">
+            <div className="row justify-content-center my-5">
+              <SearchBar setView={this.props.setView} />
+            </div>
+            <div>
+              <section className="section">
+                <div className="row">
+                  <div className="loader"></div >
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+
+      )
+    } else {
+      return (
       <div>
         <Header setView={this.props.setView}/>
         <div className="container">
@@ -78,6 +98,8 @@ class SearchBarResultsList extends React.Component {
       </div>
     );
   }
+}
+
 }
 
 export default SearchBarResultsList;
