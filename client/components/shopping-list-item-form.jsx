@@ -23,9 +23,7 @@ class ShoppingListItemForm extends React.Component {
       isChecked: false
     };
     this.props.onSubmit(newItem);
-    this.setState({
-      listItem: ''
-    });
+    event.target.reset();
   }
 
   render() {
