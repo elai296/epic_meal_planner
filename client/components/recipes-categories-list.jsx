@@ -49,8 +49,6 @@ class RecipesCategoriesList extends React.Component{
                   })}
                 </div>
               </section>
-            </div>
-          </div>
         );
       }
     }

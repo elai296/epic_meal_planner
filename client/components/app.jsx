@@ -9,7 +9,6 @@ import RecipesFavoritesList from "./recipes-favorites-list";
 import Header from "./header";
 import Recipes from './recipes';
 import UserInfo from "./user-info";
-import CategoriesDetails from "./categories-details"
 
 class App extends React.Component {
   constructor(props) {
@@ -150,11 +149,8 @@ class App extends React.Component {
       display = (
         <RecipeDetails setView={this.setView} recipe={this.state.view.recipe} view={this.state.view}/>
       );
-    } else if (this.state.view.name === "categoryDetails") {
-      display = (
-        <CategoriesDetails setView={this.setView} recipe={this.state.view.recipe} />
-      );
     }
+
     return (
       <div>
         <Header setView={this.setView} text={title}/>
