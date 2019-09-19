@@ -19,8 +19,8 @@ $query = "SELECT r.id, r.directions_url, r.image_url, r.serving_size, r.label, r
     JOIN recipe_ingredients AS i
     ON r.id = i.recipe_id
     WHERE r.label LIKE '%$input%'
-    GROUP BY i.recipe_id
-    LIMIT 5";
+    GROUP BY i.recipe_id";
+
 // var_dump("query is, ", $query);
 $result = mysqli_query($conn, $query);
 
