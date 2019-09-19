@@ -20,7 +20,6 @@
 
 .propsImage{
     display: inline-block;
-
 }
 
 .modal{
@@ -40,6 +39,10 @@
 
     background: rgb(252, 252, 252);
     box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9)
+}
+
+.modalText{
+    font-size: 2rem;
 }
 
 .header{
@@ -77,14 +80,17 @@ input[type=checkbox]:checked + label{
     max-height: 685px;
     width: 350px;
 }
+
 .section>.row{
     display: flex;
     flex-direction: column;
     margin: 20px;
 }
+
 .timeServing{
     height: 50px;
 }
+
 .propsFood{
     height: 100px;
     width: 100px;
@@ -117,14 +123,14 @@ h4{
 .card-title{
     font-size: .75em;
 }
+
 .card-text{
     font-size: .75em;
 }
 
-.h1{
+.recipeDetailsTitle{
     font-size: 2em;
 }
-
 
 .recipeContainer{
     padding: 9% 0;
@@ -137,16 +143,10 @@ h4{
     margin-left:3rem;
 }
 
-
 .mealTitle{
     margin-top:4rem;
     margin-right: 2rem;
 }
-/*
-.mealRecipe{
-    margin-top:4rem;
-    margin-bottom:5rem;
-} */
 
 .mealRecipe{
     margin-top:3rem;
@@ -154,12 +154,9 @@ h4{
     border-style:solid;
 }
 
-
-
 .table{
      table-layout: fixed;
 }
-
 
 .table td, .table th {
     min-width: 100px;
@@ -167,11 +164,9 @@ h4{
     font-size:14px;
 }
 
-
 .addModal{
     font-size:15px;
     margin-left:2rem;
-
 }
 
 .prevModal{

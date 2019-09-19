@@ -88,7 +88,6 @@ class App extends React.Component {
 
     return (
       <div>
-        {/* <img src="./image/backgroundImage.jpg" alt="backgroundImg"/> */}
         {display}
       </div>
     );
