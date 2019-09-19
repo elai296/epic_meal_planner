@@ -30,7 +30,7 @@ class ShoppingList extends React.Component {
         // var test = getData.map(bool => {
         //   return console.log(data)
         // })
-        console.log("data is ", data)
+        // console.log("data is ", data)
         this.setState({ shoppingList: data })
           ;
       }

@@ -118,7 +118,6 @@ class RecipeDetails extends React.Component {
       body: JSON.stringify(data),
     })
     .then(response=>{
-      console.log("response", response)
       response.json()});
   }
 
@@ -126,19 +125,24 @@ class RecipeDetails extends React.Component {
     let recipe = this.props.recipe;
     let props = this.props
     // console.log("props is ", props)
-    const heartColor={
-      whiteHeart:"./image/whiteHeartIcon.png",
-      redHeart:"./image/redHeart.png"
-    }
 
 
     // console.log("Ingredeients before split", recipe.ingredients)
-    let ingredientLines = recipe.ingredients.split('\n');
+    let ingredientLines = recipe.ingredients.split('\n'); // need this for ingredient formatting
     // console.log("ingredients after split ", ingredientLines);
 
+    /* Elaine's heart using this.state.favStatus */
+    const heartColor = {
+      whiteHeart: "./image/whiteHeartIcon.png",
+      redHeart: "./image/redHeart.png"
+    }
     let image = !this.state.favStatus ? 'whiteHeart' : 'redHeart';
-    console.log(recipe.id);
-    console.log("worked", this.props);
+    // console.log(recipe.id);
+    // console.log("worked", this.props);
+
+    let red = "./image/redHeart.png";
+    let white = "./image/whiteHeartIcon.png";
+    let jaeTestHeart = recipe.categories === "favorites" ? red : white;
 
 
     return (
@@ -168,7 +172,8 @@ class RecipeDetails extends React.Component {
               {
                 <img
                   className="heartIcon imgIcon"
-                  src={heartColor[image]}
+                  // src={heartColor[image]} // Elaine's heart via
+                  src={jaeTestHeart}        // Jae's testHeart to reflect actual database
                   alt="Second Icon"
                   onClick={()=>this.handleFavorites()}
                 />
