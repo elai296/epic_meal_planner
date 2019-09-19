@@ -73,7 +73,7 @@ class Calendar extends React.Component {
     let counter = 0;
     const mealPosts = [];
     while (counter < mealsToPost.length) {
-      mealsToPost[counter].recipe_label = this.props.recipeId.label;
+      mealsToPost[counter].recipe_label = this.props.recipeId.label.slice(0,15);
       const req = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -84,7 +84,6 @@ class Calendar extends React.Component {
       counter++;
     }
     Promise.allSettled(mealPosts).then(this.getStoredMeals);
-    event.target.reset();
   }
 
   handleSubmit() {
@@ -392,7 +391,7 @@ class Calendar extends React.Component {
           <form className="form-inline text-align-center" onSubmit={this.handleSubmit}>
             <div className="form-group mx-sm-3 mb-2 mr-2 ml-5">
               <input
-              maxLength="20"
+              maxLength="15"
               required
               onChange={this.handleChange}
               type="text"

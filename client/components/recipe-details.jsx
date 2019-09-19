@@ -208,7 +208,7 @@ class RecipeDetails extends React.Component {
 
 
             <div className="text-center">INGREDIENTS</div>
-          <div>
+          <div className="overflow-auto">
             {
               ingredientLines.map((ingredient, i) => {
               return <div key={i}>- {ingredient}</div>;
