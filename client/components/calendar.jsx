@@ -80,16 +80,8 @@ class Calendar extends React.Component {
       };
       fetch('/api/postMeals.php', req)
         .then(res => res.json())
-        .then(meal => {
-          this.setState({ meal })
-        });
       counter++;
-
     }
-    this.setState({
-      mealInput: "",
-      pushToCalendar: []
-    })
     this.getStoredMeals();
   }
 
@@ -106,17 +98,10 @@ class Calendar extends React.Component {
       };
       fetch('/api/postMeals.php', req)
         .then(res => res.json())
-        .then(meal => {
-          this.setState({ meal })
-        });
       counter++;
-
     }
-    this.setState({
-      mealInput: "",
-      pushToCalendar: []
-    })
     this.getStoredMeals();
+    event.target.reset();
   }
 
   componentDidMount(){
@@ -128,6 +113,10 @@ class Calendar extends React.Component {
       .then(response => response.json())
       .then(data => {
         this.sortDays(data);
+    })
+    this.setState({
+      mealInput: "",
+      pushToCalendar: []
     })
   }
 
@@ -389,6 +378,7 @@ class Calendar extends React.Component {
           <form className="form-inline text-align-center" onSubmit={this.handleSubmit}>
             <div className="form-group mx-sm-3 mb-2 mr-2 ml-5">
               <input
+              maxlength="20"
               required
               onChange={this.handleChange}
               type="text"

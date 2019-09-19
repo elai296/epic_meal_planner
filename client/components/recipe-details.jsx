@@ -52,7 +52,7 @@ class RecipeDetails extends React.Component {
         <div>
           <div className="modal">
             <div className="smallcalendar">
-              <Calendar recipeId={recipe} view={this.props.view}/>
+              <Calendar recipeId={recipe} setView={this.props.setView} view={this.props.view}/>
             </div>
             <button
               onClick={() => {
@@ -120,6 +120,7 @@ class RecipeDetails extends React.Component {
       redHeart:"./image/redHeart.png"
     }
 
+
     // console.log("Ingredeients before split", recipe.ingredients)
     let ingredientLines = recipe.ingredients.split('\n');
     // console.log("ingredients after split ", ingredientLines);
@@ -127,6 +128,7 @@ class RecipeDetails extends React.Component {
     let image = !this.state.favStatus ? 'whiteHeart' : 'redHeart';
     console.log(recipe.id);
     console.log("worked", this.props);
+
 
     return (
       <div className="container">
