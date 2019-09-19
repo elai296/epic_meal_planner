@@ -71,6 +71,7 @@ class Calendar extends React.Component {
     event.preventDefault();
     const mealsToPost = this.state.pushToCalendar;
     let counter = 0;
+    const mealPosts = [];
     while (counter < mealsToPost.length) {
       mealsToPost[counter].recipe_label = this.props.recipeId.label;
       const req = {
@@ -78,17 +79,19 @@ class Calendar extends React.Component {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(mealsToPost[counter])
       };
-      fetch('/api/postMeals.php', req)
-        .then(res => res.json())
+      mealPosts.push(fetch('/api/postMeals.php', req)
+        .then(res => res.json()))
       counter++;
     }
-    this.getStoredMeals();
+    Promise.allSettled(mealPosts).then(this.getStoredMeals);
+    event.target.reset();
   }
 
   handleSubmit() {
     event.preventDefault();
     const mealsToPost = this.state.pushToCalendar;
     let counter = 0;
+    const mealPosts = [];
     while(counter < mealsToPost.length){
       mealsToPost[counter].recipe_label = this.state.mealInput;
       const req = {
@@ -96,11 +99,11 @@ class Calendar extends React.Component {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(mealsToPost[counter])
       };
-      fetch('/api/postMeals.php', req)
-        .then(res => res.json())
+      mealPosts.push(fetch('/api/postMeals.php', req)
+        .then(res => res.json()))
       counter++;
     }
-    this.getStoredMeals();
+    Promise.allSettled(mealPosts).then(this.getStoredMeals);
     event.target.reset();
   }
 
