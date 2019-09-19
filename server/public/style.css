@@ -86,8 +86,8 @@ input[type=checkbox]:checked + label{
     height: 50px;
 }
 .propsFood{
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 150px;
     margin-right: 15px;
     margin-left: 15px;
 }
@@ -170,7 +170,7 @@ h4{
 
 .addModal{
     font-size:15px;
-    margin-left:2rem;
+    /* margin-left:1rem; */
 
 }
 

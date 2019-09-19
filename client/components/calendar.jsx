@@ -353,22 +353,22 @@ class Calendar extends React.Component {
         <div>
           <div className="text-center calendarHeaderText">{this.monthLiteral} {this.year}</div>
           <div className="container">
-          <CalendarTable
-            handleClick={this.handleClick}
-            changeView={this.changeView}
-            meal={this.state.meal}
-            setDate={this.setDate}
-            date={this.state.date}
-            recipeLink={this.recipeLink} />
+            <CalendarTable
+              handleClick={this.handleClick}
+              changeView={this.changeView}
+              meal={this.state.meal}
+              setDate={this.setDate}
+              date={this.state.date}
+              recipeLink={this.recipeLink} />
              <div className="row justify-content-center">
                 <div className="col-4">
-                    <button type="submit" onClick={this.changeWeek} className="btn btn-primary prevModal">Previous Week</button>
+                <button type="submit" onClick={this.changeWeek} className="btn btn-primary ml-5"><i class="fas fa-chevron-left"></i></button>
                 </div>
                 <div className="col-4">
-                  <button onClick={this.handleDetailSubmit} className="btn btn-primary mb-2 addModal">Add</button>
+                  <button onClick={this.handleDetailSubmit} className="btn btn-primary mb-2 ml-3">Add</button>
                 </div>
                 <div className="col-4">
-                    <button type="submit" onClick={this.changeWeek} className="btn btn-primary nextModal">Next Week</button>
+                <button type="submit" onClick={this.changeWeek} className="btn btn-primary"><i class="fas fa-chevron-right"></i></button>
               </div>
                </div>
             </div>
@@ -379,30 +379,29 @@ class Calendar extends React.Component {
       return (
         <div>
           <Header setView={this.props.setView} text={headerText}/>
-
-                    <div className="container">
-        <CalendarTable
-          handleClick={this.handleClick}
-          changeView={this.changeView}
-          meal={this.state.meal}
-          setDate={this.setDate}
-          date={this.state.date}
-          recipeLink={this.recipeLink} />
-          <form className="form-inline text-align-center" onSubmit={this.handleSubmit}>
-            <div className="form-group mx-sm-3 mb-2 mr-2 ml-5">
-              <input
-              maxLength="15"
-              required
-              onChange={this.handleChange}
-              type="text"
-              className="form-control"
-              placeholder="Add Meal" />
-            </div>
-            <button type="submit" className="btn btn-primary mb-2">Add</button>
-          </form>
-          <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 mr-2 ml-5">Previous Week</button>
-          <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 ml-4">Next Week</button>
-            </div>
+          <div className="container">
+            <CalendarTable
+              handleClick={this.handleClick}
+              changeView={this.changeView}
+              meal={this.state.meal}
+              setDate={this.setDate}
+              date={this.state.date}
+              recipeLink={this.recipeLink} />
+            <form className="form-inline text-align-center" onSubmit={this.handleSubmit}>
+              <div className="form-group mx-sm-3 mb-2 mr-2 ml-5">
+                <input
+                maxLength="15"
+                required
+                onChange={this.handleChange}
+                type="text"
+                className="form-control"
+                placeholder="Add Meal" />
+              </div>
+              <button type="submit" className="btn btn-primary mb-2">Add</button>
+            </form>
+            <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 mr-2 ml-5">Previous Week</button>
+            <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 ml-4">Next Week</button>
+          </div>
         </div>
       );
     }
@@ -410,3 +409,5 @@ class Calendar extends React.Component {
 }
 
 export default Calendar;
+//btn btn-primary prevModal
+//btn btn-primary nextModal
