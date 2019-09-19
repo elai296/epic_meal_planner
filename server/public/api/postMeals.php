@@ -20,9 +20,13 @@ var_dump("recipeLabel", $recipeLabel);
 var_dump("recipemealTime", $recipeMealTime);
 var_dump("recipeId", $recipeId);
 
-
-$query = "INSERT INTO `calendar`(date, meal_time, recipe_label, recipe_id)
-VALUES ('$recipeDate', '$recipeMealTime', '$recipeLabel',  $recipeId)";
+if(empty($recipeId)){
+  $query = "INSERT INTO `calendar`(date, meal_time, recipe_label)
+VALUES ('$recipeDate', '$recipeMealTime', '$recipeLabel')";
+} else {
+  $query = "INSERT INTO `calendar`(date, meal_time, recipe_label, recipe_id)
+  VALUES ('$recipeDate', '$recipeMealTime', '$recipeLabel',  $recipeId)";
+}
 
 // $query = "INSERT INTO `calendar`(date, meal_time, recipe_label)
 // SELECT '$recipeDate', '$recipeMealTime', labelText AS recipe_label
