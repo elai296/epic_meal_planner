@@ -142,7 +142,7 @@ h4{
     margin-top:4rem;
     margin-right: 2rem;
 }
-/* 
+/*
 .mealRecipe{
     margin-top:4rem;
     margin-bottom:5rem;
@@ -165,7 +165,7 @@ h4{
     min-width: 100px;
     min-height:100px;
     font-size:14px;
-} 
+}
 
 
 .addModal{
@@ -186,4 +186,8 @@ h4{
 
 .closeModal{
     margin-left:18rem;
+}
+
+.body {
+ background: url("./image/backgroundImage.jpg");
 }

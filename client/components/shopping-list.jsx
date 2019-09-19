@@ -48,7 +48,6 @@ class ShoppingList extends React.Component {
     })
       .then(response => response.json())
       .then(data => {
-        debugger;
         // var getData = data;
         // console.log("get data is ", getData)
         // var test = getData.map(bool => {
@@ -80,7 +79,6 @@ class ShoppingList extends React.Component {
     })
       .then(res => res.json()) // OR res.json()
       .then(data =>{
-        debugger;
         console.log("the res is ", data)
         this.setState({ shoppingList: data})});
     this.getAllItems();
@@ -96,7 +94,6 @@ class ShoppingList extends React.Component {
     var checkedid;
     const itemObject = this.state.shoppingList.map(item => {
       if (itemId === item.id) {
-        debugger;
         item.is_completed = !item.is_completed
         checkedid = item
         return checkedid

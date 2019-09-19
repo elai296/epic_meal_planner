@@ -25,9 +25,6 @@ class App extends React.Component {
     };
     this.setView = this.setView.bind(this);
     this.setCategory = this.setCategory.bind(this);
-    // this.getFavorites= this.getFavorites.bind(this);
-    // this.recipeDetails = this.recipeDetails.bind(this);
-    // this.addToShoppingList = this.addToShoppingList.bind(this);
   }
 
   setView(name, recipe, searchTerm) {
@@ -40,56 +37,6 @@ class App extends React.Component {
   setCategory(category) {
     this.setState({ category });
   }
-
-  // componentDidMount() {
-    // this.getFavorites();
-    // this.recipeDetails();
-  // }
-
-  // getFavorites(){
-  //   fetch(`/api/getFavorites.php`)
-  //     .then(res => res.json())
-  //     .then(response => {
-  //       this.setState({
-  //         modal: response
-  //       })
-  //     }
-  //   );
-  // }
-
-  // recipeDetails(oneRecipe) {
-  //   const req = {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify(oneRecipe)
-  //   };
-
-    // fetch('/api/recipeDetails.php', req)
-    //   .then(res => res.json())
-    //   .then(viewOneRecipe=> {
-    //     // console.log("recipeDetails n favorites:",viewOneRecipe)
-    //     const allItems = this.state.oneRecipeDetail.concat(viewOneRecipe);
-    //     this.setState({ oneRecipe: allItems });
-    //   });
-
-  // }
-
-  //   addToShoppingList(addingredients) {
-  //   const req = {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify(addingredients)
-  //   };
-
-  //   fetch('/api/addIngredientsToShoppingList.php', req)
-  //     .then(res => res.json())
-  //     .then(addItem=> {
-  //       // console.log("add ingredients to shoppingList Page",addItem)
-  //       const allItems = this.state.addItemToShoppingList .concat(addItem);
-  //       this.setState({ addingredients: allItems });
-  //     });
-
-  // }
 
   render() {
     let title, display;
@@ -141,6 +88,7 @@ class App extends React.Component {
 
     return (
       <div>
+        {/* <img src="./image/backgroundImage.jpg" alt="backgroundImg"/> */}
         {display}
       </div>
     );

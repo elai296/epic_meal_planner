@@ -358,16 +358,16 @@ class Calendar extends React.Component {
             setDate={this.setDate}
             date={this.state.date}
             recipeLink={this.recipeLink} />
-             <div class="row justify-content-center">
-                <div class="col-4">
+             <div className="row justify-content-center">
+                <div className="col-4">
                     <button type="submit" onClick={this.changeWeek} className="btn btn-primary prevModal">Previous Week</button>
                 </div>
-                <div class="col-4">
-                  <button onClick={this.handleDetailSubmit} className="btn btn-primary mb-2 addModal">Add</button>               
+                <div className="col-4">
+                  <button onClick={this.handleDetailSubmit} className="btn btn-primary mb-2 addModal">Add</button>
                 </div>
-                <div class="col-4">
-                    <button type="submit" onClick={this.changeWeek} className="btn btn-primary nextModal">Next Week</button>                  
-              </div> 
+                <div className="col-4">
+                    <button type="submit" onClick={this.changeWeek} className="btn btn-primary nextModal">Next Week</button>
+              </div>
                </div>
             </div>
         </div>
