@@ -122,6 +122,12 @@ h4{
 }
 
 
+.recipeContainer{
+    padding: 9% 0;
+    width: 40%;
+    margin: 5px auto;
+}
+
 .weekView{
     margin-top: 5rem;
     margin-left:3rem;
@@ -177,4 +183,3 @@ h4{
 .closeModal{
     margin-left:18rem;
 }
-
