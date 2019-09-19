@@ -151,7 +151,7 @@ class RecipeDetails extends React.Component {
 
     return (
       <div>
-        <Header setView={this.props.setView}/>
+        <Header setView={this.props.setView} text="Epic Meal Planner"/>
 
         <div className="container">
 
