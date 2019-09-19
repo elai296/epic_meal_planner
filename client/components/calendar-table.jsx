@@ -2,7 +2,7 @@ import React from 'react';
 import Calendar from './calendar';
 
 function CalendarTable(props){
-  // console.log('meals in CalendarTable:  ', props.meal);
+  console.log('meals in CalendarTable:  ', props);
   return (
     <table className="table table-bordered text-center">
       <thead>
@@ -16,9 +16,29 @@ function CalendarTable(props){
       <tbody>
         <tr>
           <th scope="row" onClick={props.changeView} className={props.setDate(0)} id="0">Sun<br /> {(props.setDate(0))[8]}{(props.setDate(0))[9]}</th>
-          <td className={props.meal[0].highlight ? "breakfast table-active" : "breakfast"} onClick={props.handleClick}>{props.meal[0].recipe_label}</td>
-          <td className={props.meal[1].highlight ? "lunch table-active" : "lunch"} onClick={props.handleClick}>{props.meal[1].recipe_label}</td>
-          <td className={props.meal[2].highlight ? "dinner table-active" : "dinner"} onClick={props.handleClick}>{props.meal[2].recipe_label}</td>
+          <td className={props.meal[0].highlight ? "breakfast table-active" : "breakfast"} onClick={() => {
+
+            if (!props.meal[0].recipe_id && !props.meal[0].recipe_label){
+              props.handleClick();
+            } else if (props.meal[0].recipe_id) {
+              props.recipeLink(props.meal[0].recipe_label);
+            }
+          }}>{props.meal[0].recipe_label}</td>
+          <td className={props.meal[1].highlight ? "lunch table-active" : "lunch"} onClick={() => {
+            if (!props.meal[1].recipe_id && !props.meal[1].recipe_label) {
+              props.handleClick();
+            } else if (props.meal[1].recipe_id) {
+              props.recipeLink(props.meal[1].recipe_label);
+            }
+          }}>{props.meal[1].recipe_label}</td>
+          <td className={props.meal[2].highlight ? "dinner table-active" : "dinner"} onClick={() => {
+            debugger;
+            if (!props.meal[2].recipe_id && !props.meal[2].recipe_label) {
+              props.handleClick();
+            } else if (props.meal[2].recipe_id) {
+              props.recipeLink(props.meal[2].recipe_label);
+            }
+          }}>{props.meal[2].recipe_label}</td>
         </tr>
         <tr>
           <th scope="row" onClick={props.changeView} className={props.setDate(1)} id="1">Mon<br /> {(props.setDate(1))[8]}{(props.setDate(1))[9]} </th>

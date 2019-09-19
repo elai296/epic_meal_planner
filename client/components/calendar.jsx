@@ -25,6 +25,7 @@ class Calendar extends React.Component {
     this.getDayOfWeek = this.getDayOfWeek.bind(this);
     this.getDateNumbers = this.getDateNumbers.bind(this);
     this.handleDetailSubmit = this.handleDetailSubmit.bind(this);
+    this.recipeLink = this.recipeLink.bind(this);
   }
 
   handleClick(){
@@ -336,6 +337,16 @@ class Calendar extends React.Component {
     }
   }
 
+  recipeLink(label){
+    console.log("recipeLink working", label);
+    fetch(`/api/calendar-details.php?q=` + label)
+      .then(response => response.json())
+      .then(recipes => {
+        console.log("recipes",recipes);
+        this.props.setView("recipeDetails", recipes[0])
+      });
+  }
+
   render(){
     this.setDate();
     console.log("props: ", this.props);
@@ -354,7 +365,8 @@ class Calendar extends React.Component {
           meal={this.state.meal}
           mealObj={this.mealObj}
           getDateNumbers={this.getDateNumbers}
-          setView={this.props.setView}/>
+          setView={this.props.setView}
+          recipeLink={this.recipeLink} />
       )
     } else if (this.props.view) {
       return (
@@ -366,7 +378,8 @@ class Calendar extends React.Component {
             changeView={this.changeView}
             meal={this.state.meal}
             setDate={this.setDate}
-            date={this.state.date} />
+            date={this.state.date}
+            recipeLink={this.recipeLink} />
           <button onClick={this.handleDetailSubmit} className="btn btn-primary mb-2">Add</button>
           <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 mr-2 ml-5">Previous Week</button>
           <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 ml-4">Next Week</button>
@@ -382,7 +395,8 @@ class Calendar extends React.Component {
           changeView={this.changeView}
           meal={this.state.meal}
           setDate={this.setDate}
-          date={this.state.date}/>
+          date={this.state.date}
+          recipeLink={this.recipeLink} />
           <form className="form-inline text-align-center" onSubmit={this.handleSubmit}>
             <div className="form-group mx-sm-3 mb-2 mr-2 ml-5">
               <input

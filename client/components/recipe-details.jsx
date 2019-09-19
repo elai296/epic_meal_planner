@@ -6,7 +6,7 @@ import Header from './header';
 class RecipeDetails extends React.Component {
   constructor(props) {
     console.log("props are ", props)
-    console.log("Recipe is ", props.recipe)
+    console.log("Recipe is ", props.recipe.ingredients)
     super(props);
     this.state = {
       favStatus: false,
