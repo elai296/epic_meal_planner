@@ -96,6 +96,10 @@ class RecipeDetails extends React.Component {
         console.log("response", response)
         response.json()
       });
+    this.setState({
+      modal: 'shoppinglist'
+    });
+    this.showModal();
   }
 
   putRecipeInFavorites(data){
