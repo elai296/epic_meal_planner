@@ -1,45 +1,66 @@
-import React from 'react';
-import Header from './header';
+import React from "react";
+import Header from "./header";
 
-function Recipes(props){
+function Recipes(props) {
   return (
-    <div className="container">
-      <Header setView={props.setView} text="Recipes"/>
-      <div
-        onClick={
-          () => {
-            props.setView("recipesCategoriesList", {}, '');
+    <div>
+      <Header setView={props.setView} text="Recipes" />
+      <div className="d-flex flex-wrap recipeContainerParent mt-5">
+        <div
+          className='border border-dark text-center recipeContainer'
+          onClick={() => {
+            props.setView("recipesCategoriesList", {}, "");
             props.setCategory("favorites");
-          }}>Favorites</div>
-      <div
-        onClick={
-        () => {
-          props.setView("recipesCategoriesList", {}, '');
-         props.setCategory("vegan");
-         }}>Vegan</div>
-      <div
-        onClick={
-          () => {
-         props.setView("recipesCategoriesList", {}, '');
-        props.setCategory("keto");}}>Keto</div>
-      <div
-        onClick={
-          () => {
-            props.setView("recipesCategoriesList", {}, '');
+          }}
+        >
+          Favorites
+        </div>
+        <div
+          className='border border-dark text-center recipeContainer'
+          onClick={() => {
+            props.setView("recipesCategoriesList", {}, "");
+            props.setCategory("vegan");
+          }}
+        >
+          Vegan
+        </div>
+        <div
+          className='border border-dark text-center recipeContainer'
+          onClick={() => {
+            props.setView("recipesCategoriesList", {}, "");
+            props.setCategory("keto");
+          }}
+        >
+          Keto
+        </div>
+        <div
+          className='border border-dark text-center recipeContainer'
+          onClick={() => {
+            props.setView("recipesCategoriesList", {}, "");
             props.setCategory("paleo");
-          }}>Paleo</div>
-      <div
-        onClick={
-          () => {
-            props.setView("recipesCategoriesList", {}, '');
+          }}
+        >
+          Paleo
+        </div>
+        <div
+          className='border border-dark text-center recipeContainer'
+          onClick={() => {
+            props.setView("recipesCategoriesList", {}, "");
             props.setCategory("dairy-free");
-          }}>Dairy-Free</div>
-      <div
-        onClick={
-          () => {
-            props.setView("recipesCategoriesList", {}, '');
+          }}
+        >
+          Dairy-Free
+        </div>
+        <div
+          className='border border-dark text-center recipeContainer'
+          onClick={() => {
+            props.setView("recipesCategoriesList", {}, "");
             props.setCategory("gluten-free");
-          }}>Gluten-Free</div>
+          }}
+        >
+          Gluten-Free
+        </div>
+      </div>
     </div>
   );
 }

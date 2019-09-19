@@ -120,3 +120,9 @@ h4{
 .h1{
     font-size: 2em;
 }
+
+.recipeContainer{
+    padding: 9% 0;
+    width: 40%;
+    margin: 5px auto;
+}
