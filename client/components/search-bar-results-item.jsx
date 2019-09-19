@@ -35,4 +35,5 @@ function SearchBarResultsItem(props) {
   );
 }
 
+
 export default SearchBarResultsItem;
