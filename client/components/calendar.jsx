@@ -367,9 +367,26 @@ class Calendar extends React.Component {
             meal={this.state.meal}
             setDate={this.setDate}
             date={this.state.date} />
-          <button onClick={this.handleDetailSubmit} className="btn btn-primary mb-2">Add</button>
-          <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 mr-2 ml-5">Previous Week</button>
-          <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 ml-4">Next Week</button>
+
+
+             <div class="row justify-content-center">
+                <div class="col-4">
+                    <button type="submit" onClick={this.changeWeek} className="btn btn-primary prevModal">Previous Week</button>
+                </div>
+                <div class="col-4">
+                  <button onClick={this.handleDetailSubmit} className="btn btn-primary mb-2 addModal">Add</button>
+                  
+                </div>
+
+                <div class="col-4">
+                    <button type="submit" onClick={this.changeWeek} className="btn btn-primary nextModal">Next Week</button>
+                  
+              </div>
+          
+            
+            </div>
+
+         
         </div>
       );
     } else if(this.state.meal){

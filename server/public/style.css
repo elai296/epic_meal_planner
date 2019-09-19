@@ -121,8 +121,65 @@ h4{
     font-size: 2em;
 }
 
+
 .recipeContainer{
     padding: 9% 0;
     width: 40%;
     margin: 5px auto;
+}
+
+.weekView{
+    margin-top: 5rem;
+    margin-left:3rem;
+}
+
+
+.mealTitle{
+    margin-top:4rem;
+    margin-right: 2rem;
+}
+/* 
+.mealRecipe{
+    margin-top:4rem;
+    margin-bottom:5rem;
+} */
+
+.mealRecipe{
+    margin-top:3rem;
+    max-height:5rem;
+    border-style:solid;
+}
+
+
+
+.table{
+     table-layout: fixed;
+}
+
+
+.table td, .table th {
+    min-width: 100px;
+    min-height:100px;
+    font-size:14px;
+} 
+
+
+.addModal{
+    font-size:15px;
+    margin-left:2rem;
+
+}
+
+.prevModal{
+    font-size:12px;
+    margin-left:3rem;
+}
+
+.nextModal{
+     font-size:12px;
+     margin-right:3rem;
+}
+
+.closeModal{
+    margin-left:18rem;
 }
