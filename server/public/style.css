@@ -129,14 +129,22 @@ h4{
 
 
 .mealTitle{
-    margin-top:4.5rem;
+    margin-top:4rem;
     margin-right: 2rem;
 }
-
+/* 
 .mealRecipe{
     margin-top:4rem;
+    margin-bottom:5rem;
+} */
 
+.mealRecipe{
+    margin-top:3rem;
+    max-height:5rem;
+    border-style:solid;
 }
+
+
 
 .table{
      table-layout: fixed;
