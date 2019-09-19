@@ -341,7 +341,7 @@ class Calendar extends React.Component {
     console.log("props: ", this.props);
     if(!this.state.meal){
       return (
-        <div>Loading</div>
+        <div>Loading...</div>
       );
     } else if (this.state.day) {
       return (
@@ -359,43 +359,46 @@ class Calendar extends React.Component {
     } else if (this.props.view) {
       return (
         <div>
-          <Header setView={this.props.setView} />
-          <h3 className="text-center">{this.monthLiteral}, {this.year}</h3>
-          <CalendarTable
+          <div className="text-center calendarHeaderText">{this.monthLiteral} {this.year}</div>
+          <div className="container">
+            <CalendarTable
+              handleClick={this.handleClick}
+              changeView={this.changeView}
+              meal={this.state.meal}
+              setDate={this.setDate}
+              date={this.state.date} />
+            <button onClick={this.handleDetailSubmit} className="btn btn-primary mb-2">Add</button>
+            <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 mr-2 ml-5">Previous Week</button>
+            <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 ml-4">Next Week</button>
+          </div>
+        </div>
+      );
+    } else if(this.state.meal){
+      const headerText = (<div className="text-center">{this.monthLiteral} {this.year}</div>);
+      return (
+        <div>
+          <Header setView={this.props.setView} text={headerText}/>
+          <div className="container">
+            <CalendarTable
             handleClick={this.handleClick}
             changeView={this.changeView}
             meal={this.state.meal}
             setDate={this.setDate}
-            date={this.state.date} />
-          <button onClick={this.handleDetailSubmit} className="btn btn-primary mb-2">Add</button>
-          <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 mr-2 ml-5">Previous Week</button>
-          <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 ml-4">Next Week</button>
-        </div>
-      );
-    } else if(this.state.meal){
-      const headerText = (<div className="text-center">{this.monthLiteral}, {this.year}</div>)
-      return (
-        <div>
-          <Header setView={this.props.setView} text={headerText}/>
-          <CalendarTable
-          handleClick={this.handleClick}
-          changeView={this.changeView}
-          meal={this.state.meal}
-          setDate={this.setDate}
-          date={this.state.date}/>
-          <form className="form-inline text-align-center" onSubmit={this.handleSubmit}>
-            <div className="form-group mx-sm-3 mb-2 mr-2 ml-5">
-              <input
-              required
-              onChange={this.handleChange}
-              type="text"
-              className="form-control"
-              placeholder="Add Meal" />
-            </div>
-            <button type="submit" className="btn btn-primary mb-2">Add</button>
-          </form>
-          <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 mr-2 ml-5">Previous Week</button>
-          <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 ml-4">Next Week</button>
+            date={this.state.date}/>
+            <form className="form-inline text-align-center" onSubmit={this.handleSubmit}>
+              <div className="form-group mx-sm-3 mb-2 mr-2 ml-5">
+                <input
+                required
+                onChange={this.handleChange}
+                type="text"
+                className="form-control"
+                placeholder="Add Meal" />
+              </div>
+              <button type="submit" className="btn btn-primary mb-2">Add</button>
+            </form>
+            <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 mr-2 ml-5">Previous Week</button>
+            <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 ml-4">Next Week</button>
+          </div>
         </div>
       );
     }

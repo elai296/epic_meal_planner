@@ -129,62 +129,60 @@ class RecipeDetails extends React.Component {
     console.log("worked", this.props);
 
     return (
-      <div className="container">
-        <div>
-          <SearchBar setView={this.props.setView}/>
-        </div>
-        <div>
-          <p className='h1'>{recipe.label}</p>
-          <div className="row">
-            <div className="propsFood" style={{
-              backgroundImage: "url("+recipe.image_url+")",
-              backgroundSize: "contain",
-              backgroundRepeat:"no-repeat"}}></div>
-            <div className="timeServing">
-              <div>Time: {recipe.cooking_time} minutes</div>
-              <div>Serving size: {recipe.serving_size}</div>
-            <div className="iconImages">
-              {
-                <img
-                  className="calendarIcon imgIcon"
-                  src="./image/calendarIcon.png"
-                  alt="First Icon"
-                  onClick={()=>this.handleCalendar()}
-                />
-              }
-              {
-                <img
-                  className="heartIcon imgIcon"
-                  src={heartColor[image]}
-                  alt="Second Icon"
-                  onClick={()=>this.handleFavorites()}
-                />
-              }
-              {
-                <img
-                  className="shoppingListIcon imgIcon"
-                  onClick= {() => this.handleShoppingList()} //need to change to the modal view for onClick. this is just for testing; it goes to shoppingList view
-                  src="./image/shoppingList.png"
-                  alt="Third Icon"
-                />
-              }
-            </div>
+      <div>
+        <Header setView={this.props.setView}/>
+        <div className="container">
+          <div className="row justify-content-center my-5">
+            <SearchBar setView={this.props.setView}/>
+          </div>
+          <div>
+            <p className='h1'>{recipe.label}</p>
+            <div className="row">
+              <div className="propsFood" style={{
+                backgroundImage: "url("+recipe.image_url+")",
+                backgroundSize: "contain",
+                backgroundRepeat:"no-repeat"}}></div>
+              <div className="timeServing">
+                <div>Time: {recipe.cooking_time} minutes</div>
+                <div>Serving size: {recipe.serving_size}</div>
+                <div className="iconImages">
+                  {
+                    <img
+                      className="calendarIcon imgIcon"
+                      src="./image/calendarIcon.png"
+                      alt="First Icon"
+                      onClick={()=>this.handleCalendar()}/>
+                  }
+                  {
+                    <img
+                      className="heartIcon imgIcon"
+                      src={heartColor[image]}
+                      alt="Second Icon"
+                      onClick={()=>this.handleFavorites()}/>
+                  }
+                  {
+                    <img
+                      className="shoppingListIcon imgIcon"
+                      onClick= {() => this.handleShoppingList()} //need to change to the modal view for onClick. this is just for testing; it goes to shoppingList view
+                      src="./image/shoppingList.png"
+                      alt="Third Icon"/>
+                  }
+                </div>
+              </div>
             </div>
           </div>
+          <div className="text-center">INGREDIENTS</div>
+          <div>
+            {
+              ingredientLines.map((ingredient, i) => {
+              return <div key={i}>- {ingredient}</div>;
+            })}
+          </div>
+          <div className="text-center">
+          <a className="text-dark" href={recipe.directions_url}>Click for Instructions</a>
+          </div>
+          {this.showModal(recipe)}
         </div>
-
-        <div className="text-center">INGREDIENTS</div>
-        <div>
-          {
-            ingredientLines.map((ingredient, i) => {
-            return <div key={i}>- {ingredient}</div>;
-          })}
-        </div>
-        <div className="text-center">
-        <a className="text-dark" href={recipe.directions_url}>Click for Instructions</a>
-        </div>
-        {this.showModal(recipe)}
-
       </div>
     );
   }
