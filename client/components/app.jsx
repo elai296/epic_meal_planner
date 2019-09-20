@@ -14,8 +14,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // addItemToShoppingList: [], // what is this?
-      // oneRecipeDetail: [], // what is this?
       view: {
         name: "home",
         recipe: {}

@@ -26,9 +26,32 @@ class RecipesCategoriesList extends React.Component{
     this.retrieveData();
   }
 
+      componentDidUpdate(prevProps){
+      if (prevProps.category === this.props.category){
+        return;//if the search term is the same as the last search term, then end fecth call
+        //if it's different term, then fetch again to end the cycle.
+      }
+      fetch( `/api/getCategories.php?category=`+ this.props.category)
+        .then(response => response.json())
+        .then(recipes => {
+          this.setState({ categoryList: recipes });
+        })
+      }
+  
   render(){
     if ( this.state.categoryList.length === 0 ){
-      return <div>Loading...</div>;
+           return (
+          <div>
+            <Header setView={this.props.setView} />
+            <div className="container">
+              <section className="section">
+                <div className="row">
+                <div className="loader"></div >
+                </div>
+              </section>
+            </div>
+          </div>
+        )
     } else {
       return (
         <div>
