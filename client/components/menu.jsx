@@ -23,17 +23,17 @@ class Menu extends React.Component {
     }
 
     const greyDivOpacity = {
-      opacity: "0.2"
+      opacity: "0.5"
     }
 
     const menuStyle = "border border-dark modal-body py-0 px-0 w-50"
     const menuTextStyle ="pl-2 py-4 font-weight-bold"
 
     if (!this.state.showMenu) {
-      return <i className="fas fa-bars headerTextMenu mx-2 align-self-center" onClick={this.setMenu}></i>
+      return <i className="fas fa-bars headerTextMenu headerMenuSize mx-2 align-self-center" onClick={this.setMenu}></i>
     } else {
       return (
-        <div className="wrapper">
+        <div className="wrapper headerMenuSize textFont">
           <nav className="container d-flex column modal py-0 px-0 h-100 w-100 d-inline-block" style={containerOpacity}>
             <div className={menuStyle} style={greyDivOpacity} onClick={this.setMenu}></div>
             <div className={menuStyle} style={menuDivOpacity}>

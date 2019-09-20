@@ -39,7 +39,7 @@ class SearchBarResultsList extends React.Component {
       return (
         <div>
           <Header setView={this.props.setView} />
-          <div className="container">
+          <div className="container textFont">
             <div className="row justify-content-center my-5">
               <SearchBar setView={this.props.setView} />
             </div>
@@ -57,7 +57,7 @@ class SearchBarResultsList extends React.Component {
       return (
       <div>
         <Header setView={this.props.setView} text="Epic Meal Planner"/>
-        <div className="container">
+        <div className="container textFont">
           <div className="row justify-content-center my-5">
             <SearchBar setView={this.props.setView}/>
           </div>

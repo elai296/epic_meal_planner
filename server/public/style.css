@@ -1,4 +1,9 @@
 
+body{
+    background: url("../image/backgroundImage4.jpg") no-repeat bottom center scroll;
+   background-size:cover;
+}
+
 .contentRecipeBar{
     margin: 10px;
     display: inline-block;
@@ -25,34 +30,57 @@
 
 .modal{
     display: block;
-
     height: auto;
     width: auto;
-
     position: fixed;
-
     z-index: 100;
-
     left: 50%;
     top: 50%;
-
     transform: translate(-50%, -50%);
-
-    background: rgb(252, 252, 252);
+    background: rgba(252, 252, 252, 0.99);
     box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9)
 }
 
+.modalToo{
+    display: block;
+    height: 10rem;
+    width: 15rem;
+    position: fixed;
+    z-index: 100;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(252, 252, 252, 0.95);
+    box-shadow: 0 0 50px 10px rgba(0, 0, 0, 0.5)
+}
+
 .modalText{
+    color: rgb(0, 0, 0);
+    padding: 2rem 0;
+    text-align: center;
+    font-size: 1.75rem;
+}
+
+.homeText{
     font-size: 2rem;
 }
 
-.header{
-    font-size: 1.5em;
+.headerMenuSize{
+    font-size: 1.5rem;
 }
 
 .headerTextMenu{
     display: inline-block;
     color: black;
+}
+
+.textFont{
+    font-family: 'Nunito Sans', sans-serif;
+    /* font-family: 'Merriweather', serif; */
+}
+
+.textSize{
+    font-size: 1.25rem;
 }
 
 .menu{
@@ -71,9 +99,9 @@ input[type=checkbox]:checked + label{
     text-decoration: line-through;
 }
 
-.smallcalendar{
+.smallCalendar{
     max-height: 685px;
-    width: 350px;
+    width: 380px;
 }
 
 .section>.row{
@@ -129,8 +157,8 @@ h4{
 
 .recipeContainer{
     padding: 9% 0;
-    width: 40%;
-    margin: 5px auto;
+    width: 45%;
+    margin: 15px auto;
 }
 
 .weekView{
@@ -139,16 +167,15 @@ h4{
 }
 
 .mealTitle{
-    margin-top:4rem;
-    margin-right: 2rem;
-    height: 3rem;
+    height: 5rem;
+    width: 5rem;
+    padding: 1.75rem 0;
 }
 
 .mealRecipe{
-    margin-top:3rem;
-    max-height:5rem;
-    border-style:solid;
-    vertical-align: bottom;
+    height: 5rem;
+    width: 5rem;
+    padding: 1.75rem 0;
 }
 
 .table{
@@ -180,11 +207,6 @@ h4{
     margin-left:20.2rem;
 }
 
-body {
- background: url("./image/backgroundImage4.jpg"),no-repeat;
- background-size:cover;
-}
-
 html{
     height:100%;
 }
@@ -200,16 +222,16 @@ html{
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 table.table-bordered > tbody > tr > td {
     border: 1px solid black;
 }
 table.table-bordered > thead > tr > th{
-  border:1px solid black;
+    border:1px solid black;
 }
 table.table-bordered > tbody > tr > th{
-  border:1px solid black;
+    border:1px solid black;
 }

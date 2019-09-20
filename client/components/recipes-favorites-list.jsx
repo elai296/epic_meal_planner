@@ -62,4 +62,4 @@ class RecipesFavoritesList extends React.Component{
     }
 }
 
-export default RecipesFavoritesList;
+// export default RecipesFavoritesList;
