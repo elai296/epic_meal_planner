@@ -20,20 +20,23 @@ class RecipeDetails extends React.Component {
   }
 
   showModal(recipe) {
+
+    let favAdded = "Added to";
+    let favRemoved = "Removed from";
+    let favMessage = this.props.recipe.categories === "favorites" ? favAdded : favRemoved;
+
     if(this.state.modal === ''){
       return null;
     } else if (this.state.modal === 'shoppinglist') {
       return (
         <div onClick={() => { this.closeModal(); }}>
-          <div className="modalToo modalText textFont">Added to Shopping List
-              </div>
+          <div className="modalToo modalText textFont">Added to Shopping List</div>
         </div>
       );
     } else if (this.state.modal === 'favorites') {
       return (
         <div onClick={() => { this.closeModal(); }}>
-          <div className="modalToo modalText textFont">Added to <br/>Favorites
-              </div>
+          <div className="modalToo modalText textFont">{favMessage} <br/> Favorites</div>
         </div>
       );
     } else if (this.state.modal === 'calendar') {
