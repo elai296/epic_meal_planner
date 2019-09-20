@@ -18,14 +18,14 @@ function SearchBarResultsItem(props) {
         </div>
         <div className="col-8">
           <div className="card-body">
-            <h5
-              className="card-title"
+            <div
+              className="card-title font-weight-bold"
               onClick={
                 e => {
                 props.setView("recipeDetails", props.recipe, [])
               }}>
               {props.name}
-            </h5>
+            </div>
             <p className="card-text">Time: {props.time} minutes</p>
           </div>
         </div>

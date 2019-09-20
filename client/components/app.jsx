@@ -48,8 +48,8 @@ class App extends React.Component {
               <SearchBar setView={this.setView}/>
             </div>
             <div>
-              <h3 className="row justify-content-center">Find a new dish.</h3>
-              <h3 className="row justify-content-center">Plan your next meal.</h3>
+              <div className="row justify-content-center font-weight-bold textFont homeText">Find a new dish.</div>
+              <div className="row justify-content-center font-weight-bold textFont homeText">Plan your next meal.</div>
             </div>
           </div>
         </div>

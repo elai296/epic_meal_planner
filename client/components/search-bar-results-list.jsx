@@ -10,6 +10,7 @@ class SearchBarResultsList extends React.Component {
       list: []
     };
   }
+
   handleClick(props) {
     props.setView("home", {}, []);
   }
@@ -22,9 +23,11 @@ class SearchBarResultsList extends React.Component {
         this.setState({ list: recipes });
       });
   }
+
   componentDidUpdate(prevProps){
     if (prevProps.value === this.props.value){
-      return;//if the search term is the same as the last search term, then end fecth call
+      return;
+      //if the search term is the same as the last search term, then end fecth call
       //if it's different term, then fetch again to end the cycle.
     }
     fetch( `/api/test.php?q=` + this.props.value )
@@ -34,6 +37,7 @@ class SearchBarResultsList extends React.Component {
         this.setState({ list: recipes });
       })
   }
+
   render()  {
     console.log("do we have a list ", this.state.list);
     console.log("state list length is ", this.state.list.length)
@@ -42,7 +46,7 @@ class SearchBarResultsList extends React.Component {
       return (
         <div>
           <Header setView={this.props.setView} />
-          <div className="container">
+          <div className="container textFont">
             <div className="row justify-content-center my-5">
               <SearchBar setView={this.props.setView} />
             </div>
@@ -60,7 +64,7 @@ class SearchBarResultsList extends React.Component {
       return (
       <div>
         <Header setView={this.props.setView} text="Epic Meal Planner"/>
-        <div className="container">
+        <div className="container textFont">
           <div className="row justify-content-center my-5">
             <SearchBar setView={this.props.setView}/>
           </div>

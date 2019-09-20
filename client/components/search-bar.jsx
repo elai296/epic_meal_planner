@@ -21,7 +21,7 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <div className="searchBarContainer rounded-circle">
+      <div className="searchBarContainer rounded-circle textFont">
         <form className="searchBarForm" onSubmit={this.handleSearch}>
           <input
             className="rounded-pill mx-1"
