@@ -8,7 +8,7 @@ function Recipes(props) {
       <div className="container mt-5">
         <div className="d-flex flex-wrap recipeContainerParent mt-5">
           <div
-            className='border border-dark text-center recipeContainer'
+            className='border border-dark card text-center recipeContainer'
             onClick={() => {
               props.setView("recipesCategoriesList", {}, "");
               props.setCategory("favorites");
@@ -17,7 +17,7 @@ function Recipes(props) {
             Favorites
           </div>
           <div
-            className='border border-dark text-center recipeContainer'
+            className='border border-dark card text-center recipeContainer'
             onClick={() => {
               props.setView("recipesCategoriesList", {}, "");
               props.setCategory("vegan");
@@ -26,7 +26,7 @@ function Recipes(props) {
             Vegan
           </div>
           <div
-            className='border border-dark text-center recipeContainer'
+            className='border border-dark card text-center recipeContainer'
             onClick={() => {
               props.setView("recipesCategoriesList", {}, "");
               props.setCategory("keto");
@@ -35,7 +35,7 @@ function Recipes(props) {
             Keto
           </div>
           <div
-            className='border border-dark text-center recipeContainer'
+            className='border border-dark card text-center recipeContainer'
             onClick={() => {
               props.setView("recipesCategoriesList", {}, "");
               props.setCategory("paleo");
@@ -44,7 +44,7 @@ function Recipes(props) {
             Paleo
           </div>
           <div
-            className='border border-dark text-center recipeContainer'
+            className='border border-dark card text-center recipeContainer'
             onClick={() => {
               props.setView("recipesCategoriesList", {}, "");
               props.setCategory("dairy-free");
@@ -53,7 +53,7 @@ function Recipes(props) {
             Dairy-Free
           </div>
           <div
-            className='border border-dark text-center recipeContainer'
+            className='border border-dark card text-center recipeContainer'
             onClick={() => {
               props.setView("recipesCategoriesList", {}, "");
               props.setCategory("gluten-free");

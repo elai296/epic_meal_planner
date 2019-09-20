@@ -19,7 +19,7 @@ class Menu extends React.Component {
     };
 
     const menuDivOpacity = {
-      // backgroundColor: "rgb(192,192,192)",
+      backgroundColor: "rgb(192,192,192)",
     }
 
     const greyDivOpacity = {
@@ -31,10 +31,9 @@ class Menu extends React.Component {
     } else {
       return (
         <div className="wrapper">
-          {/* <i className="fas fa-bars headerTextMenu mx-2 my-1 align-self-center" onClick={this.setMenu}></i> */}
           <nav className="container d-flex column modal py-0 px-0 h-100 w-100 d-inline-block" style={containerOpacity}>
-            <div className="modal-body py-0 px-0 w-50 navbar"  style={greyDivOpacity} onClick={this.setMenu}></div>
-            <div className="modal-body py-0 px-0 w-50" style={menuDivOpacity}>
+            <div className="border border-dark modal-body py-0 px-0 w-50 navbar"  style={greyDivOpacity} onClick={this.setMenu}></div>
+            <div className="border border-dark modal-body py-0 px-0 w-50 " style={menuDivOpacity}>
               <div className="pl-2 py-4 font-weight-bold" onClick={
                 () => { this.props.setView("home", {});
                 this.setMenu();}}>Home</div>

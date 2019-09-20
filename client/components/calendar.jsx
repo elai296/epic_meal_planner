@@ -364,13 +364,13 @@ class Calendar extends React.Component {
               recipeLink={this.recipeLink} />
             <div className="row justify-content-center">
               <div className="col-4">
-                <button type="submit" onClick={this.changeWeek} className="btn btn-primary ml-3">Prev</button>
+                <button type="submit" onClick={this.changeWeek} className="btn btn-secondary ml-3">Prev</button>
               </div>
               <div className="col-4">
-                <button onClick={this.handleDetailSubmit} className="btn btn-primary mb-2 ml-3">Add</button>
+                <button onClick={this.handleDetailSubmit} className="btn btn-secondary mb-2 ml-3">Add</button>
               </div>
               <div className="col-4">
-                <button type="submit" onClick={this.changeWeek} className="btn btn-primary ml-3">Next</button>
+                <button type="submit" onClick={this.changeWeek} className="btn btn-secondary ml-3">Next</button>
               </div>
             </div>
           </div>
@@ -399,11 +399,11 @@ class Calendar extends React.Component {
                 className="form-control"
                 placeholder="Add Meal" />
               </div>
-              <button type="submit" className="btn btn-primary mb-2">Add</button>
+              <button type="submit" className="btn btn-secondary mb-2">Add</button>
             </form>
             <div className="d-flex justify-content-between">
-              <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 ml-5 ">Prev</button>
-              <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 mr-3">Next</button>
+              <button type="submit" onClick={this.changeWeek} className="btn btn-secondary mb-2 ml-5 ">Prev</button>
+              <button type="submit" onClick={this.changeWeek} className="btn btn-secondary mb-2 mr-3">Next</button>
             </div>
           </div>
         </div>

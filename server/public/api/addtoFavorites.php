@@ -13,12 +13,6 @@ $categories = $obj["categories"];
 
 $query = "";
 
-// if ($categories === 'favorites') {
-//   $query = "UPDATE recipe SET recipe.categories = NULL WHERE id = $id";
-// } else if ($categories === NULL || $categories === "keto" || $categories ===  "paleo" || $categories === "dairy-free" || $categories ===  "gluten-free") {
-//   $query = "UPDATE recipe SET recipe.categories = 'favorites' WHERE id = $id";
-// }
-
 if ($categories !== "favorites") {
   $query = "UPDATE recipe SET recipe.categories = 'favorites' WHERE id = $id";
 } else {

@@ -3,7 +3,7 @@ import Calendar from './calendar';
 
 function CalendarTable(props){
   return (
-    <table className="table table-bordered text-center">
+    <table className="table table-bordered text-center table-light">
       <thead>
         <tr>
           <th scope="col"><i className="fas fa-utensils fa-2x"></i></th>

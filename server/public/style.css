@@ -1,6 +1,6 @@
 
 body {
-    background: url("../image/backgroundImage4.jpg") no-repeat; 
+    background: url("../image/backgroundImage4.jpg") no-repeat;
    }
 .contentRecipeBar{
     margin: 10px;
@@ -55,7 +55,7 @@ body {
 
 .headerTextMenu{
     display: inline-block;
-    color: white;
+    color: black;
 }
 
 .menu{
@@ -144,12 +144,14 @@ h4{
 .mealTitle{
     margin-top:4rem;
     margin-right: 2rem;
+    height: 3rem;
 }
 
 .mealRecipe{
     margin-top:3rem;
     max-height:5rem;
     border-style:solid;
+    vertical-align: bottom;
 }
 
 .table{
@@ -184,20 +186,19 @@ h4{
 
 
 body {
- background: url("./image/backgroundImage.jpg"),no-repeat;
+ background: url("./image/backgroundImage4.jpg"),no-repeat;
  background-size:cover;
-
-
 
 }
 
 html{
     height:100%;
-  
+}
+
 .loader {
  margin: auto;
   border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
+  border-top: 16px solid #62686d; /* Blue */
   border-radius: 50%;
   width: 80px;
   height: 80px;
@@ -209,3 +210,12 @@ html{
   100% { transform: rotate(360deg); }
 }
 
+table.table-bordered > tbody > tr > td {
+    border: 1px solid black;
+}
+table.table-bordered > thead > tr > th{
+  border:1px solid black;
+}
+table.table-bordered > tbody > tr > th{
+  border:1px solid black;
+}

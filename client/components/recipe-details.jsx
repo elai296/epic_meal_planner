@@ -5,8 +5,6 @@ import Header from './header';
 
 class RecipeDetails extends React.Component {
   constructor(props) {
-    // console.log("props are ", props)
-    // console.log("Recipe is ", props.recipe.ingredients)
     super(props);
     this.state = {
       favStatus: false,
@@ -34,8 +32,8 @@ class RecipeDetails extends React.Component {
                 this.closeModal();
               }}>
                    <i className="fas fa-times"></i>
+            </button>
               </div>
-          </div>
         </div>
       );
     } else if (this.state.modal === 'favorites') {
@@ -46,12 +44,9 @@ class RecipeDetails extends React.Component {
               onClick={() => {
                 this.closeModal();
               }}>
-              {/* close */}
-
                 <i className="fas fa-times"></i>
-
+            </button>
               </div>
-          </div>
         </div>
       );
     } else if (this.state.modal === 'calendar') {
@@ -188,7 +183,7 @@ class RecipeDetails extends React.Component {
             <SearchBar setView={this.props.setView}/>
           </div>
 
-          <div>
+          <div className="card">
             <p className='recipeDetailsTitle'>{recipe.label}</p>
             <div className="row">
 
@@ -230,21 +225,27 @@ class RecipeDetails extends React.Component {
                 </div>
               </div>
             </div>
+
+
+            <div>
+              <div className="text-center">INGREDIENTS</div>
+              <div>
+                {
+                  ingredientLines.map((ingredient, i) => {
+                    return <div key={i}>- {ingredient}</div>;
+                  })}
+              </div>
+              <div className="text-center">
+                <a className="text-secondary font-weight-bold" href={recipe.directions_url} target="_blank">Click for Instructions</a>
+              </div>
+              {this.showModal(recipe)}
+            </div>
+
           </div>
 
-            <div className="text-center">INGREDIENTS</div>
-          <div>
-            {
-              ingredientLines.map((ingredient, i) => {
-              return <div key={i}>- {ingredient}</div>;
-            })}
-          </div>
-          <div className="text-center">
-            <a className="text-secondary font-weight-bold" href={recipe.directions_url} target="_blank">Click for Instructions</a>
-          </div>
-          {this.showModal(recipe)}
+
+
         </div>
-
 
 
       </div>
