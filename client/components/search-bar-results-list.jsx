@@ -60,7 +60,7 @@ class SearchBarResultsList extends React.Component {
     } else {
       return (
       <div>
-        <Header setView={this.props.setView}/>
+        <Header setView={this.props.setView} text="Epic Meal Planner"/>
         <div className="container">
           <div className="row justify-content-center my-5">
             <SearchBar setView={this.props.setView}/>

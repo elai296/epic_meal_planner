@@ -400,7 +400,7 @@ class Calendar extends React.Component {
               onChange={this.handleChange}
               type="text"
               className="form-control"
-              placeholder="Add Meal" />
+              placeholder="Add a meal" />
             </div>
             <button type="submit" className="btn btn-primary mb-2">Add</button>
           </form>

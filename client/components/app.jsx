@@ -42,7 +42,7 @@ class App extends React.Component {
     if (this.state.view.name === "home") {
       display = (
         <div>
-          <Header setView={this.setView}/>
+          <Header setView={this.setView} text="Epic Meal Planner"/>
           <div className="container">
             <div className="row justify-content-center my-5">
               <SearchBar setView={this.setView}/>

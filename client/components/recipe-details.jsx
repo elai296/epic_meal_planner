@@ -28,8 +28,8 @@ class RecipeDetails extends React.Component {
     } else if (this.state.modal === 'shoppinglist') {
       return (
         <div>
-          <div className="modal">Added to Shopping List
-            <div
+          <div className="modal modalText">Added to Shopping List
+            <button
               onClick={() => {
                 this.closeModal();
               }}>
@@ -41,8 +41,8 @@ class RecipeDetails extends React.Component {
     } else if (this.state.modal === 'favorites') {
       return (
         <div>
-          <div className="modal">Added to Favorites
-            <div
+          <div className="modal modalText">Added to Favorites
+            <button
               onClick={() => {
                 this.closeModal();
               }}>
@@ -68,7 +68,6 @@ class RecipeDetails extends React.Component {
             <div className="smallcalendar">
               <Calendar recipeId={recipe} setView={this.props.setView} view={this.props.view}/>
             </div>
-
           </div>
         </div>
       );
@@ -181,7 +180,7 @@ class RecipeDetails extends React.Component {
 
     return (
       <div>
-        <Header setView={this.props.setView}/>
+        <Header setView={this.props.setView} text="Epic Meal Planner"/>
 
         <div className="container">
 
@@ -190,7 +189,7 @@ class RecipeDetails extends React.Component {
           </div>
 
           <div>
-            <p className='h1'>{recipe.label}</p>
+            <p className='recipeDetailsTitle'>{recipe.label}</p>
             <div className="row">
 
               <div className="propsFood" style={{
