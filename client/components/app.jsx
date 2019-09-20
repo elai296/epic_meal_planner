@@ -14,8 +14,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // addItemToShoppingList: [], // what is this?
-      // oneRecipeDetail: [], // what is this?
       view: {
         name: "home",
         recipe: {}
@@ -88,7 +86,6 @@ class App extends React.Component {
 
     return (
       <div>
-        {/* <img src="./image/backgroundImage.jpg" alt="backgroundImg"/> */}
         {display}
       </div>
     );

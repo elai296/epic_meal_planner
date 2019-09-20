@@ -10,13 +10,6 @@ class SearchBarResultsList extends React.Component {
       list: []
     };
   }
-  // componentDidMount() {
-  //  this.getRecipes();
-  // }
-
-  // loadResults() {
-  //   this.setState({ list: this.props.results });
-  // }
   handleClick(props) {
     props.setView("home", {}, []);
   }
@@ -40,9 +33,6 @@ class SearchBarResultsList extends React.Component {
         console.log("recipes are:", recipes)
         this.setState({ list: recipes });
       })
-      // .then(() => {
-      //   this.props.setView("search bar result",{}, this.state.list);
-      // });
   }
   render()  {
     console.log("do we have a list ", this.state.list);
