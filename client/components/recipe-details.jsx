@@ -24,27 +24,15 @@ class RecipeDetails extends React.Component {
       return null;
     } else if (this.state.modal === 'shoppinglist') {
       return (
-        <div>
+        <div onClick={() => { this.closeModal(); }}>
           <div className="modalToo modalText textFont">Added to Shopping List
-            <button
-              onClick={() => {
-                this.closeModal();
-              }}>
-                   <i className="fas fa-times"></i>
-            </button>
               </div>
         </div>
       );
     } else if (this.state.modal === 'favorites') {
       return (
-        <div>
-          <div className="modalToo modalText textFont">Added to Favorites
-            <button
-              onClick={() => {
-                this.closeModal();
-              }}>
-                <i className="fas fa-times"></i>
-            </button>
+        <div onClick={() => { this.closeModal(); }}>
+          <div className="modalToo modalText textFont">Added to <br/>Favorites
               </div>
         </div>
       );

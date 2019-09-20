@@ -417,7 +417,7 @@ class Calendar extends React.Component {
               <button type="submit" onClick={this.changeWeek} className="btn btn-secondary mb-2 ml-5 float-left">Prev</button>
               <span className="mr-5 px-5 float-right"></span>
               <span className="mr-2 float-right"></span>
-              <button type="submit" onClick={this.changeWeek} className="btn btn-secondary mb-2 mr-5 float-right">Text</button>
+              <button type="submit" onClick={this.changeWeek} className="btn btn-secondary mb-2 mr-5 float-right">Next</button>
             </div>
           </div>
         </div>
