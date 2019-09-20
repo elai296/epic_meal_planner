@@ -5,8 +5,7 @@ function Recipes(props) {
   return (
     <div>
       <Header setView={props.setView} text="Recipes" />
-      <div className="container mt-5">
-        <div className="d-flex flex-wrap recipeContainerParent mt-5">
+      <div className="container mt-5 d-flex flex-wrap textFont">
           <div
             className='border border-dark card text-center recipeContainer'
             onClick={() => {
@@ -63,7 +62,6 @@ function Recipes(props) {
           </div>
         </div>
       </div>
-    </div>
   );
 }
 

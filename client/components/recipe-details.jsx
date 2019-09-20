@@ -26,7 +26,7 @@ class RecipeDetails extends React.Component {
     } else if (this.state.modal === 'shoppinglist') {
       return (
         <div>
-          <div className="modal modalText">Added to Shopping List
+          <div className="modalToo modalText textFont">Added to Shopping List
             <button
               onClick={() => {
                 this.closeModal();
@@ -39,7 +39,7 @@ class RecipeDetails extends React.Component {
     } else if (this.state.modal === 'favorites') {
       return (
         <div>
-          <div className="modal modalText">Added to Favorites
+          <div className="modalToo modalText textFont">Added to Favorites
             <button
               onClick={() => {
                 this.closeModal();
@@ -53,14 +53,12 @@ class RecipeDetails extends React.Component {
       return (
         <div>
           <div className="modal">
-              <div className= "closeModal"
-                onClick={() => {
-                  this.closeModal();
-                }}>
-            <i className="fas fa-times"></i>
-              </div>
-
-            <div className="smallcalendar">
+            <div className= "float-right mr-3"
+              onClick={() => {
+                this.closeModal();
+              }}><i className="fas fa-times"></i>
+            </div>
+            <div className="smallCalendar">
               <Calendar recipeId={recipe} setView={this.props.setView} view={this.props.view}/>
             </div>
           </div>
@@ -125,11 +123,11 @@ class RecipeDetails extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(recipe),
-    })
-      .then(response => {
-        // console.log("response", response)
-        response.json()
-      });
+    });
+      // .then(response => {
+      //   // console.log("response", response)
+      //   response.json()
+      // });
     this.setState({
       modal: 'shoppinglist'
     });
@@ -144,9 +142,9 @@ class RecipeDetails extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
-    })
-    .then(response=>{
-      response.json()})
+    });
+    // .then(response=>{
+    //   response.json()})
 
   }
 
@@ -177,7 +175,7 @@ class RecipeDetails extends React.Component {
       <div>
         <Header setView={this.props.setView} text="Epic Meal Planner"/>
 
-        <div className="container">
+        <div className="container textFont">
 
           <div className="row justify-content-center my-5">
             <SearchBar setView={this.props.setView}/>

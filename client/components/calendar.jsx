@@ -365,7 +365,7 @@ class Calendar extends React.Component {
     } else if (this.props.view) {
       return (
         <div>
-          <div className="text-center calendarHeaderText">{this.monthLiteral} {this.year}</div>
+          <div className="calendarHeaderText ml-3">{this.monthLiteral} {this.year}</div>
           <div className="container">
             <CalendarTable
               handleClick={this.handleClick}
@@ -389,11 +389,11 @@ class Calendar extends React.Component {
         </div>
       );
     } else if(this.state.meal){
-      const headerText = (<div className="text-center">{this.monthLiteral} {this.year}</div>);
+      const headerText = (<div>{this.monthLiteral} {this.year}</div>);
       return (
         <div>
           <Header setView={this.props.setView} text={headerText}/>
-          <div className="container">
+          <div className="container textFont mt-5">
             <CalendarTable
               handleClick={this.handleClick}
               changeView={this.changeView}
@@ -409,7 +409,7 @@ class Calendar extends React.Component {
                 onChange={this.handleChange}
                 type="text"
                 className="form-control"
-                placeholder="Add Meal" />
+                placeholder="Add a meal"/>
               </div>
               <button type="submit" className="btn btn-secondary mb-2">Add</button>
             </form>

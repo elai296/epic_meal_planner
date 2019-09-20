@@ -46,17 +46,17 @@ class ShoppingList extends React.Component {
       },
       body: JSON.stringify(newItem)
     })
-      .then(response => response.json())
-      .then(data => {
-        // var getData = data;
-        // console.log("get data is ", getData)
-        // var test = getData.map(bool => {
-        //   return console.log(data)
-        // })
-        console.log("data add is ", data)
-        this.setState({ shoppingList: data });
-      }
-      );
+      .then(response => response.json());
+      // .then(data => {
+      //   // var getData = data;
+      //   // console.log("get data is ", getData)
+      //   // var test = getData.map(bool => {
+      //   //   return console.log(data)
+      //   // })
+      //   console.log("data add is ", data)
+      //   this.setState({ shoppingList: data });
+      // }
+      // );
       // .then(response => {
       //  return response.json();
       // })
@@ -66,7 +66,7 @@ class ShoppingList extends React.Component {
       //     shoppingList: this.state.shoppingList.concat(data)
       //   });
       // });
-      this.getAllItems()
+      this.getAllItems();
   }
 
   deleteItem(id) {
@@ -138,7 +138,7 @@ class ShoppingList extends React.Component {
     return (
       <div>
         <Header setView={this.props.setView} text="Shopping List"/>
-        <div className="container">
+        <div className="container textFont mt-5">
           <div className="row">
             <div className="col">
               <ShoppingListItemForm onSubmit={this.addItem}/>
