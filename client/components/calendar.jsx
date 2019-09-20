@@ -334,7 +334,7 @@ class Calendar extends React.Component {
     this.setDate();
     if(!this.state.meal){
       return (
-        <div>Loading...</div>
+        <div className="loader"></div >
       );
     } else if (this.state.day) {
       return (

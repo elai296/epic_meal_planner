@@ -1,3 +1,7 @@
+
+body {
+    background: url("../image/backgroundImage4.jpg") no-repeat; 
+   }
 .contentRecipeBar{
     margin: 10px;
     display: inline-block;
@@ -20,7 +24,6 @@
 
 .propsImage{
     display: inline-block;
-
 }
 
 .modal{
@@ -42,12 +45,17 @@
     box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9)
 }
 
+.modalText{
+    font-size: 2rem;
+}
+
 .header{
     font-size: 1.5em;
 }
 
 .headerTextMenu{
     display: inline-block;
+    color: white;
 }
 
 .menu{
@@ -56,13 +64,6 @@
     top: 0;
     left: 0;
     font-size: 1rem;
-    /* position: relative; */
-    /* left: 0;
-    top: 0;
-    transform: translate3d(-100vw, 0, 0);
-
-    width: 100vw;
-    height: 100vh; */
 }
 
 .calendarHeaderText{
@@ -77,14 +78,17 @@ input[type=checkbox]:checked + label{
     max-height: 685px;
     width: 350px;
 }
+
 .section>.row{
     display: flex;
     flex-direction: column;
     margin: 20px;
 }
+
 .timeServing{
     height: 50px;
 }
+
 .propsFood{
     height: 150px;
     width: 150px;
@@ -117,14 +121,14 @@ h4{
 .card-title{
     font-size: .75em;
 }
+
 .card-text{
     font-size: .75em;
 }
 
-.h1{
+.recipeDetailsTitle{
     font-size: 2em;
 }
-
 
 .recipeContainer{
     padding: 9% 0;
@@ -137,16 +141,10 @@ h4{
     margin-left:3rem;
 }
 
-
 .mealTitle{
     margin-top:4rem;
     margin-right: 2rem;
 }
-/*
-.mealRecipe{
-    margin-top:4rem;
-    margin-bottom:5rem;
-} */
 
 .mealRecipe{
     margin-top:3rem;
@@ -154,12 +152,9 @@ h4{
     border-style:solid;
 }
 
-
-
 .table{
      table-layout: fixed;
 }
-
 
 .table td, .table th {
     min-width: 100px;
@@ -167,11 +162,9 @@ h4{
     font-size:14px;
 }
 
-
 .addModal{
     font-size:15px;
-    /* margin-left:1rem; */
-
+    margin-left:2rem;
 }
 
 .prevModal{
@@ -184,10 +177,35 @@ h4{
      margin-right:3rem;
 }
 
+
 .closeModal{
-    margin-left:18rem;
+    margin-left:20.2rem;
 }
 
-.body {
- background: url("./image/backgroundImage.jpg");
+
+body {
+ background: url("./image/backgroundImage.jpg"),no-repeat;
+ background-size:cover;
+
+
+
 }
+
+html{
+    height:100%;
+  
+.loader {
+ margin: auto;
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+

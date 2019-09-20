@@ -33,7 +33,7 @@ class ShoppingListItemForm extends React.Component {
           className="form-control"
           onChange={this.handleChange}
           item={this.state.listItem}
-          placeholder="Add a new item."
+          placeholder="Add an item"
           type="text"
           required
           autoFocus/>

@@ -5,8 +5,8 @@ import Header from './header';
 
 class RecipeDetails extends React.Component {
   constructor(props) {
-    console.log("props are ", props)
-    console.log("Recipe is ", props.recipe.ingredients)
+    // console.log("props are ", props)
+    // console.log("Recipe is ", props.recipe.ingredients)
     super(props);
     this.state = {
       favStatus: false,
@@ -28,29 +28,29 @@ class RecipeDetails extends React.Component {
     } else if (this.state.modal === 'shoppinglist') {
       return (
         <div>
-          <div className="modal">Added to Shopping List
+          <div className="modal modalText">Added to Shopping List
             <button
               onClick={() => {
                 this.closeModal();
               }}>
-                   <i className="far fa-window-close"></i>
-              </button>
+                   <i className="fas fa-times"></i>
+              </div>
           </div>
         </div>
       );
     } else if (this.state.modal === 'favorites') {
       return (
         <div>
-          <div className="modal">Added to Favorites
+          <div className="modal modalText">Added to Favorites
             <button
               onClick={() => {
                 this.closeModal();
               }}>
               {/* close */}
 
-              <i className="far fa-window-close"></i>
+                <i className="fas fa-times"></i>
 
-              </button>
+              </div>
           </div>
         </div>
       );
@@ -58,17 +58,16 @@ class RecipeDetails extends React.Component {
       return (
         <div>
           <div className="modal">
-              <button className= "closeModal"
+              <div className= "closeModal"
                 onClick={() => {
                   this.closeModal();
                 }}>
-             <i className="far fa-window-close"></i>
-              </button>
+            <i className="fas fa-times"></i>
+              </div>
 
             <div className="smallcalendar">
               <Calendar recipeId={recipe} setView={this.props.setView} view={this.props.view}/>
             </div>
-
           </div>
         </div>
       );
@@ -83,19 +82,48 @@ class RecipeDetails extends React.Component {
   }
 
   handleFavorites() {
-    if(!this.state.favStatus) {
-      this.setState(state=>({favStatus: !state.favStatus}));
-      this.setState({
-        modal: 'favorites',
-      });
-      this.showModal();
-      this.putRecipeInFavorites(this.props.recipe);
-    }
+    let recipeCategoryToggled;
+    // if(!this.state.favStatus) {
+    //   this.setState(state=>({favStatus: !state.favStatus}));
+    // }
+    this.setState({ modal: 'favorites' });
+    this.showModal();
+    this.putRecipeInFavorites(this.props.recipe);
+
+    // console.log("recipe passed from APP: ", this.props.recipe);
+
+    if (this.props.recipe.categories !== "favorites") {
+      recipeCategoryToggled = {
+        categories: "favorites",
+        cooking_time: this.props.recipe.cooking_time,
+        directions_url: this.props.recipe.directions_url,
+        id: this.props.recipe.id,
+        image_url: this.props.recipe.image_url,
+        ingredients: this.props.recipe.ingredients,
+        label: this.props.recipe.label,
+        recipe_id: this.props.recipe.recipe_id,
+        serving_size: this.props.recipe.serving_size
+        }
+    } else {
+        recipeCategoryToggled = {
+          categories: null,
+          cooking_time: this.props.recipe.cooking_time,
+          directions_url: this.props.recipe.directions_url,
+          id: this.props.recipe.id,
+          image_url: this.props.recipe.image_url,
+          ingredients: this.props.recipe.ingredients,
+          label: this.props.recipe.label,
+          recipe_id: this.props.recipe.recipe_id,
+          serving_size: this.props.recipe.serving_size
+      }
+    };
+    // console.log("recipeCategoryToggled: ", recipeCategoryToggled);
+    this.props.setView("recipeDetails", recipeCategoryToggled)
   }
 
   handleShoppingList() {
     let recipe = this.props.recipe.ingredients.split('\n');
-    console.log("clicked", recipe);
+    // console.log("clicked", recipe);
     fetch(`/api/addtoShoppingListFromDetails.php`, {
       method: 'POST',
       headers: {
@@ -104,7 +132,7 @@ class RecipeDetails extends React.Component {
       body: JSON.stringify(recipe),
     })
       .then(response => {
-        console.log("response", response)
+        // console.log("response", response)
         response.json()
       });
     this.setState({
@@ -114,6 +142,7 @@ class RecipeDetails extends React.Component {
   }
 
   putRecipeInFavorites(data){
+    // console.log("data: ", data);
     fetch('/api/addToFavorites.php',{
       method: 'POST',
       headers: {
@@ -122,14 +151,14 @@ class RecipeDetails extends React.Component {
       body: JSON.stringify(data),
     })
     .then(response=>{
-      response.json()});
+      response.json()})
+
   }
 
   render() {
     let recipe = this.props.recipe;
     let props = this.props
     // console.log("props is ", props)
-
 
     // console.log("Ingredeients before split", recipe.ingredients)
     let ingredientLines = recipe.ingredients.split('\n'); // need this for ingredient formatting
@@ -151,7 +180,7 @@ class RecipeDetails extends React.Component {
 
     return (
       <div>
-        <Header setView={this.props.setView}/>
+        <Header setView={this.props.setView} text="Epic Meal Planner"/>
 
         <div className="container">
 
@@ -160,10 +189,8 @@ class RecipeDetails extends React.Component {
           </div>
 
           <div>
-            <p className='h1'>{recipe.label}</p>
+            <p className='recipeDetailsTitle'>{recipe.label}</p>
             <div className="row">
-
-
 
               <div className="propsFood" style={{
                 backgroundImage: "url("+recipe.image_url+")",
@@ -204,8 +231,6 @@ class RecipeDetails extends React.Component {
               </div>
             </div>
           </div>
-
-
 
             <div className="text-center">INGREDIENTS</div>
           <div>
