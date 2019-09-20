@@ -12,7 +12,6 @@ if( intval($id) < 0 ){
   throw new Exception("error");
 }
 
-
 if (empty($id)) {
   throw new Exception("a recipe id must be provided");
 } else if (!is_numeric($id)) {
@@ -31,10 +30,8 @@ if (!$result) {
   throw new Exception(mysqli_error());
 } else if (!mysqli_affected_rows($conn) && !empty($id)) {
   throw new Exception('Invalid ID: ' . $id);
-}
-else{
+} else {
   $output = ['success' => true];
-
 }
 
 print(json_encode($output));

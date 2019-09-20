@@ -42,7 +42,6 @@ if($count <= 5){
   $result2 = json_decode($result, true);
 
   $resultLabel= [];
-  $plzwork = null;
   for($i= 0; $i < 5; $i++){
     $thisData = [
       "label" => $result2["hits"][$i]["recipe"]["label"],

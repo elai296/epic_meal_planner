@@ -1,7 +1,4 @@
 
-body {
-    background: url("../image/backgroundImage4.jpg") no-repeat;
-   }
 .contentRecipeBar{
     margin: 10px;
     display: inline-block;
@@ -179,16 +176,13 @@ h4{
      margin-right:3rem;
 }
 
-
 .closeModal{
     margin-left:20.2rem;
 }
 
-
 body {
  background: url("./image/backgroundImage4.jpg"),no-repeat;
  background-size:cover;
-
 }
 
 html{
@@ -197,8 +191,8 @@ html{
 
 .loader {
  margin: auto;
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #62686d; /* Blue */
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #62686d;
   border-radius: 50%;
   width: 80px;
   height: 80px;

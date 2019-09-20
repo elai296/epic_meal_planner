@@ -7,9 +7,6 @@ startUp();
 
 $json_input = file_get_contents('php://input');
 $obj = json_decode($json_input, true);
-// var_dump("obj is ", $obj);
-// $ingredient = $obj['ingredients_desc'];
-
 
 $query = "DELETE FROM `shopping_list` WHERE id = '$obj'";
 var_dump("query is ", $query);

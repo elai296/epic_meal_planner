@@ -5,13 +5,11 @@ set_exception_handler('error_handler');
 
 startUp();
 
-
 $query= "SELECT * FROM `favorites`
   JOIN recipe
   ON favorites.recipe_id = recipe.id";
 
 $result = mysqli_query($conn, $query);
-
 
 if (!$result) {
   throw new Exception(mysqli_connect_error());
