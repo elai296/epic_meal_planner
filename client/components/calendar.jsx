@@ -2,7 +2,6 @@ import React from "react";
 import CalendarTable from "./calendar-table";
 import CalendarDayView from "./calendar-day-view";
 import Header from './header';
-import { Duplex } from "stream";
 
 class Calendar extends React.Component {
   constructor(props){
@@ -13,7 +12,7 @@ class Calendar extends React.Component {
       date: this.setDate(),
       day: false
     }
-    this.testDate = null;
+    this.totalOffset = null;
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -108,6 +107,7 @@ class Calendar extends React.Component {
 
   componentDidMount(){
     this.getStoredMeals();
+    this.setMonthAndYear();
   }
 
   getStoredMeals(){
@@ -206,7 +206,7 @@ class Calendar extends React.Component {
       }
       datePosition++;
     }
-    this.setDate();
+     this.setMonthAndYear();
     this.setState({ meal: weekMeals})
   }
 
@@ -215,33 +215,45 @@ class Calendar extends React.Component {
     const finalDate = new Date(today);
     const currentDate = today.getDate();
     const weekDay = today.getDay();
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    this.year = finalDate.getFullYear();
+    let year = finalDate.getFullYear();
 
     if(offset === 7 || offset === -7){
-      finalDate.setDate(currentDate - weekDay + offset + this.testDate);
+      finalDate.setDate(currentDate - weekDay + offset + this.totalOffset);
     } else if( offset >= 0 && offset < 7) {
-      finalDate.setDate(currentDate - weekDay + offset + this.testDate);
+      finalDate.setDate(currentDate - weekDay + offset + this.totalOffset);
     } else {
       finalDate.setDate(currentDate - weekDay);
     }
-    let monthNumeric = finalDate.getMonth();
-    this.monthLiteral = months[monthNumeric];
 
-    let returnDate = this.year + '-'
+    let returnDate = year + '-'
       + ('0' + (finalDate.getMonth() + 1)).slice(-2) + '-'
       + ('0' + finalDate.getDate()).slice(-2);
 
     return returnDate;
   }
 
+  setMonthAndYear(){
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    let monthNumeric = "";
+    if(this.state.date[5] === "0"){
+      monthNumeric = parseInt(this.state.date[6]) - 1;
+    } else {
+      monthNumeric = parseInt(this.state.date[5] + this.state.date[6]) -1;
+    }
+    this.monthLiteral = months[monthNumeric];
+
+    const copyDateState = this.state.date;
+    this.year = copyDateState.slice(0,4);
+
+  }
+
   changeWeek(){
     if (event.srcElement.textContent === "Prev") {
         this.setState({ date: this.setDate(-7) })
-        this.testDate -= 7;
+        this.totalOffset -= 7;
     } else if (event.srcElement.textContent === "Next") {
         this.setState({ date: this.setDate(7) })
-        this.testDate += 7;
+        this.totalOffset += 7;
       }
     this.getStoredMeals();
   }

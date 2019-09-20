@@ -76,7 +76,7 @@ input[type=checkbox]:checked + label{
 
 .smallcalendar{
     max-height: 685px;
-    width: 350px;
+    width: 380px;
 }
 
 .section>.row{
