@@ -206,7 +206,7 @@ class Calendar extends React.Component {
       }
       datePosition++;
     }
-     this.setMonthAndYear();
+    this.setMonthAndYear();
     this.setState({ meal: weekMeals})
   }
 
