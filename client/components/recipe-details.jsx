@@ -68,7 +68,6 @@ class RecipeDetails extends React.Component {
             <div className="smallcalendar">
               <Calendar recipeId={recipe} setView={this.props.setView} view={this.props.view}/>
             </div>
-
           </div>
         </div>
       );
