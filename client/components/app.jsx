@@ -56,7 +56,7 @@ class App extends React.Component {
       );
     } else if (this.state.view.name === "recipes") {
       display = (
-        <Recipes setCategory={this.setCategory} setView={this.setView}/>
+        <Recipes setCategory={this.setCategory} setView={this.setView} category={this.state.category}/>
       );
     } else if (this.state.view.name === "calendar") {
       display = (
