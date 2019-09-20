@@ -185,9 +185,23 @@ h4{
 }
 
 .closeModal{
-    margin-left:18rem;
+    margin-left:20.2rem;
 }
 
+
+
+
+body {
+ background: url("./image/backgroundImage.jpg"),no-repeat;
+ background-size:cover;
+
+
+
+}
+
+html{
+    height:100%;
+  
 .loader {
  margin: auto;
   border: 16px solid #f3f3f3; /* Light grey */
@@ -203,6 +217,4 @@ h4{
   100% { transform: rotate(360deg); }
 }
 
-.body {
- background: url("./image/backgroundImage.jpg");
-}
+
