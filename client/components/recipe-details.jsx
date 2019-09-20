@@ -123,11 +123,11 @@ class RecipeDetails extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(recipe),
-    })
-      .then(response => {
-        // console.log("response", response)
-        response.json()
-      });
+    });
+      // .then(response => {
+      //   // console.log("response", response)
+      //   response.json()
+      // });
     this.setState({
       modal: 'shoppinglist'
     });
@@ -142,9 +142,9 @@ class RecipeDetails extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
-    })
-    .then(response=>{
-      response.json()})
+    });
+    // .then(response=>{
+    //   response.json()})
 
   }
 
