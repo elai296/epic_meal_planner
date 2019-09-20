@@ -401,7 +401,7 @@ class Calendar extends React.Component {
               setDate={this.setDate}
               date={this.state.date}
               recipeLink={this.recipeLink} />
-            <form className="form-inline text-align-center" onSubmit={this.handleSubmit}>
+            <form className="form-inline text-align-centerborder" onSubmit={this.handleSubmit}>
               <div className="form-group mx-sm-3 mb-2 mr-2 ml-5">
                 <input
                 maxLength="15"
@@ -414,8 +414,10 @@ class Calendar extends React.Component {
               <button type="submit" className="btn btn-secondary mb-2">Add</button>
             </form>
             <div className="d-flex justify-content-between">
-              <button type="submit" onClick={this.changeWeek} className="btn btn-secondary mb-2 ml-5 ">Prev</button>
-              <button type="submit" onClick={this.changeWeek} className="btn btn-secondary mb-2 mr-3">Next</button>
+              <button type="submit" onClick={this.changeWeek} className="btn btn-secondary mb-2 ml-5 float-left">Prev</button>
+              <span className="mr-5 px-5 float-right"></span>
+              <span className="mr-2 float-right"></span>
+              <button type="submit" onClick={this.changeWeek} className="btn btn-secondary mb-2 mr-5 float-right">Text</button>
             </div>
           </div>
         </div>

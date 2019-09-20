@@ -1,6 +1,7 @@
 
 body{
     background: url("../image/backgroundImage4.jpg") no-repeat bottom center scroll;
+   background-size:cover;
 }
 
 .contentRecipeBar{
@@ -206,23 +207,18 @@ h4{
     margin-left:20.2rem;
 }
 
-body {
-    background: url("./image/backgroundImage4.jpg"),no-repeat;
-    background-size:cover;
-}
-
 html{
     height:100%;
 }
 
 .loader {
-    margin: auto;
-    border: 16px solid #ffffff55;
-    border-top: 16px solid #62686d;
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    animation: spin 1s linear infinite;
+ margin: auto;
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #62686d;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {

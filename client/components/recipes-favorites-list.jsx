@@ -3,7 +3,6 @@ import Header from './header';
 
 class RecipesFavoritesList extends React.Component{
     constructor(props){
-      console.log("constructor props are ", props)
         super(props);
         this.state={
             favoriteList: []
@@ -12,20 +11,16 @@ class RecipesFavoritesList extends React.Component{
     }
 
     handleClick(props, recipe) {
-    console.log("props are ", props);
-    // console.log("recipe is ", this.state.favoriteList)
-    var favoriteDetails = this.state.favoriteList[0];
-    console.log("favoriteDetails ", favoriteDetails);
-    this.props.setView("recipeDetails", favoriteDetails);
-      }
+      var favoriteDetails = this.state.favoriteList[0];
+      this.props.setView("recipeDetails", favoriteDetails);
+    }
 
     componentDidMount(){
-            fetch("/api/getFavorites.php")
-              .then(response => response.json())
-              .then(recipes => {
-                console.log("recipes are ", recipes)
-                this.setState({ favoriteList: recipes });
-              })
+      fetch("/api/getFavorites.php")
+        .then(response => response.json())
+        .then(recipes => {
+          this.setState({ favoriteList: recipes });
+        })
     }
 
     render(){
@@ -34,7 +29,6 @@ class RecipesFavoritesList extends React.Component{
               <div className="row no-gutters">
                 <div className="col-sm-4">
                   <div
-
                     className="card-img-top propsImage"
                     style={{
                       backgroundImage: "url("+this.props.image_url+")",
@@ -44,7 +38,6 @@ class RecipesFavoritesList extends React.Component{
                       width: "150px"
                     }}
                   ></div>
-
                 </div>
                 {this.state.favoriteList.map((recipe)=>{
                       return(
@@ -63,7 +56,6 @@ class RecipesFavoritesList extends React.Component{
                         </div>
                       );
                   })}
-
               </div>
             </div>
           );

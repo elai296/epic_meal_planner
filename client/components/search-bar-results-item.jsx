@@ -31,9 +31,7 @@ function SearchBarResultsItem(props) {
         </div>
       </div>
     </div>
-
   );
 }
-
 
 export default SearchBarResultsItem;
