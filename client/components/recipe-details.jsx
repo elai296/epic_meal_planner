@@ -118,9 +118,6 @@ class RecipeDetails extends React.Component {
       },
       body: JSON.stringify(recipe),
     })
-      .then(response => {
-        response.json()
-      });
     this.setState({
       modal: 'shoppinglist'
     });
@@ -135,8 +132,6 @@ class RecipeDetails extends React.Component {
       },
       body: JSON.stringify(data),
     })
-    .then(response=>{
-      response.json()})
   }
 
   render() {

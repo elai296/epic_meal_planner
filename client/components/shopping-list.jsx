@@ -8,7 +8,6 @@ class ShoppingList extends React.Component {
     super(props);
     this.state = {
       shoppingList: [],
-      // isChecked: false
     };
     this.getAllItems = this.getAllItems.bind(this);
     this.addItem = this.addItem.bind(this);
@@ -35,10 +34,6 @@ class ShoppingList extends React.Component {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newItem)
     })
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ shoppingList: data });
-      });
       this.getAllItems()
   }
 
@@ -48,8 +43,6 @@ class ShoppingList extends React.Component {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(id)
     })
-      .then(res => res.json())
-      .then(data =>{ this.setState({ shoppingList: data})});
     this.getAllItems();
   }
 
