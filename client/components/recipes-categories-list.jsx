@@ -40,7 +40,18 @@ class RecipesCategoriesList extends React.Component{
 
     render(){
       if ( this.state.categoryList.length === 0 ){
-        return <div>Loading...</div>;
+        return (
+          <div>
+            <Header setView={this.props.setView} />
+            <div className="container">
+              <section className="section">
+                <div className="row">
+                <div className="loader"></div >
+                </div>
+              </section>
+            </div>
+          </div>
+        )
       } else {
         return (
           <div>

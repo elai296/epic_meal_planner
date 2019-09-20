@@ -333,7 +333,7 @@ class Calendar extends React.Component {
     this.setDate();
     if(!this.state.meal){
       return (
-        <div>Loading...</div>
+        <div className="loader"></div >
       );
     } else if (this.state.day) {
       return (
@@ -363,7 +363,10 @@ class Calendar extends React.Component {
             recipeLink={this.recipeLink} />
              <div className="row justify-content-center">
                 <div className="col-4">
-                    <button type="submit" onClick={this.changeWeek} className="btn btn-primary prevModal">Previous Week</button>
+                    <div type="submit" onClick={this.changeWeek} className="btn btn-primary prevModal">
+                      
+                    Previous Week
+                    </div>
                 </div>
                 <div className="col-4">
                   <button onClick={this.handleDetailSubmit} className="btn btn-primary mb-2 addModal">Add</button>
