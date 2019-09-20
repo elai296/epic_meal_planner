@@ -74,7 +74,8 @@ body{
 }
 
 .textFont{
-    font-family: 'Merriweather', serif;
+    font-family: 'Nunito Sans', sans-serif;
+    /* font-family: 'Merriweather', serif; */
 }
 
 .textSize{
