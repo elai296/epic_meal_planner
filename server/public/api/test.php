@@ -42,7 +42,7 @@ if($count <= 5){
   $result2 = json_decode($result, true);
 
   $resultLabel= [];
-  for($i= 0; $i < 5; $i++){
+  for($i= 0; $i < 9; $i++){
     $thisData = [
       "label" => $result2["hits"][$i]["recipe"]["label"],
       "image" => $result2["hits"][$i]["recipe"]["image"],
@@ -54,7 +54,7 @@ if($count <= 5){
     $resultLabel[]=$thisData;
   };
 
-  for($i = 0; $i < 5; $i++){
+  for($i = 0; $i < 9; $i++){
     $label =  $resultLabel[$i]["label"];
     $image =  $resultLabel[$i]["image"];
     $url =  $resultLabel[$i]["url"];
