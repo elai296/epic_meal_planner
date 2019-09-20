@@ -19,7 +19,7 @@ class Menu extends React.Component {
     };
 
     const menuDivOpacity = {
-      backgroundColor: "rgb(195,195,195)",
+      backgroundColor: "rgb(255,255,255)",
     }
 
     const greyDivOpacity = {
