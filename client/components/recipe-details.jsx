@@ -29,12 +29,12 @@ class RecipeDetails extends React.Component {
       return (
         <div>
           <div className="modal">Added to Shopping List
-            <button
+            <div
               onClick={() => {
                 this.closeModal();
               }}>
-                   <i className="far fa-window-close"></i>
-              </button>
+                   <i className="fas fa-times"></i>
+              </div>
           </div>
         </div>
       );
@@ -42,15 +42,15 @@ class RecipeDetails extends React.Component {
       return (
         <div>
           <div className="modal">Added to Favorites
-            <button
+            <div
               onClick={() => {
                 this.closeModal();
               }}>
               {/* close */}
 
-              <i className="far fa-window-close"></i>
+                <i className="fas fa-times"></i>
 
-              </button>
+              </div>
           </div>
         </div>
       );
@@ -58,12 +58,12 @@ class RecipeDetails extends React.Component {
       return (
         <div>
           <div className="modal">
-              <button className= "closeModal"
+              <div className= "closeModal"
                 onClick={() => {
                   this.closeModal();
                 }}>
-             <i className="far fa-window-close"></i>
-              </button>
+            <i className="fas fa-times"></i>
+              </div>
 
             <div className="smallcalendar">
               <Calendar recipeId={recipe} setView={this.props.setView} view={this.props.view}/>
@@ -163,8 +163,6 @@ class RecipeDetails extends React.Component {
             <p className='h1'>{recipe.label}</p>
             <div className="row">
 
-
-
               <div className="propsFood" style={{
                 backgroundImage: "url("+recipe.image_url+")",
                 backgroundSize: "contain",
@@ -204,8 +202,6 @@ class RecipeDetails extends React.Component {
               </div>
             </div>
           </div>
-
-
 
             <div className="text-center">INGREDIENTS</div>
           <div>
