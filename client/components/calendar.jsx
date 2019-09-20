@@ -206,6 +206,7 @@ class Calendar extends React.Component {
       }
       datePosition++;
     }
+    this.setDate();
     this.setState({ meal: weekMeals})
   }
 
@@ -216,8 +217,7 @@ class Calendar extends React.Component {
     const weekDay = today.getDay();
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     this.year = finalDate.getFullYear();
-    let monthNumeric = finalDate.getMonth();
-    this.monthLiteral = months[monthNumeric];
+
     if(offset === 7 || offset === -7){
       finalDate.setDate(currentDate - weekDay + offset + this.testDate);
     } else if( offset >= 0 && offset < 7) {
@@ -225,6 +225,8 @@ class Calendar extends React.Component {
     } else {
       finalDate.setDate(currentDate - weekDay);
     }
+    let monthNumeric = finalDate.getMonth();
+    this.monthLiteral = months[monthNumeric];
 
     let returnDate = this.year + '-'
       + ('0' + (finalDate.getMonth() + 1)).slice(-2) + '-'
@@ -234,13 +236,13 @@ class Calendar extends React.Component {
   }
 
   changeWeek(){
-    if (event.srcElement.textContent === "Previous Week"){
-      this.setState({ date: this.setDate(-7) })
-      this.testDate -=7;
-    } else if (event.srcElement.textContent === "Next Week"){
-      this.setState({ date: this.setDate(7) })
-      this.testDate += 7;
-    }
+    if (event.srcElement.textContent === "Prev") {
+        this.setState({ date: this.setDate(-7) })
+        this.testDate -= 7;
+    } else if (event.srcElement.textContent === "Next") {
+        this.setState({ date: this.setDate(7) })
+        this.testDate += 7;
+      }
     this.getStoredMeals();
   }
 
@@ -360,18 +362,18 @@ class Calendar extends React.Component {
               setDate={this.setDate}
               date={this.state.date}
               recipeLink={this.recipeLink} />
-             <div className="row justify-content-center">
-                <div className="col-4">
-                <button type="submit" onClick={this.changeWeek} className="btn btn-primary ml-5"><i class="fas fa-chevron-left"></i></button>
-                </div>
-                <div className="col-4">
-                  <button onClick={this.handleDetailSubmit} className="btn btn-primary mb-2 ml-3">Add</button>
-                </div>
-                <div className="col-4">
-                <button type="submit" onClick={this.changeWeek} className="btn btn-primary"><i class="fas fa-chevron-right"></i></button>
+            <div className="row justify-content-center">
+              <div className="col-4">
+                <button type="submit" onClick={this.changeWeek} className="btn btn-primary ml-3">Prev</button>
               </div>
-               </div>
+              <div className="col-4">
+                <button onClick={this.handleDetailSubmit} className="btn btn-primary mb-2 ml-3">Add</button>
+              </div>
+              <div className="col-4">
+                <button type="submit" onClick={this.changeWeek} className="btn btn-primary ml-3">Next</button>
+              </div>
             </div>
+          </div>
         </div>
       );
     } else if(this.state.meal){
@@ -399,8 +401,10 @@ class Calendar extends React.Component {
               </div>
               <button type="submit" className="btn btn-primary mb-2">Add</button>
             </form>
-            <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 mr-2 ml-5">Previous Week</button>
-            <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 ml-4">Next Week</button>
+            <div className="d-flex justify-content-between">
+              <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 ml-5 ">Prev</button>
+              <button type="submit" onClick={this.changeWeek} className="btn btn-primary mb-2 mr-3">Next</button>
+            </div>
           </div>
         </div>
       );
@@ -409,5 +413,3 @@ class Calendar extends React.Component {
 }
 
 export default Calendar;
-//btn btn-primary prevModal
-//btn btn-primary nextModal
