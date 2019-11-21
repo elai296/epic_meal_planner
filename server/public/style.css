@@ -38,13 +38,14 @@
   display: block;
   height: auto;
   width: auto;
-  position: fixed;
+  position: absolute;
   z-index: 100;
   left: 50%;
-  top: 50%;
+  top: 14em;
   transform: translate(-50%, -50%);
   background: rgba(252, 252, 252, 0.99);
-  box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
+  border: 2px solid rgba(0,0,0,0.15);
+  overflow-y: scroll;
 }
 
 .modalToo {
@@ -55,8 +56,8 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(252, 252, 252, 0.95);
-  box-shadow: 0 0 50px 10px rgba(0, 0, 0, 0.5);
+  background: rgba(252, 252, 252, 0.99);
+  border: 2px solid rgba(0,0,0,0.15);
 }
 
 .modalText {
@@ -357,10 +358,21 @@ body{
   .headerHover:hover {
     border-bottom: 3px solid black;
     text-decoration-color: black;
+    box-sizing: border-box;
   }
-  
+
 }
 
 .navbar-light .navbar-toggler{
   border: none;
 }
+
+@media screen and (orientation: portrait){
+  .navbar-brand{
+    font-size: 1.5vh;
+    }
+  }
+  
+  .dropdown-toggle::after { 
+    content: none; 
+  }
