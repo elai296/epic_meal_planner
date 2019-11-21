@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ShoppingListItem(props) {
+export default function ShoppingListItem(props) {
   const item = props.oneItem;
   const deleteButtonStyle = {
     color: "red",
@@ -29,5 +29,3 @@ function ShoppingListItem(props) {
     </li>
   );
 }
-
-export default ShoppingListItem;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class ShoppingListItemForm extends React.Component {
+export default class ShoppingListItemForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,5 +44,3 @@ class ShoppingListItemForm extends React.Component {
     );
   }
 }
-
-export default ShoppingListItemForm;

@@ -1,7 +1,7 @@
-import React from 'react';
-import ShoppingListItem from './shopping-list-item';
+import React from "react";
+import ShoppingListItem from "./shopping-list-item";
 
-function ShoppingListItemList(props) {
+export default function ShoppingListItemList(props) {
   return (
     <div>
       {props.allItems.map(item => {
@@ -10,11 +10,10 @@ function ShoppingListItemList(props) {
             key={item.id}
             oneItem={item}
             deleteItem={props.deleteItem}
-            toggleChecked={props.toggleChecked}/>
+            toggleChecked={props.toggleChecked}
+          />
         );
       })}
     </div>
   );
 }
-
-export default ShoppingListItemList;

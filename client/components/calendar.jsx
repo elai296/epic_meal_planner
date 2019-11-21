@@ -1,17 +1,16 @@
 import React from "react";
 import CalendarTable from "./calendar-table";
 import CalendarDayView from "./calendar-day-view";
-import Header from './header';
 
-class Calendar extends React.Component {
-  constructor(props){
+export default class Calendar extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       mealInput: "",
       pushToCalendar: [],
       date: this.setDate(),
       day: false
-    }
+    };
     this.totalOffset = null;
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -27,13 +26,16 @@ class Calendar extends React.Component {
     this.recipeLink = this.recipeLink.bind(this);
   }
 
-  handleClick(){
+  handleClick() {
     if (!event.path[0].textContent) {
-
-      if (this.props.view){
+      if (this.props.view) {
         let counter = 0;
         while (counter < this.state.meal.length) {
-          if (this.state.meal[counter].date === event.path[1].firstChild.className && this.state.meal[counter].meal_time === event.srcElement.className) {
+          if (
+            this.state.meal[counter].date ===
+              event.path[1].firstChild.className &&
+            this.state.meal[counter].meal_time === event.srcElement.className
+          ) {
             const mealStateCopy = this.state.meal;
             mealStateCopy[counter].highlight = "true";
             mealStateCopy[counter].recipe_id = this.props.recipeId.id;
@@ -47,7 +49,11 @@ class Calendar extends React.Component {
       } else {
         let counter = 0;
         while (counter < this.state.meal.length) {
-          if (this.state.meal[counter].date === event.path[1].firstChild.className && this.state.meal[counter].meal_time === event.srcElement.className) {
+          if (
+            this.state.meal[counter].date ===
+              event.path[1].firstChild.className &&
+            this.state.meal[counter].meal_time === event.srcElement.className
+          ) {
             const mealStateCopy = this.state.meal;
             mealStateCopy[counter].highlight = "true";
             this.setState({ meal: mealStateCopy });
@@ -58,28 +64,29 @@ class Calendar extends React.Component {
           counter++;
         }
       }
-
     }
   }
 
-  handleChange(){
+  handleChange() {
     this.setState({ mealInput: event.target.value });
   }
 
-  handleDetailSubmit(){
+  handleDetailSubmit() {
     event.preventDefault();
     const mealsToPost = this.state.pushToCalendar;
     let counter = 0;
     const mealPosts = [];
     while (counter < mealsToPost.length) {
-      mealsToPost[counter].recipe_label = this.props.recipeId.label.slice(0,15);
+      mealsToPost[counter].recipe_label = this.props.recipeId.label.slice(
+        0,
+        15
+      );
       const req = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(mealsToPost[counter])
       };
-      mealPosts.push(fetch('/api/postMeals.php', req)
-        .then(res => res.json()))
+      mealPosts.push(fetch("/api/postMeals.php", req).then(res => res.json()));
       counter++;
     }
     Promise.allSettled(mealPosts).then(this.getStoredMeals);
@@ -90,46 +97,45 @@ class Calendar extends React.Component {
     const mealsToPost = this.state.pushToCalendar;
     let counter = 0;
     const mealPosts = [];
-    while(counter < mealsToPost.length){
+    while (counter < mealsToPost.length) {
       mealsToPost[counter].recipe_label = this.state.mealInput;
       const req = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(mealsToPost[counter])
       };
-      mealPosts.push(fetch('/api/postMeals.php', req)
-        .then(res => res.json()))
+      mealPosts.push(fetch("/api/postMeals.php", req).then(res => res.json()));
       counter++;
     }
     Promise.allSettled(mealPosts).then(this.getStoredMeals);
     event.target.reset();
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.getStoredMeals();
     this.setMonthAndYear();
   }
 
-  getStoredMeals(){
+  getStoredMeals() {
     fetch(`/api/getMeals.php`)
       .then(response => response.json())
       .then(data => {
         this.sortDays(data);
-    })
+      });
     this.setState({
       mealInput: "",
       pushToCalendar: []
-    })
+    });
   }
 
-   sortDays(data){
+  sortDays(data) {
     const copyOfMeal = data;
     const weekMeals = [];
     let counter = 0;
     const dynamicWeek = [];
-    while(counter < 7){
-      if(counter === 0){
-        dynamicWeek.push(this.state.date)
+    while (counter < 7) {
+      if (counter === 0) {
+        dynamicWeek.push(this.state.date);
       } else {
         dynamicWeek.push(this.setDate(counter));
       }
@@ -137,18 +143,21 @@ class Calendar extends React.Component {
     }
 
     let datePosition = 0;
-    while (datePosition < dynamicWeek.length){
-      if(copyOfMeal[0]){
+    while (datePosition < dynamicWeek.length) {
+      if (copyOfMeal[0]) {
         let mealCounter = 0;
         let insert = false;
-        while(mealCounter < copyOfMeal.length){
-          if (copyOfMeal[mealCounter].date === dynamicWeek[datePosition] && copyOfMeal[mealCounter].meal_time === "breakfast") {
+        while (mealCounter < copyOfMeal.length) {
+          if (
+            copyOfMeal[mealCounter].date === dynamicWeek[datePosition] &&
+            copyOfMeal[mealCounter].meal_time === "breakfast"
+          ) {
             weekMeals.push(copyOfMeal[mealCounter]);
             insert = true;
           }
           mealCounter++;
         }
-        if(!insert){
+        if (!insert) {
           weekMeals.push({
             date: dynamicWeek[[datePosition]],
             meal_time: "breakfast",
@@ -158,7 +167,10 @@ class Calendar extends React.Component {
         mealCounter = 0;
         insert = false;
         while (mealCounter < copyOfMeal.length) {
-          if (copyOfMeal[mealCounter].date === dynamicWeek[datePosition] && copyOfMeal[mealCounter].meal_time === "lunch") {
+          if (
+            copyOfMeal[mealCounter].date === dynamicWeek[datePosition] &&
+            copyOfMeal[mealCounter].meal_time === "lunch"
+          ) {
             weekMeals.push(copyOfMeal[mealCounter]);
             insert = true;
           }
@@ -174,7 +186,10 @@ class Calendar extends React.Component {
         mealCounter = 0;
         insert = false;
         while (mealCounter < copyOfMeal.length) {
-          if (copyOfMeal[mealCounter].date === dynamicWeek[datePosition] && copyOfMeal[mealCounter].meal_time === "dinner") {
+          if (
+            copyOfMeal[mealCounter].date === dynamicWeek[datePosition] &&
+            copyOfMeal[mealCounter].meal_time === "dinner"
+          ) {
             weekMeals.push(copyOfMeal[mealCounter]);
             insert = true;
           }
@@ -207,150 +222,164 @@ class Calendar extends React.Component {
       datePosition++;
     }
     this.setMonthAndYear();
-    this.setState({ meal: weekMeals})
+    this.setState({ meal: weekMeals });
   }
 
-  setDate(offset){
+  setDate(offset) {
     const today = new Date();
     const finalDate = new Date(today);
     const currentDate = today.getDate();
     const weekDay = today.getDay();
     let year = finalDate.getFullYear();
 
-    if(offset === 7 || offset === -7){
+    if (offset === 7 || offset === -7) {
       finalDate.setDate(currentDate - weekDay + offset + this.totalOffset);
-    } else if( offset >= 0 && offset < 7) {
+    } else if (offset >= 0 && offset < 7) {
       finalDate.setDate(currentDate - weekDay + offset + this.totalOffset);
     } else {
       finalDate.setDate(currentDate - weekDay);
     }
 
-    let returnDate = year + '-'
-      + ('0' + (finalDate.getMonth() + 1)).slice(-2) + '-'
-      + ('0' + finalDate.getDate()).slice(-2);
+    let returnDate =
+      year +
+      "-" +
+      ("0" + (finalDate.getMonth() + 1)).slice(-2) +
+      "-" +
+      ("0" + finalDate.getDate()).slice(-2);
 
     return returnDate;
   }
 
-  setMonthAndYear(){
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  setMonthAndYear() {
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ];
     let monthNumeric = "";
-    if(this.state.date[5] === "0"){
+    if (this.state.date[5] === "0") {
       monthNumeric = parseInt(this.state.date[6]) - 1;
     } else {
-      monthNumeric = parseInt(this.state.date[5] + this.state.date[6]) -1;
+      monthNumeric = parseInt(this.state.date[5] + this.state.date[6]) - 1;
     }
     this.monthLiteral = months[monthNumeric];
 
     const copyDateState = this.state.date;
-    this.year = copyDateState.slice(0,4);
-
+    this.year = copyDateState.slice(0, 4);
   }
 
-  changeWeek(){
+  changeWeek() {
     if (event.srcElement.textContent === "Prev") {
-        this.setState({ date: this.setDate(-7) })
-        this.totalOffset -= 7;
+      this.setState({ date: this.setDate(-7) });
+      this.totalOffset -= 7;
     } else if (event.srcElement.textContent === "Next") {
-        this.setState({ date: this.setDate(7) })
-        this.totalOffset += 7;
-      }
+      this.setState({ date: this.setDate(7) });
+      this.totalOffset += 7;
+    }
     this.getStoredMeals();
   }
 
-  changeView(event){
-    if(!this.state.day){
+  changeView(event) {
+    if (!this.state.day) {
       this.setState({ day: true });
       this.getDayOfWeek(event);
-
     } else {
       this.setState({ day: false });
       this.getDayOfWeek(event);
     }
   }
 
-  getDateNumbers(){
-    if(this.mealObj.breakfast === 0){
-      let date = (this.state.date[8]) + (this.state.date[9]);
+  getDateNumbers() {
+    if (this.mealObj.breakfast === 0) {
+      let date = this.state.date[8] + this.state.date[9];
       return date;
     } else {
-      let date = (this.setDate(parseInt(this.clickedId)))[8] + (this.setDate(parseInt(this.clickedId)))[9];
+      let date =
+        this.setDate(parseInt(this.clickedId))[8] +
+        this.setDate(parseInt(this.clickedId))[9];
       return date;
     }
   }
 
-  getDayOfWeek(event){
+  getDayOfWeek(event) {
     this.clickedId = event.currentTarget.id;
-    switch(this.clickedId){
+    switch (this.clickedId) {
       case "0":
         this.mealObj = {
           breakfast: 0,
           lunch: 1,
           dinner: 2
-        }
-      break;
+        };
+        break;
       case "1":
         this.mealObj = {
           breakfast: 3,
           lunch: 4,
           dinner: 5
-        }
-      break;
+        };
+        break;
       case "2":
         this.mealObj = {
           breakfast: 6,
           lunch: 7,
           dinner: 8
-        }
-      break;
+        };
+        break;
       case "3":
         this.mealObj = {
           breakfast: 9,
           lunch: 10,
           dinner: 11
-        }
-      break;
+        };
+        break;
       case "4":
         this.mealObj = {
           breakfast: 12,
           lunch: 13,
           dinner: 14
-        }
-      break;
+        };
+        break;
       case "5":
         this.mealObj = {
           breakfast: 15,
           lunch: 16,
           dinner: 17
-        }
-      break;
+        };
+        break;
       case "6":
         this.mealObj = {
           breakfast: 18,
           lunch: 19,
           dinner: 20
-        }
-      break;
+        };
+        break;
     }
   }
 
-  recipeLink(label){
+  recipeLink(label) {
     fetch(`/api/calendar-details.php?q=` + label)
       .then(response => response.json())
       .then(recipes => {
-        this.props.setView("recipeDetails", recipes[0])
+        this.props.setView("recipeDetails", recipes[0], {}, "CALENDAR");
       });
   }
 
-  render(){
+  render() {
     this.setDate();
-    if(!this.state.meal){
-      return (
-        <div className="loader"></div >
-      );
+    if (!this.state.meal) {
+      return <div className="loader"></div>;
     } else if (this.state.day) {
       return (
-          <CalendarDayView
+        <CalendarDayView
           day={this.state.day}
           changeView={this.changeView}
           month={this.monthLiteral}
@@ -360,12 +389,15 @@ class Calendar extends React.Component {
           mealObj={this.mealObj}
           getDateNumbers={this.getDateNumbers}
           setView={this.props.setView}
-          recipeLink={this.recipeLink} />
-      )
+          recipeLink={this.recipeLink}
+        />
+      );
     } else if (this.props.view) {
       return (
         <div>
-          <div className="calendarHeaderText ml-3">{this.monthLiteral} {this.year}</div>
+          <div className="calendarHeaderText ml-3 d-inline-block">
+            {this.monthLiteral} {this.year}
+          </div>
           <div className="container">
             <CalendarTable
               handleClick={this.handleClick}
@@ -373,26 +405,47 @@ class Calendar extends React.Component {
               meal={this.state.meal}
               setDate={this.setDate}
               date={this.state.date}
-              recipeLink={this.recipeLink} />
+              recipeLink={this.recipeLink}
+            />
             <div className="row justify-content-center">
               <div className="col-4">
-                <button type="submit" onClick={this.changeWeek} className="btn btn-secondary ml-3">Prev</button>
+                <button
+                  type="submit"
+                  onClick={this.changeWeek}
+                  className="btn btn-secondary ml-3"
+                >
+                  Prev
+                </button>
               </div>
               <div className="col-4">
-                <button onClick={this.handleDetailSubmit} className="btn btn-secondary mb-2 ml-3">Add</button>
+                <button
+                  onClick={this.handleDetailSubmit}
+                  className="btn btn-secondary mb-2 ml-3"
+                >
+                  Add
+                </button>
               </div>
               <div className="col-4">
-                <button type="submit" onClick={this.changeWeek} className="btn btn-secondary ml-3">Next</button>
+                <button
+                  type="submit"
+                  onClick={this.changeWeek}
+                  className="btn btn-secondary ml-3"
+                >
+                  Next
+                </button>
               </div>
             </div>
           </div>
         </div>
       );
-    } else if(this.state.meal){
-      const headerText = (<div>{this.monthLiteral} {this.year}</div>);
+    } else if (this.state.meal) {
+      const headerText = (
+        <div>
+          {this.monthLiteral} {this.year}
+        </div>
+      );
       return (
         <div>
-          <Header setView={this.props.setView} text={headerText}/>
           <div className="container textFont mt-5">
             <CalendarTable
               handleClick={this.handleClick}
@@ -400,24 +453,43 @@ class Calendar extends React.Component {
               meal={this.state.meal}
               setDate={this.setDate}
               date={this.state.date}
-              recipeLink={this.recipeLink} />
-            <form className="form-inline text-align-centerborder" onSubmit={this.handleSubmit}>
+              recipeLink={this.recipeLink}
+            />
+            <form
+              className="form-inline text-align-centerborder"
+              onSubmit={this.handleSubmit}
+            >
               <div className="form-group mx-sm-3 mb-2 mr-2 ml-5">
                 <input
-                maxLength="15"
-                required
-                onChange={this.handleChange}
-                type="text"
-                className="form-control"
-                placeholder="Add a meal"/>
+                  maxLength="15"
+                  required
+                  onChange={this.handleChange}
+                  type="text"
+                  className="form-control"
+                  placeholder="Add a meal"
+                />
               </div>
-              <button type="submit" className="btn btn-secondary mb-2">Add</button>
+              <button type="submit" className="btn btn-secondary mb-2">
+                Add
+              </button>
             </form>
             <div className="d-flex justify-content-between">
-              <button type="submit" onClick={this.changeWeek} className="btn btn-secondary mb-2 ml-5 float-left">Prev</button>
+              <button
+                type="submit"
+                onClick={this.changeWeek}
+                className="btn btn-secondary mb-2 ml-5 float-left"
+              >
+                Prev
+              </button>
               <span className="mr-5 px-5 float-right"></span>
               <span className="mr-2 float-right"></span>
-              <button type="submit" onClick={this.changeWeek} className="btn btn-secondary mb-2 mr-5 float-right">Next</button>
+              <button
+                type="submit"
+                onClick={this.changeWeek}
+                className="btn btn-secondary mb-2 mr-5 float-right"
+              >
+                Next
+              </button>
             </div>
           </div>
         </div>
@@ -425,5 +497,3 @@ class Calendar extends React.Component {
     }
   }
 }
-
-export default Calendar;

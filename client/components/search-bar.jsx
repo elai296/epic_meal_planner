@@ -16,20 +16,23 @@ class SearchBar extends React.Component {
 
   handleSearch(event) {
     event.preventDefault();
-    this.props.setView("searchBarResultsList", null, this.state.value);
+    this.props.setView("searchBarResultsList", null, this.state.value, 'RECIPES');
   }
 
   render() {
     return (
-      <div className="searchBarContainer rounded-circle textFont">
+      <div className="searchBarContainer rounded-circle textFont col-lg-4 col-md-6 col-sm-18 col-10">
         <form className="searchBarForm" onSubmit={this.handleSearch}>
+          <a href='#'>
+          {<img className="searchIcon mx-3 my-1 position-absolute" src="./image/searchIcon.png" alt="searchPicture" onClick={e=>this.handleSearch(e)}/>}
+
+          </a>
           <input
-            className="rounded-pill mx-1"
+            className="rounded-pill mx-1 pl-5 col-12"
             type="search"
             value={this.state.value}
-            placeholder=" Search"
+            placeholder="Search Meal"
             onChange={this.handleChange}/>
-          {<img className="searchIcon mx-1 mb-2" src="./image/searchIcon.png" alt="searchPicture" onClick={e=>this.handleSearch(e)}/>}
         </form>
       </div>
     );

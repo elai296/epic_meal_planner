@@ -1,68 +1,48 @@
 import React from "react";
-import Header from "./header";
 
 function Recipes(props) {
-  let cardStyle = "border border-dark card text-center recipeContainer my-3"
+  let cardStyle = "border border-dark cardPicture card text-center recipeContainer my-3";
+  const recipeDropDownItems = [
+    {
+      text: "Favorites",
+      category: "favorites",
+      myClass: "favoriteCatergoryPic"
+    },
+    { text: "Vegan", category: "vegan", myClass: "veganCatergoryPic" },
+    { text: "Keto", category: "keto", myClass: "ketoCatergoryPic" },
+    { text: "Paleo", category: "paleo", myClass: "paleoCatergoryPic" },
+    {
+      text: "Dairy-Free",
+      category: "dairy-free",
+      myClass: "dairyFreeCatergoryPic"
+    },
+    {
+      text: "Gluten-Free",
+      category: "gluten-free",
+      myClass: "glutenFreeCatergoryPic"
+    }
+  ];
+
   return (
-    <div>
-      <Header setView={props.setView} text="Recipes" />
-      <div className="container mt-5 d-flex flex-wrap textFont">
-          <div
+    <div className="container mt-5 d-flex flex-wrap textFont">
+      {recipeDropDownItems.map((item, x) => {
+        return (
+          <a
             className={cardStyle}
+            key={x}
+            href="#"
             onClick={() => {
-              props.setView("recipesCategoriesList", {}, "");
-              props.setCategory("favorites");
+              props.setCategory(item.category);
+              props.setView("recipesCategoriesList", {}, "", "RECIPES");
             }}
           >
-            Favorites
-          </div>
-          <div
-            className={cardStyle}
-            onClick={() => {
-              props.setView("recipesCategoriesList", {}, "");
-              props.setCategory("vegan");
-            }}
-          >
-            Vegan
-          </div>
-          <div
-            className={cardStyle}
-            onClick={() => {
-              props.setView("recipesCategoriesList", {}, "");
-              props.setCategory("keto");
-            }}
-          >
-            Keto
-          </div>
-          <div
-            className={cardStyle}
-            onClick={() => {
-              props.setView("recipesCategoriesList", {}, "");
-              props.setCategory("paleo");
-            }}
-          >
-            Paleo
-          </div>
-          <div
-            className={cardStyle}
-            onClick={() => {
-              props.setView("recipesCategoriesList", {}, "");
-              props.setCategory("dairy-free");
-            }}
-          >
-            Dairy-Free
-          </div>
-          <div
-            className={cardStyle}
-            onClick={() => {
-              props.setView("recipesCategoriesList", {}, "");
-              props.setCategory("gluten-free");
-            }}
-          >
-            Gluten-Free
-          </div>
-        </div>
-      </div>
+            
+            <h3 className="my-auto">{item.text}</h3>
+            <div className={item.myClass}></div>
+          </a>
+        );
+      })}
+    </div>
   );
 }
 
