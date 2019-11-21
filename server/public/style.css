@@ -1,218 +1,221 @@
-
-body{
-    background: url("../image/backgroundImage4.jpg") no-repeat bottom center scroll;
-   background-size:cover;
+.body-bg {
+  position: fixed;
+  background: url("../image/backgroundImage4.jpg") no-repeat bottom center
+    scroll;
+  background-size: cover;
+  opacity: 0.5;
+  height: 1366px;
+  width: 100%;
+  z-index: -2;
 }
 
-.contentRecipeBar{
-    margin: 10px;
-    display: inline-block;
+.contentRecipeBar {
+  margin: 10px;
+  display: inline-block;
 }
 
-.imgIcon{
-    height: 30px;
-    width: 30px;
-    margin: 3px;
+.imgIcon {
+  height: 30px;
+  width: 30px;
+  margin: 3px;
 }
 
-.iconImages{
-    display: flex;
+.iconImages {
+  display: flex;
 }
 
-.searchIcon{
-    height: 19px;
-    width: 19px;
+.searchIcon {
+  height: 19px;
+  width: 19px;
+  z-index: 2;
 }
 
-.propsImage{
-    display: inline-block;
+.propsImage {
+  display: inline-block;
 }
 
-.modal{
-    display: block;
-    height: auto;
-    width: auto;
-    position: fixed;
-    z-index: 100;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(252, 252, 252, 0.99);
-    box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9)
+.modal {
+  display: block;
+  height: auto;
+  width: auto;
+  position: fixed;
+  z-index: 100;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(252, 252, 252, 0.99);
+  box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
 }
 
-.modalToo{
-    display: block;
-    height: 10rem;
-    width: 15rem;
-    position: fixed;
-    z-index: 100;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(252, 252, 252, 0.95);
-    box-shadow: 0 0 50px 10px rgba(0, 0, 0, 0.5)
+.modalToo {
+  display: block;
+  width: 15rem;
+  position: fixed;
+  z-index: 100;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(252, 252, 252, 0.95);
+  box-shadow: 0 0 50px 10px rgba(0, 0, 0, 0.5);
 }
 
-.modalText{
-    color: rgb(0, 0, 0);
-    padding: 2rem 0;
-    text-align: center;
-    font-size: 1.75rem;
+.modalText {
+  color: rgb(0, 0, 0);
+  text-align: center;
+  font-size: 1.75rem;
 }
 
-.homeText{
-    font-size: 2rem;
+.homeText {
+  font-size: 2rem;
 }
 
-.headerMenuSize{
-    font-size: 1.5rem;
+.headerMenuSize {
+  font-size: 1.5rem;
 }
 
-.headerTextMenu{
-    display: inline-block;
-    color: black;
+.headerTextMenu {
+  display: inline-block;
+  color: black;
 }
 
-.textFont{
-    font-family: 'Nunito Sans', sans-serif;
-    /* font-family: 'Merriweather', serif; */
+.textFont {
+  font-family: "Nunito Sans", sans-serif;
 }
 
-.textSize{
-    font-size: 1.25rem;
+.textSize {
+  font-size: 1.25rem;
 }
 
-.menu{
-    display: inline-block;
-    position: "absolute";
-    top: 0;
-    left: 0;
-    font-size: 1rem;
+.menu {
+  display: inline-block;
+  position: "absolute";
+  top: 0;
+  left: 0;
+  font-size: 1rem;
 }
 
-.calendarHeaderText{
-    font-size: 1.5em;
+.calendarHeaderText {
+  font-size: 1.5em;
 }
 
-input[type=checkbox]:checked + label{
-    text-decoration: line-through;
+input[type="checkbox"]:checked + label {
+  text-decoration: line-through;
 }
 
-.smallCalendar{
-    max-height: 685px;
-    width: 380px;
+.smallCalendar {
+  max-height: 685px;
+  width: 380px;
 }
 
-.section>.row{
-    display: flex;
-    flex-direction: column;
-    margin: 20px;
+.section > .row {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
 }
 
-.timeServing{
-    height: 50px;
+.timeServing {
+  height: 50px;
 }
 
-.propsFood{
-    height: 150px;
-    width: 150px;
-    margin-right: 15px;
-    margin-left: 15px;
+.propsFood {
+  height: 150px;
+  width: 150px;
+  margin-right: 15px;
+  margin-left: 15px;
 }
 
-.searchBarContainer{
-    display: inline-block;
+.searchBarContainer {
+  display: inline-block;
 }
 
-.searchBarForm{
-    display: inline-block;
+h4 {
+  text-align: center;
 }
 
-h4{
-    text-align: center;
+.card-body {
+  font-size: 1rem;
+  display: inline-block;
+  padding: 1rem 0 0 1rem;
+  background: cover;
 }
 
-.card-body{
-    font-size: 1rem;
-    display: inline-block;
-    padding: 1rem 0 0 1rem
+.card-text {
+  font-size: 1rem;
 }
 
-.card-text{
-    font-size: 1rem;
+.card-title {
+  font-size: 0.75em;
 }
 
-.card-title{
-    font-size: .75em;
+.card-text {
+  font-size: 0.75em;
 }
 
-.card-text{
-    font-size: .75em;
+.recipeDetailsTitle {
+  font-size: 2em;
 }
 
-.recipeDetailsTitle{
-    font-size: 2em;
+.recipeContainer {
+  width: 45%;
+  height: 15vw;
+  margin: 15px auto;
+}
+.recipeContainer h3{
+  font-size: 3.5vw;
+}
+.weekView {
+  margin-top: 5rem;
+  margin-left: 3rem;
 }
 
-.recipeContainer{
-    padding: 9% 0;
-    width: 45%;
-    margin: 15px auto;
+.mealTitle {
+  height: 5rem;
+  width: 5rem;
+  padding: 1.75rem 0;
 }
 
-.weekView{
-    margin-top: 5rem;
-    margin-left:3rem;
+.mealRecipe {
+  height: 5rem;
+  width: 5rem;
+  padding: 1.75rem 0;
 }
 
-.mealTitle{
-    height: 5rem;
-    width: 5rem;
-    padding: 1.75rem 0;
+.table {
+  table-layout: fixed;
 }
 
-.mealRecipe{
-    height: 5rem;
-    width: 5rem;
-    padding: 1.75rem 0;
+.table td,
+.table th {
+  min-width: 100px;
+  min-height: 100px;
+  font-size: 14px;
 }
 
-.table{
-     table-layout: fixed;
+.addModal {
+  font-size: 15px;
+  margin-left: 2rem;
 }
 
-.table td, .table th {
-    min-width: 100px;
-    min-height:100px;
-    font-size:14px;
+.prevModal {
+  font-size: 12px;
+  margin-left: 3rem;
 }
 
-.addModal{
-    font-size:15px;
-    margin-left:2rem;
+.nextModal {
+  font-size: 12px;
+  margin-right: 3rem;
 }
 
-.prevModal{
-    font-size:12px;
-    margin-left:3rem;
+.closeModal {
+  margin-left: 20.2rem;
 }
 
-.nextModal{
-     font-size:12px;
-     margin-right:3rem;
-}
-
-.closeModal{
-    margin-left:20.2rem;
-}
-
-html{
-    height:100%;
+html {
+  height: 100%;
 }
 
 .loader {
- margin: auto;
+  margin: auto;
   border: 16px solid #f3f3f3;
   border-top: 16px solid #62686d;
   border-radius: 50%;
@@ -222,16 +225,142 @@ html{
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 table.table-bordered > tbody > tr > td {
-    border: 1px solid black;
+  border: 1px solid black;
 }
-table.table-bordered > thead > tr > th{
-    border:1px solid black;
+table.table-bordered > thead > tr > th {
+  border: 1px solid black;
 }
-table.table-bordered > tbody > tr > th{
-    border:1px solid black;
+table.table-bordered > tbody > tr > th {
+  border: 1px solid black;
+}
+
+.navbar {
+  z-index: 1000;
+}
+.dropdown-menu li:hover .sub-menu {
+  visibility: visible;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.navbar-light .navbar-toggler{
+  border: none; 
+  color: black;
+}
+.card{
+  background-color: #fff;
+}
+.cardPicture{
+  background-color: transparent;
+}
+.favoriteCatergoryPic{
+  background: url('image/FavoriteCatergory.jpg') no-repeat;
+  background-position: bottom;
+  position: absolute;
+	width: 100%;
+	height: 100%;
+  background-size: cover;
+  background-color: white;
+  opacity: 0.75;
+  z-index: -1;
+}
+
+.veganCatergoryPic{
+  background: url('./image/VeganCatergory.webp') no-repeat;
+  position:absolute;
+  background-size: cover;
+  background-position: center;
+  background-color: white;
+  opacity: 0.75;
+  height: 100%;
+  width: 100%;
+  z-index: -2;
+
+}
+
+.ketoCatergoryPic{
+  background: url('./image/KetoCatergory.jpg') no-repeat;
+  background-position: center;
+  position:absolute;
+  background-size: cover;
+  background-position: center;
+  background-color: white;
+  opacity: 0.75;
+  height: 100%;
+  width: 100%;
+  z-index: -2;
+}
+
+.paleoCatergoryPic{
+  background: url('./image/PaleoCatergory.jpg') no-repeat;
+  position:absolute;
+  background-size: cover;
+  background-position: center;
+  background-color: white;
+  opacity: 0.75;
+  height: 100%;
+  width: 100%;
+  z-index: -2;
+}
+
+.dairyFreeCatergoryPic{
+  background: url('./image/DairyFreeCatergory.jpg') no-repeat;
+  position:absolute;
+  background-size: cover;
+  background-position: center;
+  background-color: white;
+  opacity: 0.75;
+  height: 100%;
+  width: 100%;
+  z-index: -2;
+}
+
+.glutenFreeCatergoryPic{
+  background: url('./image/GlutenFreeCatergory.jpg') no-repeat;
+  position:absolute;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.75;
+  height: 100%;
+  width: 100%;
+  z-index: -2;
+}
+
+a{
+  font-style: none;
+  color: black;
+}
+
+a:hover{
+  text-decoration: none;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color:black;
+}
+
+body{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+@media (min-width: 1000px){
+  .headerHover:hover {
+    border-bottom: 3px solid black;
+    text-decoration-color: black;
+  }
+  
+}
+
+.navbar-light .navbar-toggler{
+  border: none;
 }

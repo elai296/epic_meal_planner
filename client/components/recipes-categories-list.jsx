@@ -1,19 +1,18 @@
-import React from 'react';
-import Header from './header';
-import SearchBar from './search-bar';
+import React from "react";
+import SearchBar from "./search-bar";
 import SearchBarResultsItem from "./search-bar-results-item";
 
-class RecipesCategoriesList extends React.Component{
-  constructor(props){
-      super(props);
-      this.state={
-          categoryList:[]
-      }
-      this.retrieveData = this.retrieveData.bind(this);
+export default class RecipesCategoriesList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      categoryList: []
+    };
+    this.retrieveData = this.retrieveData.bind(this);
   }
 
-  retrieveData(){
-    fetch(`/api/getCategories.php?category=`+ this.props.category)
+  retrieveData() {
+    fetch(`/api/getCategories.php?category=` + this.props.category)
       .then(response => response.json())
       .then(recipes => {
         this.setState({
@@ -22,42 +21,40 @@ class RecipesCategoriesList extends React.Component{
       });
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.retrieveData();
   }
 
- componentDidUpdate(prevProps){
-  if (prevProps.category === this.props.category){
-    return;
+  componentDidUpdate(prevProps) {
+    if (prevProps.category === this.props.category) {
+      return;
+    }
+    fetch(`/api/getCategories.php?category=` + this.props.category)
+      .then(response => response.json())
+      .then(recipes => {
+        this.setState({ categoryList: recipes });
+      });
   }
-  fetch( `/api/getCategories.php?category=`+ this.props.category)
-    .then(response => response.json())
-    .then(recipes => {
-      this.setState({ categoryList: recipes });
-    })
-  }
-    
-  render(){
-    if ( this.state.categoryList.length === 0 ){
-           return (
-          <div>
-            <Header setView={this.props.setView} />
-            <div className="container">
-              <section className="section">
-                <div className="row">
-                <div className="loader"></div >
-                </div>
-              </section>
-            </div>
+
+  render() {
+    if (this.state.categoryList.length === 0) {
+      return (
+        <div>
+          <div className="container">
+            <section className="section">
+              <div className="row">
+                <div className="loader"></div>
+              </div>
+            </section>
           </div>
-        )
+        </div>
+      );
     } else {
       return (
         <div>
-          <Header setView={this.props.setView} text={this.props.category}/>
           <div className="container textFont">
             <div className="row justify-content-center my-5">
-              <SearchBar setView={this.props.setView}/>
+              <SearchBar setView={this.props.setView} />
             </div>
             <div>
               <section className="section">
@@ -70,7 +67,8 @@ class RecipesCategoriesList extends React.Component{
                         image={recipe.image_url}
                         time={recipe.cooking_time}
                         setView={this.props.setView}
-                        recipe={recipe}/>
+                        recipe={recipe}
+                      />
                     );
                   })}
                 </div>
@@ -82,5 +80,3 @@ class RecipesCategoriesList extends React.Component{
     }
   }
 }
-
-export default RecipesCategoriesList;

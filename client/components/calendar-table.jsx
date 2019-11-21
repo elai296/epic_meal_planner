@@ -1,7 +1,6 @@
 import React from 'react';
-import Calendar from './calendar';
 
-function CalendarTable(props){
+export default function CalendarTable(props){
   return (
     <table className="table table-bordered text-center table-light">
       <thead>
@@ -185,5 +184,3 @@ function CalendarTable(props){
     </table>
   )
 }
-
-export default CalendarTable;

@@ -1,6 +1,5 @@
 import React from "react";
 import SearchBarResultsItem from "./search-bar-results-item";
-import Header from './header';
 import SearchBar from './search-bar';
 
 class SearchBarResultsList extends React.Component {
@@ -38,7 +37,6 @@ class SearchBarResultsList extends React.Component {
     if(this.state.list.length === 0){
       return (
         <div>
-          <Header setView={this.props.setView} />
           <div className="container textFont">
             <div className="row justify-content-center my-5">
               <SearchBar setView={this.props.setView} />
@@ -56,7 +54,6 @@ class SearchBarResultsList extends React.Component {
     } else {
       return (
       <div>
-        <Header setView={this.props.setView} text="Epic Meal Planner"/>
         <div className="container textFont">
           <div className="row justify-content-center my-5">
             <SearchBar setView={this.props.setView}/>
