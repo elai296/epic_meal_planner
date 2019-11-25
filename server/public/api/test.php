@@ -29,8 +29,8 @@ if (!$result) {
 }
 
 $count = mysqli_num_rows($result);
-
-if($count <= 5){
+print($count);
+if($count >= 5){
   $url = "https://api.edamam.com/search?q=".$input."&app_id=1930606a&app_key=165754ed1a324e1c76dc770f26190489&from=0&to=10&time=1-60";
   $ch = curl_init();
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -40,7 +40,7 @@ if($count <= 5){
   curl_close($ch);
 
   $result2 = json_decode($result, true);
-
+  print('abc' +  $result2);
   $resultLabel= [];
   for($i= 0; $i < 9; $i++){
     $thisData = [
@@ -53,7 +53,7 @@ if($count <= 5){
      ];
     $resultLabel[]=$thisData;
   };
-
+  print('abc2'+ $resultLabel);
   for($i = 0; $i < 9; $i++){
     $label =  $resultLabel[$i]["label"];
     $image =  $resultLabel[$i]["image"];

@@ -10,13 +10,13 @@ $obj = json_decode($json_input, true);
 $id = $obj["id"];
 
 $categories = $obj["categories"];
-
+print($categories);
 $query = "";
 
 if ($categories !== "favorites") {
-  $query = "UPDATE recipe SET recipe.categories = 'favorites' WHERE id = $id";
+  $query = "INSERT favorites SET recipe_id = $id";
 } else {
-  $query = "UPDATE recipe SET recipe.categories = NULL WHERE id = $id";
+  $query = "DELETE FROM favorites WHERE recipe_id = $id";
 }
 
 mysqli_query($conn, $query);

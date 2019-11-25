@@ -34,6 +34,7 @@ class SearchBarResultsList extends React.Component {
   }
 
   render()  {
+    
     if(this.state.list.length === 0){
       return (
         <div>
