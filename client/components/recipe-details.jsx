@@ -6,7 +6,8 @@ export default class RecipeDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: ""
+      modal: "",
+      shadow: false
     };
     this.handleShoppingList = this.handleShoppingList.bind(this);
     this.showModal = this.showModal.bind(this);
@@ -14,7 +15,8 @@ export default class RecipeDetails extends React.Component {
 
   closeModal() {
     this.setState({
-      modal: ""
+      modal: "",
+      shadow: false
     });
   }
 
@@ -87,14 +89,15 @@ export default class RecipeDetails extends React.Component {
 
   handleCalendar() {
     this.setState({
-      modal: "calendar"
+      modal: "calendar",
+      shadow: true
     });
     this.showModal();
   }
 
   handleFavorites() {
     let recipeCategoryToggled;
-    this.setState({ modal: "favorites" });
+    this.setState({ modal: "favorites" , shadow: true});
     this.showModal();
     this.putRecipeInFavorites(this.props.recipe);
 
@@ -136,7 +139,8 @@ export default class RecipeDetails extends React.Component {
       body: JSON.stringify(recipe)
     });
     this.setState({
-      modal: "shoppinglist"
+      modal: "shoppinglist",
+      shadow: true
     });
     this.showModal();
   }
@@ -167,6 +171,7 @@ export default class RecipeDetails extends React.Component {
 
     return (
       <div>
+        {this.state.shadow ? <div className="shadowForModals"></div> : null }
         <div className="container textFont">
           <div className="row justify-content-center my-5">
             <SearchBar setView={this.props.setView} />
