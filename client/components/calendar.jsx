@@ -440,12 +440,13 @@ export default class Calendar extends React.Component {
       );
     } else if (this.state.meal) {
       const headerText = (
-        <div>
-          {this.monthLiteral} {this.year}
-        </div>
+        <h1 className="text-center">
+          ~ {this.monthLiteral} {this.year} ~
+        </h1>
       );
       return (
         <div>
+          {headerText}
           <div className="container textFont mt-5">
             <CalendarTable
               handleClick={this.handleClick}
