@@ -27,14 +27,12 @@ export default class App extends React.Component {
   }
 
   setView(name, recipe, searchTerm, title, category) {
-    console.log(this.state);
     this.setState(
       {
         view: { name: name, recipe: recipe, viewTitle: title },
         searchTerm: searchTerm,
         category: category
-      },
-      console.log(this.state)
+      }
     );
   }
 
