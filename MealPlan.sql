@@ -23,6 +23,34 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `calendar`
+--
+
+DROP TABLE IF EXISTS `calendar`;
+CREATE TABLE `calendar` (
+  `id` mediumint(8) UNSIGNED NOT NULL,
+  `date` date NOT NULL,
+  `meal_time` enum('breakfast','lunch','dinner') COLLATE utf8_unicode_ci NOT NULL,
+  `recipe_id` mediumint(9) UNSIGNED DEFAULT NULL,
+  `recipe_label` text COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `favorites`
+--
+
+DROP TABLE IF EXISTS `favorites`;
+CREATE TABLE `favorites` (
+  `id` mediumint(8) UNSIGNED NOT NULL,
+  `recipe_id` mediumint(8) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `recipe`
 --
 
@@ -3918,65 +3946,6 @@ INSERT INTO `shopping_list` (`id`, `ingredients_id`, `is_completed`, `ingredient
 (727, NULL, 0, '2 cups leftover pasta'),
 (728, NULL, 0, '1 cup cherry lambic beer'),
 (729, NULL, 0, 'chicken');
--- --------------------------------------------------------
-
---
--- Table structure for table `calendar`
---
-
-DROP TABLE IF EXISTS `calendar`;
-CREATE TABLE `calendar` (
-  `id` mediumint(8) UNSIGNED NOT NULL,
-  `date` date NOT NULL,
-  `meal_time` enum('breakfast','lunch','dinner') COLLATE utf8_unicode_ci NOT NULL,
-  `recipe_id` mediumint(9) UNSIGNED DEFAULT NULL,
-  `recipe_label` text COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `calendar`
---
-
-INSERT INTO `calendar` (`id`, `date`, `meal_time`, `recipe_id`, `recipe_label`) VALUES
-(1, '2019-09-08', 'lunch', 1, ''),
-(2, '2019-09-10', 'breakfast', 2, ''),
-(3, '2019-09-10', 'dinner', 3, ''),
-(4, '2019-09-17', 'breakfast', 280, 'Paleo Sriracha '),
-(5, '2019-09-20', 'dinner', 280, 'Paleo Sriracha '),
-(6, '2019-11-17', 'breakfast', 280, 'Paleo Sriracha '),
-(7, '2019-11-20', 'lunch', 280, 'Paleo Sriracha '),
-(8, '2019-11-18', 'breakfast', 294, 'Steak'),
-(9, '2019-11-17', 'lunch', 2, 'Steak'),
-(10, '2019-11-18', 'lunch', 149, 'Crispy Pan-Frie'),
-(11, '2019-11-20', 'breakfast', 394, 'Spinach Gunge'),
-(12, '2019-11-22', 'lunch', 394, 'Spinach Gunge'),
-(13, '2019-11-22', 'breakfast', 819, 'Baked Goldfish®'),
-(14, '2019-11-22', 'dinner', 779, 'Togarashi Popco'),
-(15, '2019-11-20', 'dinner', 779, 'Togarashi Popco'),
-(16, '2019-11-25', 'breakfast', 411, 'Pinky Pasta rec'),
-(17, '2019-11-26', 'dinner', 411, 'Pinky Pasta rec'),
-(18, '2019-11-26', 'breakfast', NULL, 'Chicken'),
-(19, '2019-12-05', 'breakfast', NULL, 'Fish'),
-(20, '2019-11-27', 'breakfast', 410, 'Pasta Frittata '),
-(21, '2019-11-27', 'lunch', 410, 'Pasta Frittata '),
-(22, '2019-11-25', 'lunch', 410, 'Pasta Frittata '),
-(23, '2019-11-26', 'lunch', 410, 'Pasta Frittata '),
-(24, '2019-11-24', 'dinner', 410, 'Pasta Frittata '),
-(25, '2019-11-25', 'dinner', 410, 'Pasta Frittata '),
-(26, '2019-11-24', 'breakfast', NULL, 'chicken wings'),
-(27, '2019-12-03', 'lunch', NULL, 'Pasta dish');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `favorites`
---
-
-DROP TABLE IF EXISTS `favorites`;
-CREATE TABLE `favorites` (
-  `id` mediumint(8) UNSIGNED NOT NULL,
-  `recipe_id` mediumint(8) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Indexes for dumped tables
