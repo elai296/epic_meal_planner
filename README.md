@@ -5,7 +5,7 @@ Epic Meal Planner is a one-stop meal-planning application that lets users to sea
 This was a 6-person project with over 1,000+ tracked hours.
 The group was divided into 3 front-end developers, 2-back-end developers, and 1 project manager.
 
-## [Live Demo](https://http://epicmealplanner.jaehuh.network//)
+## [Live Demo](http://epicmealplanner.elainevphan.com/)
 ![readMeGif](./server/public/image/epic_meal_planner.gif)
 
 
