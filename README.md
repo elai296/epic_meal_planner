@@ -6,7 +6,7 @@ This was a 6-person project with over 1,000+ tracked hours.
 The group was divided into 3 front-end developers, 2-back-end developers, and 1 project manager.
 
 ## [Live Demo](https://http://epicmealplanner.jaehuh.network//)
-![readMeGif](./server/public/image/readMe.gif)
+![readMeGif](./server/public/image/epic_meal_planner.gif)
 
 
 ## Getting Started
