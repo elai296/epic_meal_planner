@@ -36,7 +36,7 @@ The group was divided into 3 front-end developers, 2-back-end developers, and 1 
 
 ## Contributing
 
-Please feel free to fork this repo, make changes, submit pull requests, and send suggestions to jaehuh86@yahoo.com to make this app better.
+Please feel free to fork from this repository, make pull requests and help improve the game by sending suggestions to elainep926@gmail.com
 
 ## Built With
 
