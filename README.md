@@ -24,7 +24,7 @@ The group was divided into 3 front-end developers, 2-back-end developers, and 1 
 3. Start a dev environment with Apache2 and MySQL
    * Make sure that the port is directed to ```3000```
 
-   * Create a database in phpMyAdmin and import the `epic_meal_plan.sql` file
+   * Create a database in phpMyAdmin and import the `MealPlan.sql` file
 
    * Create a new db_connections.php with your own credentials
 
