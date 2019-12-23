@@ -28,7 +28,7 @@ class SearchBar extends React.Component {
 
           </a>
           <input
-            className="rounded-pill mx-1 pl-5 col-12"
+            className="rounded-pill searchBarInput smx-1 pl-5 col-12"
             type="search"
             value={this.state.value}
             placeholder="Search Meal"
