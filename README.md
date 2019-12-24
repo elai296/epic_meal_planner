@@ -15,11 +15,13 @@ The group was divided into 3 front-end developers, 2-back-end developers, and 1 
 
 1. Fork this repo and clone your fork from the terminal.
 
-```https://github.com/[user_name]/epic_meal_planner.git```
+```
+https://github.com/[user_name]/epic_meal_planner.git```
 
 2. Navigate to, and open the `epicMealPlanner` directory, then install the necessary dependencies.
 
-``` $ npm install ```
+``` 
+$ npm install ```
 
 3. Start a dev environment with Apache2 and MySQL
    * Make sure that the port is directed to ```3000```
@@ -30,7 +32,8 @@ The group was divided into 3 front-end developers, 2-back-end developers, and 1 
 
 4. Initiate the dev server
 
-``` $ npm run dev ```
+``` 
+$ npm run dev ```
 
 5. Go to `localhost:3000` and enjoy!
 
