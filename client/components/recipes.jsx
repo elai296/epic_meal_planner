@@ -32,8 +32,8 @@ function Recipes(props) {
             key={x}
             href="#"
             onClick={() => {
-              props.setCategory(item.category);
               props.setView("recipesCategoriesList", {}, "", "RECIPES");
+              props.setCategory(item.category);
             }}
           >
             
